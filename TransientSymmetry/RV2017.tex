@@ -1,0 +1,104 @@
+\documentclass[12pt,oneside,a4paper]{article} % for sharing
+\usepackage{apacite}
+\usepackage{appendix}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\usepackage{amssymb} % for approx greater than
+\usepackage{caption}
+\usepackage{placeins} % for \FloatBarrier
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{longtable}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xcolor,colortbl}
+\usepackage{chngpage}
+\usepackage{natbib}
+\bibpunct{(}{)}{,}{a}{}{;} 
+\usepackage{url}
+\usepackage{nth}
+\usepackage{authblk}
+\usepackage[most]{tcolorbox}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts}
+% columns for longtable
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\usepackage{arydshln} % Dashed lines in matrices
+
+\usepackage[margin=1in]{geometry}
+%\doublespacing % for review
+
+% line numbers to make review easier
+%\usepackage{lineno}
+%\linenumbers
+
+%\usepackage{soul}% for \st{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% for section 4 math environments
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[proposition]
+\newtheorem{remark}{Remark}[section]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\ackn[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+% Affiliations in small font size
+\renewcommand\Affilfont{\small}
+
+\defcitealias{HMD}{HMD 2016}
+
+% junk for longtable caption
+\AtBeginEnvironment{longtable}{\linespread{1}\selectfont}
+\setlength{\LTcapwidth}{\linewidth}
+
+% sort van Raalte properly
+% #1: sorting key, #2: prefix for citation, #3: prefix for bibliography
+\DeclareRobustCommand{\VAN}[3]{#2} % set up for citation
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\title{Symmetry in the forward and backward tenure of transient states in
+multistate stationary populations}
+%\author{author(s) redacted}
+\author[1]{Tim Riffe\thanks{riffe@demogr.mpg.de}}
+\author[2,3]{Francisco Villavicencio}
+\affil[1]{Max Planck Institute for Demographic Research, Rostock, Germany}
+\affil[2]{Max-Planck Odense Center on the Biodemography of Aging, Odense, Denmark}
+\affil[3]{Department of Public Health, University of Southern Denmark, Odense, Denmark}
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+Guess what? The Brouard-Carey equality also applies to transient states in
+multistate stationary populations. That's even less intuitive than the original
+theorem because entries to and exits from states aren't aligned on either end.
+This property even holds if the transient state affects mortality, because age
+and TTD are beside the point. It'd only be practical if a census were at large.
+\section{Title}
+
+\subsection{Subtitle}
+
+Plain text.
+
+\subsection{Another subtitle}
+
+More plain text.
+
+
+\end{document}
