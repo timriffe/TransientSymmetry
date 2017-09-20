@@ -72,7 +72,7 @@
 \begin{document}
 
 \title{Symmetry in the forward and backward tenure of transient states in
-multistate stationary populations}
+stationary populations}
 %\author{author(s) redacted}
 \author[1]{Tim Riffe\thanks{riffe@demogr.mpg.de}}
 \author[2,3]{Francisco Villavicencio}
@@ -90,15 +90,49 @@ multistate stationary populations. That's even less intuitive than the original
 theorem because entries to and exits from states aren't aligned on either end.
 This property even holds if the transient state affects mortality, because age
 and TTD are beside the point. It'd only be practical if a census were at large.
-\section{Title}
 
-\subsection{Subtitle}
+\section{sketch of proof}
 
-Plain text.
+(1): A duration can be represented as a line segment, potentially a
+subset of a life-line. Points along a single within-person duration could be continuously
+sampled over time, used to bisect the segment, collecting two infinite sets of
+values: time spent in the duration and time until exiting the duration. If
+continuously collected, these two sets will have the same values, with time
+spent in ascending order and time left in descending order. If sorted
+identically these two sets will therefore be identical. This is so by way of
+complements.
 
-\subsection{Another subtitle}
+(2): If this individual is reborn in each instant, destined to relive the
+exact same life course as the first, we end up with an infinite
+number of identically aligned identically long segments placed side-by-side.
+This infinite set of segments in effect forms a plane. One could in this
+setting take a census at a single point in time, collecting an infinite set of
+time spent and time left values, each from a unique cohort in sequence. It is
+clear that the two sets observed at a single time point will be identical
+to the first two sets that were observed of a single duration over its entire
+length.
 
-More plain text.
+(3): Assume we have another individual from the same birth cohort that enters
+the same state as the first, but at a different time and for a different
+duration. We could do (1) in the same way, sampling at an infinite set of points
+along the duration, and constructing two sets, one of time spent and another of
+time left in the state. These too would be identical sets, but they would not be
+identical to those of the first individual, as the range of values would be
+different. The union of the first and second time-spent sets and the union of
+the first and second time-left sets are guaranteed to be identical. 
 
+(4): If the second individual repeats over time as in (2), then our
+comprehensive sample at a single point in time also yields identical sets
+of time spent and time left values. Also from this census, the union of the
+first and second time-spent sets and the union of the first and second time-left sets
+are guaranteed to be identical. 
+
+(5): By induction we can keep adding durations in this state, infinitely if we
+please, and the union of all resultant time spent sets and the union of time
+left sets will continue being identical. It is therefore true that the
+probability of selecting a particular value from the time-spent set is identical
+to the probability of selecting the same value from the time-left set. This
+constitutes a proof of symmetry of time spent and left in transient states in
+stationary populations.
 
 \end{document}
