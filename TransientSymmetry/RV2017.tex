@@ -65,7 +65,8 @@
 % sort van Raalte properly
 % #1: sorting key, #2: prefix for citation, #3: prefix for bibliography
 \DeclareRobustCommand{\VAN}[3]{#2} % set up for citation
-
+\newcommand{\tc}{\quad\quad\text{,}}
+\newcommand{\tp}{\quad\quad\text{.}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
@@ -104,6 +105,17 @@ continuously collected, these two sets will have the same values, with time
 spent in ascending order and time left in descending order. If sorted
 identically these two sets will therefore be identical. This is so by way of
 complements.
+
+If the duration in question is called $d^1$, the date of entry is $d_L^1$ and
+the date of exit is $d_R^1$, then the length of $d^1$ is $d_R^1 - d_L^1$ and the
+set of time spent values, $A^1$ is defined as:
+\begin{align}
+A^1 &= \{a \in \mathbb{R}~ | ~0 \le a \le (d_R^1 - d_L^1) \} \tc
+\intertext{and the
+set of time left values, $T^1$ is also:}
+T^1 &= \{a \in \mathbb{R}~ | ~ (d_R^1 - d_L^1) \ge a \ge 0 \} \tc
+\end{align}
+
 
 \item{} If this individual is reborn in each instant, destined to relive the
 exact same life course as the first, we end up with an infinite
