@@ -70,22 +70,27 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-\title{Symmetry in the forward and backward tenure of transient states in
+\title{Time spent and left of transient states in
 stationary populations}
 %\author{author(s) redacted}
 \author[1]{Tim Riffe\thanks{riffe@demogr.mpg.de}}
 \author[2,3]{Francisco Villavicencio}
 \affil[1]{Max Planck Institute for Demographic Research, Rostock, Germany}
-\affil[2]{Max-Planck Odense Center on the Biodemography of Aging, Odense, Denmark}
-\affil[3]{Department of Public Health, University of Southern Denmark, Odense, Denmark}
+\affil[2]{Max-Planck Odense Center on the Biodemography of Aging, Department of Public Health, University of Southern Denmark, Odense, Denmark}
 
 \maketitle
 
 \begin{abstract}
-We prove that the distribution of time spent is equal to the distribution of
-time left in transient states of multistate stationary populations.
+The Brouard-Carey equality establishes equality between the distributions of
+years-lived and years-left are identical in perfectly stationary populations. This equality can be generalized to account for time
+spent and time left in states within multistate stationary populations. We
+provide an intuitive proof that the distribution of time spent and left in
+transient states is equal in multistate stationary populations. We speculate
+that this equality may be helpful under certain constraints to estimate the
+distribution of otherwise unobserved onset timing for health or other states.
 \end{abstract}
 
+\section{Background}
 The Brouard-Carey equality establishes that the distributions of years-lived and years-left are identical in perfectly
 stationary populations
 \citep{brouard1989mouvements,Vaupel2009,rao2014,villavicencioRiffeSymmetires2016}.
@@ -95,18 +100,17 @@ either case vital rate schedules must be fixed and the intrinsic growth rate
 constant at null.
 
 Let's say that individuals in
-the stationary population can obtain different states through life. If vital
-rates do not vary by states, then it does not matter whether state
+the stationary population can obtain different states over the life course. If
+vital rates do not vary by states, then it does not matter whether state
 transition rates are fixed or not, for in the aggregate the population remains
 stationary in the traditional sense. However, if vital rates depend on one's
 state, transition rates must also be fixed in order for stationarity to
 hold in the aggregate--- This is the situation that we entertain in the
-following. The standard set of invariant quantities of course remain: birth cohorts are of
-fixed size, as are death cohorts, and these are of equal size. Further, the
-Brouard-Carey equality still will hold in the aggregate. Under these
-conditions, one may take for granted that the age-state structure of the
-stationary population is also invariant over time. Further, the distribution of
-state-specific tenures for individuals entering a state at a given age is also a
+following. The standard set of invariant quantities of course remains: birth
+cohorts and death cohorts are of fixed and equal size. Further, the
+Brouard-Carey equality still holds in the aggregate. Under these conditions, one
+may take for granted that the age-state structure of the stationary population is also invariant over time. Further, the distribution of
+state-specific tenures for individuals entering a state at a given age is a
 fixed attribute, by consequence of fixed transition and vital rate schedules.
 
 This setup is not entirely contrived, for it corresponds with the assumptions of
@@ -115,23 +119,23 @@ the present, however, we are not bound to memoryless transition probabilities.
 Instead, we simply require the result of invariant age-state structure and
 invariant conditional age-state tenure distributions, which may result from
 either memoryless transitions or from arbitrarily linked dependencies. It is the
-fact of a fixed age-state structure on which we base the following observation.
-In essence, we end up with a fixed distribution of lifelines, each of which
-consists in a sequence of state-specific durations. 
+fact of a fixed age-state structure on which we base the following observations.
+In essence, we end up with a fixed distribution of lifelines, each consisting in
+a sequence of state-specific durations.
 
 Under fixed vital and transition rates, and zero growth, we introduce a new
 theorem, which is a more general version of the Brouard-Carey equality.
-Namely, it turns out that if there is some state $s$ in the population, then a
+Namely, it turns out that if there is some state $s$ in the population, a
 randomly drawn individual from state $s$ has equal probabilities of having
 entered $s$ $x$ years ago and exiting $s$ in $x$ years. This proposition
-is probably not intuitively true, so we prove it, and then speculate as to how this
-equality may be put to good use.
+is probably not intuitive at first glance, so we prove it, and then speculate as
+to how this equality may be put to good use.
 
 \section{An intuitive proof of transient symmetry}
 \FloatBarrier
 
 \begin{theorem}
-Given a continuous (or infinite) stationary population and fixed transition
+Given a stationary population and fixed transition
 rates, the probability that a randomly selected individual is in state $s$ and entered $s$ $x$ years
 ago is equal to the probability of being in state $s$ and exiting in $x$ years.
 \end{theorem}
@@ -140,30 +144,32 @@ ago is equal to the probability of being in state $s$ and exiting in $x$ years.
 The proof of this statement follows five intuitive steps.
 \begin{enumerate}
 \item{} A duration can be represented as a line segment, potentially a
-subset of a life-line. Points along a single within-person duration could be continuously
-sampled over time, used to bisect the segment, collecting two infinite sets of
-values: time spent in the duration and time until exiting the duration. If
-continuously collected, these two sets will have the same values, with time
-spent in ascending order and time left in descending order. If sorted
-identically these two sets will therefore be identical. This is so by way of
-complements.
+subset of a life-line. Points along a single within-person duration can be
+sampled over time in arbitrarily fine time steps, $\delta$. Each time step
+can then be used to bisect the segment, collecting two collections of
+values: 1) time spent in the duration prior to the sample point, and 2) time
+left until exiting the state.
+If observations are evenly spaced, and values are truncated to the nearest
+$\delta$, by way of complements these two sets will consist of the same values.
 
-If the duration in question is called $d^i$, the date of entry is $d_L^i$ and
-the date of exit is $d_R^i$, then the length of $d^i$ is $d_R^i - d_L^i$ and the
-set of time spent values, $A^i$ is defined as:
+If the duration of the $i^{th}$ individual is called $d^i$, the age of entry
+is $a_L^i$ and the age of exit is $a_R^i$, such that $d^i = a_R^i -
+a_L^i$. The set of time spent values, $A^i$ is defined as:
 \begin{align}
 \label{eq:Ai}
-A^i &= \{a \in \mathbb{R}~ | ~0 \le a \le (d_R^1 - d_L^1) \} \tc
-\intertext{and the
-set of time left values, $T^1$ is also:}
+A^i &= \left\{ \delta \cdot k ~| ~k \in \mathbb{Z}~, ~0 \le k \le
+\left\lfloor \frac{d_i}{\delta}\right\rfloor \right\} \tc \intertext{where
+$\lfloor \ldots\rfloor $ denotes truncation to the lower integer bound. The
+set of time left values, $T^i$ is also:}
 \label{eq:Ti}
-T^i &= \{a \in \mathbb{R}~ | ~ (d_R^1 - d_L^1) \ge a \ge 0 \} \tc
+T^i &= \left\{ \delta \cdot k ~| ~k \in \mathbb{Z}~, ~\left\lfloor
+\frac{d_i}{\delta}\right\rfloor \ge k \ge 0\right\} \tp
 \end{align}
 
 Figure~\ref{fig:lifeline1} illustrates the construction of $A^i$ and $T^i$ in
 expressions~\eqref{eq:Ai} and \eqref{eq:Ti}. The central cut-point moves along
 the duration from the time of entry until the time of exit, creating two
-infinite sets.
+lists of values.
 
 \begin{figure}
 \centering
@@ -174,26 +180,27 @@ and $T^i$.}
 \end{figure}
 
 \FloatBarrier
-\item{} If this individual is reborn in each instant, destined to relive the
-exact same life course as the first, we end up with an infinite
-number of identically aligned and identically long segments placed side-by-side.
-This infinite set of segments in effect forms a plane. One could in this
-setting take a census at a single point in time, collecting an infinite set of
-time spent and time left values, each from a unique cohort in sequence. It is
-clear that the two sets observed at a single time point will be identical
-to the first two sets that were observed of a single duration over its entire
-length.
+\item{} If this individual is reborn every $\delta$ time step, destined to
+relive the exact same life course as the first, we end up with a set of
+identically aligned and identically long segments placed side-by-side, spaced
+apart by $\delta$.
+This potentially large set of segments may be imagined as a plane, although this
+would only hold in the limit.
+One could in this setting take a census at a single point in time, collecting a set of
+time spent and time left values, each from a unique individual in sequence. It
+is clear that the two sets observed at a single time point but drawn from the population of
+perfect clones, will be identical to the first two sets that were observed of a single duration over its entire length, if the same
+$\delta$-truncation operation is followed.
 
-Figure~\ref{fig:clones} illustrates this notion with finely-spaced lifelines in
-a Lexis configuration, which the reader can imagine forming a continuous
-plane. The vertical line indicates a hypothetical census at time $t$ of
-the continuously-aged population of this clones individual. At time $t$, the blue-highlighted segments indicate
+Figure~\ref{fig:clones} illustrates this notion with uniformly-spaced lifelines
+in a Lexis configuration. The vertical line indicates a hypothetical census at time $t$ of
+the population of this cloned individual. At time $t$, the blue-highlighted segments indicate
 the set of time-spent values in $A^i$, and red-highlighted segments are the
 time-left elements of $T^i$. 
 
  \begin{figure}[h!]
 \centering
-\caption{The life of individual $i$ repeated continuously over time. A
+\caption{The life of individual $i$ repeated in $\delta$ time steps. A
 census with followup now constructs the sets $A^i$ and $T^i$ with values
 identical to the within-individual sets.}
 \label{fig:clones}
@@ -201,43 +208,40 @@ identical to the within-individual sets.}
 \end{figure}
 
 Formally, sets $A^i$ and $T^i$ consist of the same values as the previous, but
-coming from individuals born in a continuous flow from $d_R^1 - t$ years ago
-until as recently as $d_L^1 - t$ years ago. This is a sort of demonstration of
-both period-cohort equality, but also of time spent-left equality. The blue
-and red triangles in Figure~\ref{fig:clones} are simple rotations of one
-another.
+coming from individuals born in a uniform series from between $t-a_R^i$ years
+ago until as recently as $t-a_L^i$ years ago. This demonstrates both
+period-cohort equality and time spent-left equality. The blue and red triangles in
+Figure~\ref{fig:clones} are simple rotations of one another.
 
 \FloatBarrier
-\item{} Assume we have a second individual from the same birth cohort that
-enters the same state as the first, but at a different time and for a different total
-duration. We could demonstrate time spent and time left equality in the same
-way for this individual, by sampling continuously over time. Since this
-individual has a different life course timing than the first individual, their
+\item{} Assume we have a second individual from the same birth cohort as
+individual $i$ that enters the same state as the first, but at a different time
+and for a different total duration. We could demonstrate time spent and time left equality in the same
+way for this individual, by sampling in $\delta$ time steps. Since
+this individual has a different life course timing than the first individual, their
 sets of time-spent, $A^2$, and time left $T^2$ will be distinct. $A^1$ and $T^1$ range from 0 to $d^1$, whereas $A^2$ and $T^2$
-range from 0 to $d^2$. However, their unions are identical:
+range from 0 to $d^2$. However, their concatenations are identical:
 
 \begin{equation}
 \label{eq:unioneq}
-\{A^1 \cup A^2\} = \{T^1 \cup T^2\}
+\{A^1 , A^2\} = \{T^1 , T^2\}
 \end{equation}
 
-\item{} If the second individual is perfectly clones continuously over time as
-in step 2, then our census at a single point in time also yields
-identical sets of time spent and time left values. Also from this census, the union of the
-first and second time-spent sets and the union of the first and second time-left sets
+\item{} If the second individual is also perfectly cloned in $\delta$ time
+steps as in step 2, then our census at a single point in time also
+yields identical sets of time spent and time left values, $A^2$ and $T^2$. Also
+from this census, the concatenation of the first and second time-spent sets and the concatenation of the first and second time-left sets
 are guaranteed to be identical, as in equation \eqref{eq:unioneq}. 
 
 \item{} By induction we can keep adding durations in this state, infinitely if we
-please, and the union of all resultant time-spent sets and the union of time-left sets will continue being identical. Therefore the
-probability of selecting a particular value from the time-spent set is identical
-to the probability of selecting the same value from the time-left set. This
-constitutes a proof of symmetry of time spent and left in transient states in
-stationary populations.
+please, and the collection of all resultant time-spent sets and the collection
+of time-left sets will continue being identical. Therefore the probability of selecting a particular value from the time-spent set is identical
+to the probability of selecting the same value from the time-left set. 
 \end{enumerate}
 \end{proof}
 
 \section{Discussion}
-This approach from this proof is equally valid to prove the
+The approach from this proof is equally valid to prove the
 original statement of the Brouard-Carey equality, but it is more general. The
 statement and proof is so flexible as to hold for irreversible and reversible
 states. It is also applicable to repeatable states, whether time spent in the
@@ -245,25 +249,33 @@ state is kept in cumulative fashion over spells, or whether the clock resets to
 zero on each entry into the state. The equality may also be conditionable in
 curious ways: for example, the distribution of time-spent in a state conditional
 on having entered at age $a$ must also be equal to the distribution of time-left in
-the state, $a$. 
+the state, conditional on having entered at age $a$. Likewise, one may condition
+statements on exit age.
 
-Prior to proof, this equality is probably less intuitive than the Brouard-Carey
-equality, because state entry is not necessarily aligned on each zero. It is
-therefore less visible in commonly-produced plots. It might be tempting to think
-that due to state-varying vital rates, that the equality simply ought not hold.
+Prior to proof, this equality is probably less intuitive than the
+original Brouard-Carey equality, because state entry is not necessarily aligned
+on age zero. It is therefore less visible in commonly-produced plots. It might
+be tempting to think that due to state-varying vital rates, that the equality simply ought not hold.
 However, the basis of the proof is the observation that if each individual
 duration is symmetrical by complements, then so are aggregations of
-durations, irrespective of alignment. 
+durations, irrespective of alignment. Since each cohort in a perfectly
+stationary population is an identical copy of the previous, census-like
+cross-sections are also equally-composed.
 
 Empirical applications of the presently-described transient tenure equality may
 be easy to conjure up. For example, imagine a hypothetical health state that
-shows no consequential or noticeable symptoms, but is medically measurable. One
+shows no noticeable symptoms, but that is medically measurable. One
 may take a census with regular follow-ups, until eventually the state is exited
 by each individual, whether by absorption into death or entry into another
 state. Then, if the assumption of stationarity is acceptable, one may be able to
 say something about onset timing in the aggregate, itself unobserved. We think
 that the present equality will come as good news to researchers in similar
 settings.
+
+The relationship between years lived and left established by the Brouard-Carey
+equality is itself amenable to non-zero growth rates \citep{riffe2015renewal}.
+We speculate that the transient tenure equality we describe here may also be tractable in stable
+populations, but we have not investigated this possibility in detail.
 
 \bibliographystyle{chicago}
 \bibliography{references}  
