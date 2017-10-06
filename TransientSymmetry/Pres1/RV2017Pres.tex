@@ -1,0 +1,150 @@
+%% 
+%%	This is file 'beamer_sample.tex'
+%%	according to an MPIDR's PowerPoint template (?)
+%%	
+%%	by Eric Naujoks
+%%
+%%	Problems, bugs and comments to 
+%%	naujoks@demogr.mpg.de
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%	Praelegomena								%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%	- Make sure that you use utf8-encoding for all your .tex-files!!! (TeXnicCenter since version 2.0)
+%%	- TeXnicCenter update: MPIDR intranet > Hard- & Sortfware > Software > Script and text editors > TeXnicCenter
+
+\documentclass[20pt]{beamer}
+
+\usepackage[ngerman,english]{babel}
+\usepackage{tikz}
+\usepackage[normalem]{ulem}
+\geometry{paperwidth=10in, paperheight=7.5in}
+\usepackage{animate}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage[mpidr]{./mpidr/beamerthemeMPIDR}
+\usefonttheme{serif}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+%% Declaring title and author
+\title{Time spent and left of transient states in
+stationary populations}
+\subtitle{Tim Riffe \\ Francisco Villavicncio}		%%
+
+%%	the institute's logo
+\renewcommand{\mylogo}{\includegraphics[width=4.7in]{mpidr_logo_colour_en}}
+\usepackage{color}
+\definecolor{mygray}{rgb}{0.8,0.8,0.8}
+\definecolor{yellow}{rgb}{1,1,0}
+
+\defbeamertemplate{description item}{align left}{\insertdescriptionitem\hfill}
+%%	should be the very last package to be loaded
+\usepackage{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%	Beginning of the document		%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%	titlepage - fixed frame:
+%%	========================
+
+\begin{frame}
+	\titlepage
+\end{frame}
+%-------------------
+
+\begin{frame}[plain]
+\Large
+\begin{center}
+Time spent = time left in transient states\\ in stationary populations.
+\end{center}
+
+\end{frame}
+
+\begin{frame}[plain]
+\begin{overlayarea}{\textwidth}{.4\textheight}
+\begin{center}
+\only<1>{
+$A^{(i)}=\left\{ 0\right\}$\\
+\includegraphics[scale = 1]{Figures/SingleLifeAnim1/step0.pdf}\\
+$T^{(i)}=\left\{ \tau_1 \right\}$
+}
+\only<2>{
+$A^{(i)}=\left\{0, a_1 \right\}$\\
+\includegraphics[scale = 1]{Figures/SingleLifeAnim1/step1.pdf}\\
+$T^{(i)}=\left\{ \tau_1 \right\}$
+}
+\only<3>{
+$A^{(i)}=\left\{0, a_1,a_2 \right\}$\\
+\includegraphics[scale = 1]{Figures/SingleLifeAnim1/step2.pdf}\\
+$T^{(i)}=\left\{ \tau_1,\tau_2 \right\}$
+}
+\only<4>{
+$A^{(i)}=\left\{0, a_1,a_2,a_3 \right\}$\\
+\includegraphics[scale =
+1]{Figures/SingleLifeAnim1/step3.pdf}\\
+$T^{(i)}=\left\{ \tau_1,\tau_2,\tau_3 \right\}$} 
+\only<5>{
+$A^{(i)}=\left\{0, a_1,a_2,a_3,\ldots, a_{K-1} \right\}$\\
+\includegraphics[scale = 1]{Figures/SingleLifeAnim1/step14.pdf}\\
+$T^{(i)}=\left\{ \tau_1,\tau_2,\tau_3, \ldots, \tau_{K-1} \right\}$
+}
+\only<6>{
+$A^{(i)}=\left\{0, a_1,a_2,a_3,\ldots, a_{K-1}, a-K \right\}$\\
+\includegraphics[scale = 1]{Figures/SingleLifeAnim1/step15.pdf}\\
+$T^{(i)}=\left\{ \tau_1,\tau_2,\tau_3, \ldots, \tau_{K-1}, 0 \right\}$
+}
+\only<7>{
+$A^{(i)}=\left\{0, a_1,a_2,a_3,\ldots, a_{K-1}, a-K \right\}$\\
+\includegraphics[scale = 1]{Figures/SingleLifeAnim1/stepsmalldelta.pdf}\\
+$T^{(i)}=\left\{ \tau_1,\tau_2,\tau_3, \ldots, \tau_{K-1}, 0 \right\}$
+}
+\end{center}
+\end{overlayarea}
+\end{frame}
+
+\begin{frame}[plain]
+\Large
+\begin{center}
+Complementarity:\\ \vspace{1em}
+Within an individual over time\\  \vspace{.5em} \huge
+$A^{(i)} = T^{(i)}$
+\end{center}
+\end{frame}
+
+% Now we install the new template for the following frames:
+\usebackgroundtemplate{%
+  \includegraphics[width=\paperwidth,height=\paperheight]{Figures/MountainReflection.jpg}} 
+\begin{frame}
+\Large
+\vspace{1em}
+\begin{center}
+\includegraphics[scale=.8]{Figures/ReflectionOverlay.pdf}
+\end{center}
+
+\vspace{4em}
+\begin{flushright}
+@timriffe1 \\
+@VillavicencioFG
+\end{flushright}
+
+\end{frame}
+% Now we install another template, effective from now on:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%	End of the document			%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+
+
+
+
+
+
+
+
+
+
