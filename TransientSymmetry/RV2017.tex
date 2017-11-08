@@ -1,4 +1,29 @@
-\documentclass[12pt,oneside,a4paper]{article} % for sharing
+%\documentclass[12pt,oneside,a4paper]{article} % for sharing
+\begin{filecontents*}{example.eps}
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 19 19 221 221
+%%CreationDate: Mon Sep 29 1997
+%%Creator: programmed by hand (JK)
+%%EndComments
+gsave
+newpath
+  20 20 moveto
+  20 220 lineto
+  220 220 lineto
+  220 20 lineto
+closepath
+2 setlinewidth
+gsave
+  .4 setgray fill
+grestore
+stroke
+grestore
+\end{filecontents*}
+%
+%\documentclass{svjour3}                     % onecolumn (standard format)
+%\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
+\documentclass[smallextended]{svjour3}  
+
 \usepackage{apacite}
 \usepackage{appendix}
 \usepackage{amsmath}
@@ -8,7 +33,7 @@
 \usepackage{caption}
 \usepackage{placeins} % for \FloatBarrier
 \usepackage{graphicx}
-\usepackage{subcaption}
+%\usepackage{subcaption}
 \usepackage{longtable}
 \usepackage{setspace}
 \usepackage{booktabs}
@@ -23,6 +48,7 @@
 \usepackage[most]{tcolorbox}
 \usepackage[normalem]{ulem}
 \usepackage{amsfonts}
+\smartqed  
 % columns for longtable
 \usepackage{arydshln} % Dashed lines in matrices
 
@@ -37,14 +63,35 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % for section 4 math environments
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{proposition}{Proposition}[section]
-\newtheorem{corollary}{Corollary}[proposition]
-\newtheorem{remark}{Remark}[section]
-
+%\theoremstyle{definition}
+%\newtheorem{definition}{Definition}[section]
+%\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{proposition}{Proposition}[section]
+%\newtheorem{corollary}{Corollary}[proposition]
+%\newtheorem{remark}{Remark}[section]
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{filecontents*}{example.eps}
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 19 19 221 221
+%%CreationDate: Mon Sep 29 1997
+%%Creator: programmed by hand (JK)
+%%EndComments
+%gsave
+%newpath
+%  20 20 moveto
+%  20 220 lineto
+%  220 220 lineto
+%  220 20 lineto
+%closepath
+%2 setlinewidth
+%gsave
+%  .4 setgray fill
+%grestore
+%stroke
+%grestore
+\end{filecontents*}
+\RequirePackage{fix-cm}
 
 \newcommand\ackn[1]{%
   \begingroup
@@ -54,40 +101,64 @@
 }
 
 % Affiliations in small font size
-\renewcommand\Affilfont{\small}
+%\renewcommand\Affilfont{\small}
 
 \defcitealias{HMD}{HMD 2016}
 
 % junk for longtable caption
-\AtBeginEnvironment{longtable}{\linespread{1}\selectfont}
-\setlength{\LTcapwidth}{\linewidth}
+%\AtBeginEnvironment{longtable}{\linespread{1}\selectfont}
+%\setlength{\LTcapwidth}{\linewidth}
 
 % sort van Raalte properly
 % #1: sorting key, #2: prefix for citation, #3: prefix for bibliography
-\DeclareRobustCommand{\VAN}[3]{#2} % set up for citation
+%\DeclareRobustCommand{\VAN}[3]{#2} % set up for citation
 \newcommand{\tc}{\quad\quad\text{,}}
 \newcommand{\tp}{\quad\quad\text{.}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
+
 \title{Time spent and left of transient states in
 stationary populations}
-%\author{author(s) redacted}
-\author[1]{Tim Riffe\thanks{riffe@demogr.mpg.de}}
-\author[2,3]{Francisco Villavicencio}
-\affil[1]{Max Planck Institute for Demographic Research, Rostock, Germany}
-\affil[2]{Max-Planck Odense Center on the Biodemography of Aging, Department of Public Health, University of Southern Denmark, Odense, Denmark}
 
+\author{Tim Riffe \and Francisco Villavicencio}
+
+%\authorrunning{Short form of author list} % if too long for running head
+
+\institute{   Tim Riffe \at
+              Max Planck Institute for Demographic Research.
+              Konrad-Zuse-Str. 1. 18057 Rostock, Germany\\
+              \email{riffe@demogr.mpg.de}\\
+              Tel.:  +49 176 232 858 45\\
+              Fax: +49 381 2081 - 280
+\and 
+Francisco Villavicencio \at
+              Department of Public Health \& Max-Planck Odense Center on the
+              Biodemography of Aging. University of Southern Denmark, J.B. Winsløws Vej 9B, 
+              2nd floor DK-5000 Odense C, Denmark \\
+              \email{fvillavicencio@health.sdu.dk}
+              }
+              
+\journalname{Demographic Research}
+\date{Received: date / Accepted: date}
 \maketitle
 
+
 \begin{abstract}
-The Brouard-Carey equality establishes equality between the distributions of
-years-lived and years-left in perfectly stationary populations. This equality can be generalized to account for time
+~
+\begin{description}
+\item[\textbf{Background}] The Brouard-Carey equality establishes equality
+between the distributions of years-lived and years-left in stationary populations. 
+\item[\textbf{Objective}] This equality can be generalized to account for time
 spent and time left in states within multistate stationary populations. We
 provide an intuitive proof that the distribution of time spent and left in
-transient states is equal in multistate stationary populations. We speculate
-that this equality may be helpful under certain constraints to estimate the
-distribution of otherwise unobserved onset timing for health or other states.
+transient states is equal in multistate stationary populations. 
+\item[\textbf{Conclusions}] We speculate that this equality may be helpful under
+certain constraints to estimate the distribution of otherwise unobserved onset timing for health or other states.
+\end{description}
+\keywords{Brouard-Carey equality \and Stationary population \and Age
+structure \and Symmetric patterns \and Multistate models}
+\subclass{91D20 \and 60K05 \and 92D25}
 \end{abstract}
 
 \section{Background}
@@ -258,9 +329,10 @@ where each lifeline is itself an invariant sequence of states.
 
 \section{Discussion}
 The approach from this proof is equally valid to prove the
-original statement of the Brouard-Carey equality, but it is more general. The
-statement and proof is so flexible as to hold for irreversible and reversible
-states. It is also applicable to repeatable states, whether time spent in the
+original statement of the Brouard-Carey equality (where the state is ``alive''),
+but it is more general.
+The statement and proof is flexible enough to hold for irreversible and reversible
+states. It also applies to repeatable states, whether time spent in the
 state is kept in cumulative fashion over spells, or whether the clock resets to
 zero on each entry into the state. The equality may also be conditionable in
 curious ways: for example, the distribution of time-spent in a state conditional
@@ -271,15 +343,16 @@ still holds within the newly merged state.
 
 At first glance, this equality is probably less intuitive than the
 original Brouard-Carey equality, because state entry is not necessarily aligned
-on age zero. It is therefore less visible in commonly-produced plots. Plots of
-stacked sequences look chaotic. It might be tempting to think that due to
-state-varying vital rates, the equality simply ought not hold.
+on age zero. It is less visible in commonly-produced plots because plots of
+stacked sequences look chaotic, often even if clustered or sorted. It might
+be tempting to think that due to state-varying vital rates, the equality simply ought not hold.
 However, the basis of the proof is the observation that if each individual
 duration is symmetrical by complements, then so are aggregations of
 durations, irrespective of alignment. Since each cohort in a perfectly
 stationary population of infinite size is an identical copy of the previous,
 census-like cross-sections are also equally-composed.
 
+\section{Potential applications}
 Empirical applications of the presently-described transient tenure equality may
 be easy to conjure up. For example, imagine a hypothetical health state that
 shows no noticeable symptoms, but that is medically measurable. One
@@ -289,11 +362,6 @@ state. Then, if the assumption of stationarity is acceptable, one may be able to
 say something about onset timing in the aggregate, itself unobserved. We think
 that the present equality will come as good news to researchers in similar
 settings.
-
-The relationship between years lived and left established by the Brouard-Carey
-equality is itself amenable to non-zero growth rates \citep{riffe2015renewal}.
-We speculate that the transient tenure equality we describe here may also be tractable in stable
-populations, but we have not investigated this possibility in detail.
 
 \section{Simulation}
 The reader may wish to have a sense of how well this equality holds up under
@@ -309,6 +377,16 @@ employed, unemployed, inactive, and retired. We generate random sequences of
 trajectories using the \texttt{rmarkovchain} function of the
 \texttt{markovchain} \texttt{R} package \citep{spedicato2017}.
 
-\bibliographystyle{chicago}
+
+\section{Conclusion}
+The relationship between years lived and left established by the Brouard-Carey
+equality is itself amenable to non-zero growth rates \citep{riffe2015renewal}.
+We speculate that the transient tenure equality we describe here may also be tractable in stable
+populations, but we have not investigated this possibility in detail.
+
+
+
+%\bibliographystyle{chicago}
+\bibliographystyle{spbasic}
 \bibliography{references}  
 \end{document}
