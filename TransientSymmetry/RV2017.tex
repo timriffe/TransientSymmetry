@@ -95,53 +95,59 @@ The Brouard-Carey equality establishes that the distributions of years-lived and
 stationary populations
 \citep{brouard1989mouvements,Vaupel2009,rao2014,villavicencioRiffeSymmetires2016}.
 A perfectly stationary population is either perfectly stationary because it is
-of infinite size or because it is finite and deterministically repeating, and in
-either case vital rate schedules must be fixed and the intrinsic growth rate
+of infinite size or because it is finite and
+deterministically repeating, and in either case vital rate schedules must be fixed and the intrinsic growth rate
 constant at null.
 
 Let's say that individuals in
 the stationary population can obtain different states over the life course. If
-vital rates do not vary by states, then it does not matter whether state
-transition rates are fixed or not, for in the aggregate the population remains
+birth and death rates do not vary by states, then it does not matter whether
+state transition rates are fixed or not, for in the aggregate the population remains
 stationary in the traditional sense. However, if vital rates depend on one's
 state, transition rates must also be fixed in order for stationarity to
 hold in the aggregate--- This is the situation that we entertain in the
-following. The standard set of invariant quantities of course remains: birth
-cohorts and death cohorts are of fixed and equal size. Further, the
-Brouard-Carey equality still holds in the aggregate. Under these conditions, one
-may take for granted that the age-state structure of the stationary population is also invariant over time. Further, the distribution of
-state-specific tenures for individuals entering a state at a given age is a
-fixed attribute, by consequence of fixed transition and vital rate schedules.
+following. Under fixed vital and state-transition rates, where vital rate
+schedules differ between sates, the standard set of aggregate invariant
+quantities of course remains:
+birth cohorts and death cohorts are of fixed and equal size. Further, the
+Brouard-Carey equality still holds in the aggregate. Under these conditions,
+once stationarity is acheived, the age-state structure of the stationary
+population is also invariant over time. As a consequence of fixed transition
+and vital rate schedules, the distribution of state-specific tenures for
+individuals entering a state at a given age is also a fixed attribute.
 
 This setup is not entirely contrived, for it corresponds with the assumptions of
-common multistate markov models, often used to calculate state expectancies. In
-the present, however, we are not bound to memoryless transition probabilities.
-Instead, we simply require the result of invariant age-state structure and
+common multistate markov models, often used to calculate state expectancies
+(cite caswell and tulja).
+In the present, however, we are not bound to memoryless transition probabilities.
+Instead, we simply require the consequence of invariant age-state structure and
 invariant conditional age-state tenure distributions, which may result from
-either memoryless transitions or from arbitrarily linked dependencies. It is the
-fact of a fixed age-state structure on which we base the following observations.
-In essence, we end up with a fixed distribution of lifelines, each consisting in
-a sequence of state-specific durations.
+either memoryless transitions, or from arbitrarily linked
+dependencies.
+It is the fact of a fixed age-state structure on which we base the following observations.
+A fixed age-state structure implies a fixed distribution of lifelines, each
+consisting in a sequence of state-specific durations. 
 
 Under fixed vital and transition rates, and zero growth, we introduce a new
 theorem, which is a more general version of the Brouard-Carey equality.
-Namely, it turns out that if there is some state $s$ in the population, a
+Namely, if there is some state $s$ in the population, a
 randomly drawn individual from state $s$ has equal probabilities of having
 entered $s$ $x$ years ago and exiting $s$ in $x$ years. This proposition
-is probably not intuitive at first glance, so we prove it, and then speculate as
-to how this equality may be put to good use.
+is probably not intuitive at first glance, so we prove it, and then speculate
+as to how this equality may be put to good use.
 
 \section{An intuitive proof of transient symmetry}
 \FloatBarrier
 
 \begin{theorem}
-Given a stationary population and fixed transition
+Given a stationary population and fixed state-transition
 rates, the probability that a randomly selected individual is in state $s$ and entered $s$ $x$ years
 ago is equal to the probability of being in state $s$ and exiting in $x$ years.
 \end{theorem}
 
 \begin{proof}
-The proof of this statement follows five intuitive steps.
+The proof of this statement follows five intuitive steps, built up from
+lifelines.
 \begin{enumerate}
 \item{} A duration can be represented as a line segment, potentially a
 subset of a life-line. Points along a single within-person duration can be
@@ -154,7 +160,7 @@ $\delta$, by way of complements these two sets will consist of the same values.
 
 If the duration of the $i^{th}$ individual is called $d^i$, the age of entry
 is $a_L^i$ and the age of exit is $a_R^i$, such that $d^i = a_R^i -
-a_L^i$. The set of time spent values, $A^i$ is defined as:
+a_L^i$. The set of time-spent values, $A^i$ is defined as:
 \begin{align}
 \label{eq:Ai}
 A^i &= \left\{ \delta \cdot k ~| ~k \in \mathbb{Z}~, ~0 \le k \le
@@ -240,6 +246,16 @@ to the probability of selecting the same value from the time-left set.
 \end{enumerate}
 \end{proof}
 
+Our point of departure was that of a perfectly stationary population with
+identically distributed lifelines that aggregate to a fixed age-state structure,
+and this is also the result that we arrive at by induction in the final step of
+the proof. In this strict environment it is therefore the case that our theorem
+holds. A more rigorous proof would allow $\delta$ to decrease to 0 in the
+limit. The present approach does not allow this because probability statements
+would no longer hold. We may require a population of infinite size in order to
+make the jump from a fixed age-state structure to an invariant set of lifelines,
+where each lifeline is itself an invariant sequence of states. 
+
 \section{Discussion}
 The approach from this proof is equally valid to prove the
 original statement of the Brouard-Carey equality, but it is more general. The
@@ -250,17 +266,19 @@ zero on each entry into the state. The equality may also be conditionable in
 curious ways: for example, the distribution of time-spent in a state conditional
 on having entered at age $a$ must also be equal to the distribution of time-left in
 the state, conditional on having entered at age $a$. Likewise, one may condition
-statements on exit age.
+statements on exit age. One may also arbitrarily merge states, and the equality
+still holds within the newly merged state.
 
-Prior to proof, this equality is probably less intuitive than the
+At first glance, this equality is probably less intuitive than the
 original Brouard-Carey equality, because state entry is not necessarily aligned
-on age zero. It is therefore less visible in commonly-produced plots. It might
-be tempting to think that due to state-varying vital rates, that the equality simply ought not hold.
+on age zero. It is therefore less visible in commonly-produced plots. Plots of
+stacked sequences look chaotic. It might be tempting to think that due to
+state-varying vital rates, the equality simply ought not hold.
 However, the basis of the proof is the observation that if each individual
 duration is symmetrical by complements, then so are aggregations of
 durations, irrespective of alignment. Since each cohort in a perfectly
-stationary population is an identical copy of the previous, census-like
-cross-sections are also equally-composed.
+stationary population of infinite size is an identical copy of the previous,
+census-like cross-sections are also equally-composed.
 
 Empirical applications of the presently-described transient tenure equality may
 be easy to conjure up. For example, imagine a hypothetical health state that
@@ -276,6 +294,20 @@ The relationship between years lived and left established by the Brouard-Carey
 equality is itself amenable to non-zero growth rates \citep{riffe2015renewal}.
 We speculate that the transient tenure equality we describe here may also be tractable in stable
 populations, but we have not investigated this possibility in detail.
+
+\section{Simulation}
+The reader may wish to have a sense of how well this equality holds up under
+various violations of our assumptions. The assumption of invariant transitions
+is trickier to handle than that of finite populations with stochasticity. We
+conduct a simple markov chain simulation to
+produce random populations of different population sizes derived from the same
+set of stationary transition probabilities. Our transition rates come
+from a published study of working life expectancy in older ages in the USA
+\citep{Dudel2017}, and refer to US black females around the year 1994. The transition matrix includes
+single ages 50-100, with lifetable closeout at age 100. Transient states include
+employed, unemployed, inactive, and retired. We generate random sequences of
+trajectories using the \texttt{rmarkovchain} function of the
+\texttt{markovchain} \texttt{R} package \citep{spedicato2017}.
 
 \bibliographystyle{chicago}
 \bibliography{references}  
