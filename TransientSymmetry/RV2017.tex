@@ -377,6 +377,21 @@ employed, unemployed, inactive, and retired. We generate random sequences of
 trajectories using the \texttt{rmarkovchain} function of the
 \texttt{markovchain} \texttt{R} package \citep{spedicato2017}.
 
+For simplicity, all trajectories begin in a state of employment at age 50. We
+generate 1000, 10000, and 100000 individual trajectories. Out of these we
+sample observations of inactivity a total of 100, 1000, and 10000 times,
+respectively with replacement. We assume that the time of
+observation is half way through the year, but that spells begin on January 1 and
+end on December 31. For each observation of inactivity we measure the time spent
+in the spell up to the point of observation, and the time left until exiting the
+spell. These values are then tabulated for each simulation to produce
+distributions to compare. The theorem states that the distributions of time
+spent and left in this procedure should be asymptotically identical, but we have
+induced noise with the simulation, and we should be able to see distributions
+converge as simulated population and draw sizes increase.
+
+
+
 
 \section{Conclusion}
 Stationary populations may be more symmetrical with respect to time lived and
