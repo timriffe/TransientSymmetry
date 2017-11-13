@@ -16,26 +16,27 @@ TM <- as.matrix(
 				check.names=FALSE)
 )
 
-
-# transpose for standard MC stuff.
-# demographers do stuff backwards I guess
-TM <- t(TM)
-
+# for now everyone starts as "50::Employed"
+generate_trajs <- function(TM, N = 10^4){
+	TM <- t(TM)
+	
 # make s4 transition matrix from markovchain package
-mcEmpl <- new("markovchain", states = rownames(TM),
-		byrow = TRUE, transitionMatrix = TM,
-		name = "Empl")
-
-# how many sequences should we generate?
-N      <- 1e4
-
+	mcEmpl <- new("markovchain", states = rownames(TM),
+			byrow = TRUE, transitionMatrix = TM,
+			name = "Empl")
+	
 # each assuming a start in employment at age 50.
-RTraj  <- replicate(N,
-		    rmarkovchain(n = 50, object = mcEmpl, t0 = "50::Employed", parallel = TRUE)
-		  ) 
-RTraj                 <- rbind(rep("50::Employed",N), RTraj)
-RTraj_clean           <- gsub(".*:","",RTraj)
-rownames(RTraj_clean) <- 50:100
+	RTraj  <- replicate(N,
+			rmarkovchain(n = 50, object = mcEmpl, t0 = "50::Employed", parallel = TRUE)
+	) 
+	
+	RTraj                 <- rbind(rep("50::Employed",N), RTraj)
+	RTraj_clean           <- gsub(".*:","",RTraj)
+	rownames(RTraj_clean) <- 50:100
+	RTraj_clean
+}
+
+RTraj_clean <- generate_trajs(TM, N = 10^4)
 # each row is an age, and each column a person.
 
 # so this is like a stationary population of people born employed at age 50.
@@ -90,36 +91,81 @@ dist.diff <- function(x,y){
 }
 
 # OK, now the symmetry test, draw N inactive people with replacement
-#
 
-NN             <- 1000
-state          <- "Inactive"
+generate_dists <- function(trajs, N = 1000, state = "Inactive", spell = TRUE){
+	draws      <- which(trajs== state, arr.ind = TRUE)
+	Sampledraws <- sample(1:nrow(draws), size = N, replace = TRUE)
+
+	time_left_spell <- apply(draws[Sampledraws, ], 1, function(y, trajs, spell){
+				x <-trajs[,y[2]]
+				get_a_t(x, pos = y[1], spent = FALSE, spell = spell)
+			} ,trajs = trajs, spell = spell)
+	time_spent_spell <- apply(draws[Sampledraws, ], 1, function(y, trajs, spell){
+				x <- trajs[,y[2]]
+				get_a_t(x, pos = y[1], spent = TRUE, spell = spell)
+			}, trajs = trajs, spell = spell)
+	ref <- sort(unique(c(time_spent_spell, time_left_spell)))
+	TS  <- c(table(factor(time_spent_spell,levels = ref)))
+	TL   <- c(table(factor(time_left_spell,levels = ref)))
+	list(x = TS, y = TL)
+}
+
+dist.diff2 <- function(xylist){
+	X <- xylist$x / sum(xylist$x)
+	Y <- xylist$y / sum(xylist$y)
+	sum(abs(X - Y)) / 2
+}
+
+# pop size 10^4, with 10^3 draws of inactives
+xy_4_3 <- generate_dists(generate_trajs(TM, N = 10^4),N=10^3,state = "Inactive", spell = TRUE)
+# pop size 10^5, with 10^3 draws of inactives
+xy_5_3 <- generate_dists(generate_trajs(TM, N = 10^5),N=10^3,state = "Inactive", spell = TRUE)
+# pop size 10^4, with 10^4 draws of inactives
+xy_4_4 <- generate_dists(generate_trajs(TM, N = 10^4),N=10^4,state = "Inactive", spell = TRUE)
+# pop size 10^5, with 10^4 draws of inactives
+xy_5_4 <- generate_dists(generate_trajs(TM, N = 10^5),N=10^4,state = "Inactive", spell = TRUE)
+
+par(mfrow = c(2,2))
+plot(xy_4_3, main = paste("10^4 pop, 10^3 draws:", dist.diff2(xy_4_3)))
+abline(a=0,b=1)
+
+plot(xy_5_3, main = paste("10^5 pop, 10^3 draws:", dist.diff2(xy_5_3)))
+abline(a=0,b=1)
+
+plot(xy_4_4, main = paste("10^4 pop, 10^4 draws:", dist.diff2(xy_4_4))) 
+abline(a=0,b=1)
+
+plot(xy_5_4, main = paste("10^5 pop, 10^4 draws:", dist.diff2(xy_5_4))) 
+abline(a=0,b=1)
 
 inactives      <- which(RTraj_clean == state, arr.ind = TRUE)
 SampleInactive <- sample(1:nrow(inactives), size = NN, replace = TRUE)
 
-# this isn't too slow
-time_left_spell <- apply(inactives[SampleInactive, ], 1, function(y, RTraj_clean){
-			x <- RTraj_clean[,y[2]]
-			get_a_t(x, pos = y[1], spent = FALSE, spell = TRUE)
-		} ,RTraj_clean = RTraj_clean)
-time_spent_spell <- apply(inactives[SampleInactive, ], 1, function(y, RTraj_clean){
-			x <- RTraj_clean[,y[2]]
-			get_a_t(x, pos = y[1], spent = TRUE, spell = TRUE)
-		}, RTraj_clean = RTraj_clean)
-time_left_total <- apply(inactives[SampleInactive, ], 1, function(y, RTraj_clean){
-			x <- RTraj_clean[,y[2]]
-			get_a_t(x, pos = y[1], spent = FALSE, spell = FALSE)
-		}, RTraj_clean = RTraj_clean)
-time_spent_total <- apply(inactives[SampleInactive, ], 1, function(y, RTraj_clean){
-			x <- RTraj_clean[,y[2]]
-			get_a_t(x, pos = y[1], spent = TRUE, spell = FALSE)
-		}, RTraj_clean = RTraj_clean)
-
-
-# change N and see how the distribution difference drops
-dist.diff(time_left_spell, time_spent_spell)
-dist.diff(time_left_total, time_spent_total)
+#-------------------------------------
+# TR: 13-11-2017, now functinos for these steps.
+# ------------------------------
+## this isn't too slow
+#time_left_spell <- apply(inactives[SampleInactive, ], 1, function(y, RTraj_clean){
+#			x <- RTraj_clean[,y[2]]
+#			get_a_t(x, pos = y[1], spent = FALSE, spell = TRUE)
+#		} ,RTraj_clean = RTraj_clean)
+#time_spent_spell <- apply(inactives[SampleInactive, ], 1, function(y, RTraj_clean){
+#			x <- RTraj_clean[,y[2]]
+#			get_a_t(x, pos = y[1], spent = TRUE, spell = TRUE)
+#		}, RTraj_clean = RTraj_clean)
+#time_left_total <- apply(inactives[SampleInactive, ], 1, function(y, RTraj_clean){
+#			x <- RTraj_clean[,y[2]]
+#			get_a_t(x, pos = y[1], spent = FALSE, spell = FALSE)
+#		}, RTraj_clean = RTraj_clean)
+#time_spent_total <- apply(inactives[SampleInactive, ], 1, function(y, RTraj_clean){
+#			x <- RTraj_clean[,y[2]]
+#			get_a_t(x, pos = y[1], spent = TRUE, spell = FALSE)
+#		}, RTraj_clean = RTraj_clean)
+#
+#
+## change N and see how the distribution difference drops
+#dist.diff(time_left_spell, time_spent_spell)
+#dist.diff(time_left_total, time_spent_total)
 
 #plot(density(time_left_spell,adjust=2))
 #lines(density(time_spent_spell,adjust=2))
