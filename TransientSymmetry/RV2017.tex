@@ -1,28 +1,7 @@
-%\documentclass[12pt,oneside,a4paper]{article} % for sharing
-\begin{filecontents*}{example.eps}
-%!PS-Adobe-3.0 EPSF-3.0
-%%BoundingBox: 19 19 221 221
-%%CreationDate: Mon Sep 29 1997
-%%Creator: programmed by hand (JK)
-%%EndComments
-gsave
-newpath
-  20 20 moveto
-  20 220 lineto
-  220 220 lineto
-  220 20 lineto
-closepath
-2 setlinewidth
-gsave
-  .4 setgray fill
-grestore
-stroke
-grestore
-\end{filecontents*}
-%
+
 %\documentclass{svjour3}                     % onecolumn (standard format)
 %\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
-\documentclass[smallextended]{svjour3}  
+\documentclass[12pt,oneside,a4paper]{article}  
 
 \usepackage{apacite}
 \usepackage{appendix}
@@ -48,12 +27,16 @@ grestore
 \usepackage[most]{tcolorbox}
 \usepackage[normalem]{ulem}
 \usepackage{amsfonts}
-\smartqed  
+%\smartqed  
 % columns for longtable
 \usepackage{arydshln} % Dashed lines in matrices
 
 \usepackage[margin=1in]{geometry}
 %\doublespacing % for review
+\newcommand{\absdiv}[1]{%
+  \par\addvspace{.5\baselineskip}% adjust to suit
+  \noindent\textbf{#1}\quad\ignorespaces
+}
 
 % line numbers to make review easier
 %\usepackage{lineno}
@@ -63,42 +46,23 @@ grestore
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % for section 4 math environments
-%\theoremstyle{definition}
-%\newtheorem{definition}{Definition}[section]
-%\newtheorem{theorem}{Theorem}[section]
-%\newtheorem{proposition}{Proposition}[section]
-%\newtheorem{corollary}{Corollary}[proposition]
-%\newtheorem{remark}{Remark}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[proposition]
+\newtheorem{remark}{Remark}[section]
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{filecontents*}{example.eps}
-%!PS-Adobe-3.0 EPSF-3.0
-%%BoundingBox: 19 19 221 221
-%%CreationDate: Mon Sep 29 1997
-%%Creator: programmed by hand (JK)
-%%EndComments
-%gsave
-%newpath
-%  20 20 moveto
-%  20 220 lineto
-%  220 220 lineto
-%  220 20 lineto
-%closepath
-%2 setlinewidth
-%gsave
-%  .4 setgray fill
-%grestore
-%stroke
-%grestore
-\end{filecontents*}
-\RequirePackage{fix-cm}
 
-\newcommand\ackn[1]{%
-  \begingroup
-  \renewcommand\thefootnote{}\footnote{#1}%
-  \addtocounter{footnote}{-1}%
-  \endgroup
-}
+%\end{filecontents*}
+%\RequirePackage{fix-cm}
+
+% \newcommand\ackn[1]{%
+%   \begingroup
+%   \renewcommand\thefootnote{}\footnote{#1}%
+%   \addtocounter{footnote}{-1}%
+%   \endgroup
+% }
 
 % Affiliations in small font size
 %\renewcommand\Affilfont{\small}
@@ -121,53 +85,61 @@ grestore
 \title{Time spent and left of transient states in
 stationary populations}
 
-\author{Tim Riffe \and Francisco Villavicencio}
+\author[1]{Tim Riffe\thanks{riffe@demogr.mpg.de}}
+\author[2]{Francisco Villavicencio}
+
+
+\affil[1]{Max-Planck-Institute for Demographic Research}
+\affil[2]{University of Southern Denmark}
+
 
 %\authorrunning{Short form of author list} % if too long for running head
 
-\institute{   Tim Riffe \at
-              Max Planck Institute for Demographic Research.
-              Konrad-Zuse-Str. 1. 18057 Rostock, Germany\\
-              \email{riffe@demogr.mpg.de}\\
-              Tel.:  +49 176 232 858 45\\
-              Fax: +49 381 2081 - 280
-\and 
-Francisco Villavicencio \at
-              Department of Public Health \& Max-Planck Odense Center on the
-              Biodemography of Aging. University of Southern Denmark, J.B. Winsløws Vej 9B, 
-              2nd floor DK-5000 Odense C, Denmark \\
-              \email{fvillavicencio@health.sdu.dk}
-              }
-              
-\journalname{Demographic Research}
-\date{Received: date / Accepted: date}
 \maketitle
 
+\vspace{-2em}
+%\begin{abstract}
+%\authorrunning{Short form of author list} % if too long for running head
+
+% \institute{   Tim Riffe \at
+%               Max Planck Institute for Demographic Research.
+%               Konrad-Zuse-Str. 1. 18057 Rostock, Germany\\
+%               \email{riffe@demogr.mpg.de}\\
+%               Tel.:  +49 176 232 858 45\\
+%               Fax: +49 381 2081 - 280
+% \and 
+% Francisco Villavicencio \at
+%               Department of Public Health \& Max-Planck Odense Center on the
+%               Biodemography of Aging. University of Southern Denmark, J.B. Winsl?ws Vej 9B, 
+%               2nd floor DK-5000 Odense C, Denmark \\
+%               \email{fvillavicencio@health.sdu.dk}
+%               }
+              
+%\journalname{Demographic Research}
+%\date{Received: date / Accepted: date}
+\maketitle
 
 \begin{abstract}
-~
-\begin{description}
-\item[\textbf{Background}] The Brouard-Carey equality establishes equality
+\absdiv{Background} The Brouard-Carey equality establishes equality
 between the distributions of years-lived and years-left in stationary populations. 
-\item[\textbf{Objective}] This equality can be generalized to account for time
+\absdiv{Objective} This equality can be generalized to account for time
 spent and time left in states within multistate stationary populations. We
 provide an intuitive proof that the distribution of time spent and left in
 transient states is equal in multistate stationary populations. 
-\item[\textbf{Conclusions}] We speculate that this equality may be helpful under
+\absdiv{Conclusions} We speculate that this equality may be helpful under
 certain constraints to estimate the distribution of otherwise unobserved onset timing for health or other states.
-\end{description}
-\keywords{Brouard-Carey equality \and Stationary population \and Age
-structure \and Symmetric patterns \and Multistate models}
-\subclass{91D20 \and 60K05 \and 92D25}
+%\keywords{Brouard-Carey equality \and Stationary population \and Age
+%structure \and Symmetric patterns \and Multistate models}
+%\subclass{91D20 \and 60K05 \and 92D25}
 \end{abstract}
 
 \section{Background}
 The Brouard-Carey equality establishes that the distributions of years-lived and years-left are identical in perfectly
 stationary populations
 \citep{brouard1989mouvements,Vaupel2009,rao2014,villavicencioRiffeSymmetires2016}.
-A perfectly stationary population is either perfectly stationary because it is
+A perfectly stationary population is either \emph{perfectly} stationary because it is
 of infinite size or because it is finite and
-deterministically repeating, and in either case vital rate schedules must be fixed and the intrinsic growth rate
+deterministically repeating. Whether vital rates are treated as generative (traditional) or artifactual, rate schedules must be fixed and the intrinsic growth rate
 constant at null.
 
 Let's say that individuals in
