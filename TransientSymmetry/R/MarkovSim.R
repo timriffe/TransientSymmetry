@@ -117,6 +117,8 @@ dist.diff2 <- function(xylist){
 }
 
 # pop size 10^4, with 10^3 draws of inactives
+xy_4_2 <- generate_dists(generate_trajs(TM, N = 10^4),N=10^2,state = "Inactive", spell = TRUE)
+# pop size 10^4, with 10^3 draws of inactives
 xy_4_3 <- generate_dists(generate_trajs(TM, N = 10^4),N=10^3,state = "Inactive", spell = TRUE)
 # pop size 10^5, with 10^3 draws of inactives
 xy_5_3 <- generate_dists(generate_trajs(TM, N = 10^5),N=10^3,state = "Inactive", spell = TRUE)
@@ -137,6 +139,34 @@ abline(a=0,b=1)
 
 plot(xy_5_4, main = paste("10^5 pop, 10^4 draws:", dist.diff2(xy_5_4))) 
 abline(a=0,b=1)
+
+# try lines
+pdf("/home/tim/git/TransientSymmetry/TransientSymmetry/Pres1/Figures/SimResults.pdf")
+par(mfrow = c(2,2))
+plot(as.numeric(names(xy_4_2$x)),xy_4_2$x, main = paste("10k pop, 100 draws:", 
+				dist.diff2(xy_4_2)),type='l',ylim=c(0,30),col="red",
+		xlab = "Time spent/left", ylab = "Count",las=1)
+lines(as.numeric(names(xy_4_2$y)),xy_4_2$y,col="blue")
+
+plot(as.numeric(names(xy_5_3$x)),xy_5_3$x, main = paste("100k pop, 1k draws:", 
+				dist.diff2(xy_5_3)),type='l',ylim=c(0,300),col="red",
+		xlab = "Time spent/left", ylab = "Count",las=1)
+lines(as.numeric(names(xy_5_3$y)),xy_5_3$y,col="blue")
+
+plot(as.numeric(names(xy_4_3$x)),xy_4_3$x, main = paste("10k pop, 1k draws:", 
+				dist.diff2(xy_4_3)),type='l',ylim=c(0,300),col="red",
+		xlab = "Time spent/left", ylab = "Count",las=1)
+lines(as.numeric(names(xy_4_3$y)),xy_4_3$y,col="blue")
+
+plot(as.numeric(names(xy_5_4$x)),xy_5_4$x, main = paste("100k pop, 10k draws:", 
+				dist.diff2(xy_5_4)),type='l',ylim=c(0,3000),col="red",
+		xlab = "Time spent/left", ylab = "Count",las=1)
+lines(as.numeric(names(xy_5_4$y)),xy_5_4$y,col="blue")
+
+dev.off()
+
+
+
 
 inactives      <- which(RTraj_clean == state, arr.ind = TRUE)
 SampleInactive <- sample(1:nrow(inactives), size = NN, replace = TRUE)

@@ -14,7 +14,7 @@
 %%	- Make sure that you use utf8-encoding for all your .tex-files!!! (TeXnicCenter since version 2.0)
 %%	- TeXnicCenter update: MPIDR intranet > Hard- & Sortfware > Software > Script and text editors > TeXnicCenter
 
-\documentclass[20pt]{beamer}
+\documentclass[20pt,usenames,dvipsnames]{beamer}
 
 \usepackage[ngerman,english]{babel}
 \usepackage{tikz}
@@ -25,9 +25,9 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage[mpidr]{./mpidr/beamerthemeMPIDR}
-\usefonttheme{serif}
+%\usefonttheme{serif}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-
+\newcommand*{\QEDA}{\hfill\ensuremath{\blacksquare}}
 %% Declaring title and author
 \title{Time spent and left of transient states in
 stationary populations}
@@ -56,7 +56,7 @@ stationary populations}
 % \end{frame}
 \begin{frame}[plain]
 	%\titlepage
-	\vspace{-4.4cm}
+	\vspace{-3cm}
  \centerline{\includegraphics[scale=.165]{beamerstrip3.png}}
 
 	
@@ -66,7 +66,7 @@ stationary populations}
 	Time spent and left of transient states in stationary populations\\
 	\vspace{1em}
 	\large 
-	Tim Riffe \& Francisco Villavicencio
+	Tim Riffe \& Francisco Villavicencio \textcolor{gray}{\& Nicolas Brouard}
 \end{frame}
 %-------------------
 
@@ -122,14 +122,18 @@ http://www.publishyourdesign.com/design/70442
 \begin{frame}[plain]
 \Large
  \begin{block}{Transient Symmetry}
-  Within a given \textcolor{red}{state}, the \textcolor{blue}{time-spent} distribution is equal to the \textcolor{blue}{time-to-exit} distribution
+  Within a given \textcolor{OliveGreen}{state}, the \textcolor{red}{time-spent}
+  distribution is equal to the \textcolor{blue}{time-to-exit} distribution
  \end{block}
 \end{frame}
 
 \begin{frame}[plain]
 \Large
  \begin{block}{Transient equality}
-  Under stationarity, the probability that a randomly selected individual is in state $s$ and entered $s$ $x$ years ago is equal to the probability of being in state $s$ and exiting in $x$ years.
+  Under stationarity, the probability that a randomly selected individual is in
+  state \textcolor{OliveGreen}{$s$} and entered \textcolor{OliveGreen}{$s$}
+  \textcolor{red}{$x$} years ago is equal to the probability of being in state
+  \textcolor{OliveGreen}{$s$} and exiting in \textcolor{blue}{$x$} years.
  \end{block}
 \end{frame}
 
@@ -147,7 +151,7 @@ Requisites:
 \Large
 \centering
 Probabilistic result:
-\begin{itemize}
+\begin{itemize}[<+->]
 \item The expected age-state structure is frozen.
 \item Each potential discrete state trajectory has a fixed probability of
 occurring.
@@ -159,7 +163,7 @@ occurring.
 \Large
 \centering
 Deterministic result (problematic):
-\begin{itemize}
+\begin{itemize}[<+->]
 \item The age-state structure is frozen.
 \item Each discrete state trajectory occurs for a fixed fraction of a birth
 cohort.
@@ -171,7 +175,7 @@ cohort.
 \Large
 \centering
 Deterministic result (friendly):
-\begin{itemize}
+\begin{itemize}[<+->]
 \item The age-state structure is frozen.
 \item The same finite set of discrete state trajectories
 \item Same for past and future cohorts (all clones).
@@ -207,12 +211,12 @@ $A^{(i)}=\left\{0, a_1,a_2,a_3,\ldots, a_{K-1} \right\}$\\
 $T^{(i)}=\left\{ \tau_1,\tau_2,\tau_3, \ldots, \tau_{K-1} \right\}$
 }
 \only<6>{
-$A^{(i)}=\left\{0, a_1,a_2,a_3,\ldots, a_{K-1}, a-K \right\}$\\
+$A^{(i)}=\left\{0, a_1,a_2,a_3,\ldots, a_{K-1}, a_{K} \right\}$\\
 \includegraphics[scale = 1]{Figures/SingleLifeAnim1/step15.pdf}\\
 $T^{(i)}=\left\{ \tau_1,\tau_2,\tau_3, \ldots, \tau_{K-1}, 0 \right\}$
 }
 \only<7>{
-$A^{(i)}=\left\{0, a_1,a_2,a_3,\ldots, a_{K-1}, a-K \right\}$\\
+$A^{(i)}=\left\{0, a_1,a_2,a_3,\ldots, a_{K-1}, a_{K} \right\}$\\
 \includegraphics[scale = 1]{Figures/SingleLifeAnim1/stepsmalldelta.pdf}\\
 $T^{(i)}=\left\{ \tau_1,\tau_2,\tau_3, \ldots, \tau_{K-1}, 0 \right\}$
 }
@@ -225,28 +229,141 @@ $T^{(i)}=\left\{ \tau_1,\tau_2,\tau_3, \ldots, \tau_{K-1}, 0 \right\}$
 \begin{center}
 Complementarity:\\ \vspace{1em}
 Within an individual over time\\  \vspace{.5em} \huge
-$A^{(i)} = T^{(i)}$
+\begin{equation}
+A^{(i)} = T^{(i)} \notag
+\end{equation}
+\end{center}
+\end{frame}
+
+\begin{frame}[plain]
+\Large
+\begin{center}
+Complementarity:\\ \vspace{1em}
+for the union of two individuals\\ \vspace{.5em} \huge
+\begin{equation}
+\left\{ A^1 , A^2 \right\} = \left\{ T^1 , T^2 \right\} \notag
+\end{equation}
+\end{center}
+\end{frame}
+
+%--------------------------------------------------------
+
+\begin{frame}[plain]
+\vspace{-3em}
+\Large
+\begin{overlayarea}{\textwidth}{.4\textheight}
+\begin{center}
+\only<1>{
+A clone is born every $\Delta$ time step\\
+\includegraphics[scale = 1]{Figures/buildstationary/step1.pdf}\\
+}
+\only<2>{
+A clone is born every $\Delta$ time step\\
+\includegraphics[scale = 1]{Figures/buildstationary/step2.pdf}\\
+}
+\only<3>{
+A clone is born every $\Delta$ time step\\
+\includegraphics[scale = 1]{Figures/buildstationary/step3.pdf}\\
+}
+\only<4>{
+A stationary series of clones\\
+\includegraphics[scale = 1]{Figures/buildstationary/step16.pdf}\\
+}
+\only<5>{
+A census in stationary series\\
+\includegraphics[scale = 1]{Figures/buildstationary/spl0.pdf}\\
+}
+\only<6>{
+Complementarity in ``clone'' stationarity\\
+\includegraphics[scale = 1]{Figures/buildstationary/spl1.pdf}\\
+}
+\only<7>{
+Complementarity for some other episode\\
+\includegraphics[scale = 1]{Figures/buildstationary/spl2.pdf}\\
+}
+\only<8>{
+Complementarity for set unions\\
+\includegraphics[scale = 1]{Figures/buildstationary/spl3.pdf}\\
+}
+\end{center}
+\end{overlayarea}
+\end{frame}
+
+\begin{frame}[plain]
+\Large
+\begin{center}
+By induction, complimentarity for all episodes \QEDA
+\end{center}
+\pause
+\begin{itemize}[<+->]
+  \item Make $\Delta$ smaller if you want
+  \item Replace ``clones'' w ``fixed fraction''
+  \item Replace fraction w ``fixed probability''
+\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+\Large
+\begin{center}
+Implications:
+\pause
+\begin{itemize}[<+->]
+  \item Equal time spent-left distributions within states
+  \item Cumulative over episodes
+  \item Within episode order
+  \item Conditional on anything (age, TTD)
+  \item Brouard-Carey is degenerate case
+\end{itemize}
 \end{center}
 \end{frame}
 
 % Now we install the new template for the following frames:
+{
 \usebackgroundtemplate{%
-  \includegraphics[width=\paperwidth,height=\paperheight]{Figures/MountainReflection.jpg}} 
-\begin{frame}
-\Large
-\vspace{1em}
-\begin{center}
-\includegraphics[scale=.8]{Figures/ReflectionOverlay.pdf}
-\end{center}
-
-\vspace{4em}
-\begin{flushright}
-@timriffe1 \\
-@VillavicencioFG
-\end{flushright}
-
+  \includegraphics[width=\paperwidth,height=\paperheight]{Figures/eberhard-grossgasteiger-410620-unsplash.jpg}} 
+\begin{frame}[plain]
+\tiny
+\flushright
+\vspace{18cm}
+   Photo by Eberhard Grossgasteiger on Unsplash
 \end{frame}
+}
 % Now we install another template, effective from now on:
+\begin{frame}[plain]
+\Large
+\begin{center}
+Simulate
+\begin{itemize}[<+->]
+  \item Take transition matrix from \normalsize{Dudel \& Myrskl\"a (2017)}
+  \item Simulate trajectories; \texttt{rmarkovchain()} in \texttt{markovchain}
+  package.
+  \item Take census in stationary series. 
+  \item Assume observation at half interval.
+  \item Tabulate time spent and left in sampled episodes.
+  \item Compare distributions.
+\end{itemize}
+\end{center}
+\end{frame}
+
+\begin{frame}[plain]
+\Large
+\begin{center}
+\includegraphics[height=\paperheight]{Figures/SimResults.pdf}
+\end{center}
+\end{frame}
+
+{
+\usebackgroundtemplate{%
+  \includegraphics[width=\paperwidth,height=\paperheight]{Figures/eberhard-grossgasteiger-410620-unsplash.jpg}} 
+\begin{frame}
+\vspace{9cm}
+\Large
+\begin{center}
+Estimate from the reflection!\\ Thanks! \\
+riffe@demogr.mpg.de
+\end{center}
+\end{frame}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%	End of the document			%%
@@ -255,7 +372,7 @@ $A^{(i)} = T^{(i)}$
 
 
 
-
+% Photo by eberhard grossgasteiger on Unsplash
 
 
 
