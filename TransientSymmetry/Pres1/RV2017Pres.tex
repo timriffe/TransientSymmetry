@@ -123,7 +123,7 @@ http://www.publishyourdesign.com/design/70442
 \Large
  \begin{block}{Transient Symmetry}
   Within a given \textcolor{OliveGreen}{state}, the \textcolor{red}{time-spent}
-  distribution is equal to the \textcolor{blue}{time-to-exit} distribution
+  distribution is equal to the \textcolor{blue}{time-to-exit} distribution.
  \end{block}
 \end{frame}
 
@@ -131,9 +131,11 @@ http://www.publishyourdesign.com/design/70442
 \Large
  \begin{block}{Transient equality}
   Under stationarity, the probability that a randomly selected individual is in
-  state \textcolor{OliveGreen}{$s$} and entered \textcolor{OliveGreen}{$s$}
-  \textcolor{red}{$x$} years ago is equal to the probability of being in state
-  \textcolor{OliveGreen}{$s$} and exiting in \textcolor{blue}{$x$} years.
+  state \textcolor{OliveGreen}{$\mathbf{s}$} and entered
+  \textcolor{OliveGreen}{$\mathbf{s}$} \textcolor{red}{$\mathbf{x}$} years ago
+  is equal to the probability of being in state
+  \textcolor{OliveGreen}{$\mathbf{s}$} and exiting in
+  \textcolor{blue}{$\mathbf{x}$} years.
  \end{block}
 \end{frame}
 
@@ -142,8 +144,8 @@ http://www.publishyourdesign.com/design/70442
 \centering
 Requisites:
 \begin{itemize}
-\item all vital and state transition schedules fixed
-\item no growth (births = deaths)
+\item All vital and state transition schedules fixed.
+\item No growth (births = deaths).
 \end{itemize}
 \end{frame}
 
@@ -177,12 +179,20 @@ cohort.
 Deterministic result (friendly):
 \begin{itemize}[<+->]
 \item The age-state structure is frozen.
-\item The same finite set of discrete state trajectories
+\item The same finite set of discrete state trajectories.
 \item Same for past and future cohorts (all clones).
 \end{itemize}
 \end{frame}
 
 \begin{frame}[plain]
+\Large
+\centering
+Prove for friendly case, generalize to probability case.
+\end{frame}
+
+\begin{frame}[plain]
+\Large
+Step 1
 \begin{overlayarea}{\textwidth}{.4\textheight}
 \begin{center}
 \only<1>{
@@ -254,7 +264,7 @@ for the union of two individuals\\ \vspace{.5em} \huge
 \begin{overlayarea}{\textwidth}{.4\textheight}
 \begin{center}
 \only<1>{
-A clone is born every $\Delta$ time step\\
+Move to Lexis diagonal\\
 \includegraphics[scale = 1]{Figures/buildstationary/step1.pdf}\\
 }
 \only<2>{
@@ -291,14 +301,16 @@ Complementarity for set unions\\
 
 \begin{frame}[plain]
 \Large
-\begin{center}
-By induction, complimentarity for all episodes \QEDA
-\end{center}
+\begin{proof}
+By induction, complimentarity for all episodes. This implies equal sets of time
+spent and left values, a.k.a. equal time spent and left distributions.
+\end{proof}
+
 \pause
 \begin{itemize}[<+->]
-  \item Make $\Delta$ smaller if you want
-  \item Replace ``clones'' w ``fixed fraction''
-  \item Replace fraction w ``fixed probability''
+  \item Make $\Delta$ smaller if you want.
+  \item Replace ``clones'' w ``fixed fraction''.
+  \item Replace fraction w ``fixed probability''.
 \end{itemize}
 \end{frame}
 
@@ -308,11 +320,11 @@ By induction, complimentarity for all episodes \QEDA
 Implications:
 \pause
 \begin{itemize}[<+->]
-  \item Equal time spent-left distributions within states
-  \item Cumulative over episodes
-  \item Within episode order
-  \item Conditional on anything (age, TTD)
-  \item Brouard-Carey is degenerate case
+  \item Equal time spent-left distributions within states.
+  \item Within episode \emph{order}. 
+  \item Cumulative over episodes.
+  \item Conditional on anything (age, TTD).
+  \item Brouard-Carey is degenerate case.
 \end{itemize}
 \end{center}
 \end{frame}
