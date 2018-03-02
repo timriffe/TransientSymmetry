@@ -156,10 +156,10 @@ schedules differ between sates, the standard set of aggregate invariant
 quantities of course remains:
 birth cohorts and death cohorts are of fixed and equal size. Further, the
 Brouard-Carey equality still holds in the aggregate. Under these conditions,
-once stationarity is acheived, the age-state structure of the stationary
-population is also invariant over time. As a consequence of fixed transition
-and vital rate schedules, the distribution of state-specific tenures for
-individuals entering a state at a given age is also a fixed attribute.
+once stationarity is achieved, the age-state structure of the stationary
+population is also invariant over time, a property often exploited by Markov
+models where the goal is to estimate state expectancies or similar. As a
+consequence of fixed transition and vital rate schedules, the distribution of state-specific tenures for individuals entering a state at a given age is also a fixed attribute.
 
 This setup is not entirely contrived, for it corresponds with the assumptions of
 common multistate markov models, often used to calculate state expectancies.
@@ -195,12 +195,13 @@ ago is equal to the probability of being in state $s$ and exiting in $x$ years.
 
 \begin{proof}
 The proof of this statement follows five intuitive steps, built up from
-lifelines.
+the notion of a lifeline identifying the states experienced over a potential
+life course.
 \begin{enumerate}
 \item{} A duration can be represented as a line segment, potentially a
 subset of a life-line. Points along a single within-person duration can be
-sampled over time in arbitrarily fine time steps, $\delta$. Each time step
-can then be used to bisect the segment, collecting two sets of
+sampled over time in arbitrarily fine and regular time steps, $\delta$. Each
+time step can then be used to bisect the segment, collecting two sets of
 values: 1) time spent in the state prior to the sample point, and 2) time
 left until exiting the state.
 If observations are evenly spaced, and values are truncated to the nearest
@@ -211,40 +212,40 @@ is $a_L^i$ and the age of exit is $a_R^i$, such that $d^i = a_R^i -
 a_L^i$. The set of time-spent values, $A^i$ is defined as:
 \begin{align}
 \label{eq:Ai}
-A^i &= \left\{ \delta \cdot k ~| ~k \in \mathbb{Z}~, ~0 \le k \le
+A^i &= \left\{ \delta \cdot k ~| ~k \in \mathbb{Z}^+~, ~0 \le k \le
 \left\lfloor \frac{d_i}{\delta}\right\rfloor \right\} \tc \intertext{where
 $\lfloor \ldots\rfloor $ denotes truncation to the lower integer bound. The
 set of time left values, $T^i$ is also:}
 \label{eq:Ti}
-T^i &= \left\{ \delta \cdot k ~| ~k \in \mathbb{Z}~, ~\left\lfloor
+T^i &= \left\{ \delta \cdot k ~| ~k \in \mathbb{Z}^+~, ~\left\lfloor
 \frac{d_i}{\delta}\right\rfloor \ge k \ge 0\right\} \tp
 \end{align}
-
-Figure~\ref{fig:lifeline1} illustrates the construction of $A^i$ and $T^i$ in
-expressions~\eqref{eq:Ai} and \eqref{eq:Ti}. The central cut-point moves along
-the duration from the time of entry until the time of exit, creating two
+\textcolor{red}{Note, need to choose $\mathbb{Z}^+ or \mathbb{N}$. Practically
+identical. I lean toward Z because negatives have meaning, we're just not
+considering them.} Figure~\ref{fig:lifeline1} illustrates the construction of
+$A^i$ and $T^i$ in expressions~\eqref{eq:Ai} and \eqref{eq:Ti}. The central cut-point moves along the duration from the time of entry until the time of exit, creating two
 lists of values.
 
 \begin{figure}
 \centering
 \caption{A lifeline of individual $i$ showing the construction of the sets $A^i$
-and $T^i$.}
+and $T^i$.\textcolor{red}{need to label $a_R^i$, $a_L^i$.}}
 \label{fig:lifeline1}
 \includegraphics[scale=.8]{Figures/lifeline1.pdf}
 \end{figure}
 
 \FloatBarrier
-\item{} If this individual is reborn every $\delta$ time step, destined to
-relive the exact same life course as the first, we end up with a set of
-identically aligned and identically long segments placed side-by-side, spaced
-apart by $\delta$.
+\item{} If this exact lifecourse is replicated every $\delta$ time step (the
+same spacing as our observation spacing in figure~\ref{fig:lifeline1}) in a
+Lexis space, we end up with a set of identically aligned and identically long segments placed side-by-side, spaced apart by $\delta$.
 This potentially large set of segments may be imagined as a plane, although this
 would only hold in the limit.
 One could in this setting take a census at a single point in time, collecting a set of
-time spent and time left values, each from a unique individual in sequence. It
-is clear that the two sets observed at a single time point but drawn from the population of
-perfect clones, will be identical to the first two sets that were observed of a single duration over its entire length, if the same
-$\delta$-truncation operation is followed.
+time spent and time left values, each from a repeated lifecourse in
+sequence.
+It is clear that the two sets observed at a single time point but drawn from the population of
+perfect clones, will be identical to the first two sets that were observed of
+a single duration over its entire length, if the same $\delta$-truncation operation is followed.
 
 Figure~\ref{fig:clones} illustrates this notion with uniformly-spaced lifelines
 in a Lexis configuration. The vertical line indicates a hypothetical census at time $t$ of
@@ -254,9 +255,10 @@ time-left elements of $T^i$.
 
  \begin{figure}[h!]
 \centering
-\caption{The life of individual $i$ repeated in $\delta$ time steps. A
+\caption{The $i^th$ lifecourse is repeated in $\delta$ time steps. A
 census with followup now constructs the sets $A^i$ and $T^i$ with values
-identical to the within-individual sets.}
+identical to the within-individual sets.\textcolor{red}{need to label $a_R^i$,
+$a_L^i$,etc.}}
 \label{fig:clones}
 \includegraphics[scale=.8]{Figures/lifelinerepeated.pdf}
 \end{figure}
