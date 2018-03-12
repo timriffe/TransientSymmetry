@@ -140,9 +140,8 @@ The Brouard-Carey equality establishes that the distributions of years-lived and
 stationary populations
 \citep{brouard1989mouvements,Vaupel2009,rao2014,villavicencioRiffeSymmetires2016}.
 A perfectly stationary population is either \emph{perfectly} stationary because it is
-of infinite size or because it is finite and
-deterministically repeating. Whether vital rates are treated as generative (traditional) or artifactual, rate schedules must be fixed and the intrinsic growth rate
-constant at null.
+of infinite size, because it is finite and
+deterministically repeating, or as a time-invariant expectation resulting from fixed vital rates. Whether vital rates are treated as generative (traditional) or artifactual, rate schedules must be fixed and the intrinsic growth rate constant at null.
 
 Let's say that individuals in
 the stationary population can obtain different states over the life course. If
@@ -159,17 +158,17 @@ Brouard-Carey equality still holds in the aggregate. Under these conditions,
 once stationarity is achieved, the age-state structure of the stationary
 population is also invariant over time, a property often exploited by Markov
 models where the goal is to estimate state expectancies or similar. As a
-consequence of fixed transition and vital rate schedules, the distribution of state-specific tenures for individuals entering a state at a given age is also a fixed attribute.
+consequence of fixed transition and vital rate schedules, the distribution of state-specific tenures for individuals entering a state at a given age is also a fixed attribute: These are mereley aggregations over individuals, and the probability of any particular life course trajectory is also fixed.
 
 This setup is not entirely contrived, for it corresponds with the assumptions of
 common multistate markov models, often used to calculate state expectancies.
 In the present, however, we are not bound to memoryless transition probabilities.
-Instead, we simply require the consequence of (the expectation of) invariant
+Instead, we simply require the consequence of (or the expectation of) invariant
 age-state structure and invariant conditional age-state tenure distributions, which may result from
 either memoryless transitions, or from arbitrarily linked
 dependencies.
-It is the fact of a fixed age-state structure on which we base the following observations.
-A fixed age-state structure imply a fixed distribution of lifecourse
+It is the fact of fixed age-state flows and structure on which we base the following observations.
+In essence, the population consists in set of lives that is a fixed distribution of lifecourse
 trajectories, each consisting in a sequence of discrete state-specific
 durations. This set could be of infinite size (but discrete time intervals), in
 which case the fraction of births destined to live a given trajectory is fixed,
@@ -181,17 +180,20 @@ theorem, which is a more general version of the Brouard-Carey equality.
 Namely, if there is some state $s$ in the population, a
 randomly drawn individual from state $s$ has equal probabilities of having
 entered $s$ $x$ years ago and exiting $s$ in $x$ years. This proposition
-is probably not intuitive at first glance, so we prove it, and then speculate
-as to how this equality may be put to good use.
+might not be intuitive at first glance, so we prove it, and then speculate
+as to how this equality may be put to good use. 
 
 \section{An intuitive proof of transient symmetry}
 \FloatBarrier
 
 \begin{theorem}
+\label{th}
 Given a stationary population and fixed state-transition
 rates, the probability that a randomly selected individual is in state $s$ and entered $s$ $x$ years
 ago is equal to the probability of being in state $s$ and exiting in $x$ years.
 \end{theorem}
+
+We provide two proofs of theorem~\ref{th}. The first is built from individual life courses in the stationary population (or the fixed probability thereof). The second follows the Lexis aggregate approach of \citet{villavicencioRiffeSymmetires2016}.
 
 \begin{proof}
 The proof of this statement follows five intuitive steps, built up from
@@ -338,48 +340,46 @@ shows no noticeable symptoms, but that is medically measurable. One
 may take a census with regular follow-ups, until eventually the state is exited
 by each individual, whether by absorption into death or entry into another
 state. Then, if the assumption of stationarity is acceptable, one may be able to
-say something about onset timing in the aggregate, itself unobserved. We think
-that the present equality will come as good news to researchers in similar
-settings.
+say something about onset timing in the aggregate, itself unobserved. %We think
+%that the present equality will come as good news to researchers in similar
+%settings.
 
 \section{Simulation}
-The reader may wish to have a sense of how well this equality holds up under
-various violations of our assumptions. The assumption of invariant transitions
-is trickier to handle than that of finite populations with stochasticity. We
-conduct a simple markov chain simulation to
-produce random populations of different sizes derived from the same
-set of stationary transition probabilities. Our transition rates come
-from a published study of working life expectancy in older ages in the USA
-\citep{Dudel2017}, and refer to US black females around the year 1994. The transition matrix includes
-single ages 50-100, with lifetable closeout at age 100. Transient states include
-employed, unemployed, inactive, and retired. We generate random sequences of
-trajectories using the \texttt{rmarkovchain} function of the
-\texttt{markovchain} \texttt{R} package \citep{spedicato2017}.
-
-For simplicity, all trajectories begin in a state of employment at age 50. We
-generate 1000, 10000, and 100000 individual trajectories. Out of these we
-sample observations of inactivity a total of 100, 1000, and 10000 times,
-respectively with replacement. We assume that the time of
-observation is half way through the year, but that spells begin on January 1 and
-end on December 31. For each observation of inactivity we measure the time spent
-in the spell up to the point of observation, and the time left until exiting the
-spell. These values are then tabulated for each simulation to produce
-distributions to compare. The theorem states that the distributions of time
-spent and left in this procedure should be asymptotically identical, but we have
-induced noise with the simulation, and we should be able to see distributions
-converge as simulated population and draw sizes increase.
-
-
+[section commented out until exercise more completely designed]
+% The reader may wish to have a sense of how well this equality holds up under
+% various violations of our assumptions. The assumption of invariant transitions
+% is trickier to handle than that of finite populations with stochasticity. We
+% conduct a simple markov chain simulation to
+% produce random populations of different sizes derived from the same
+% set of stationary transition probabilities. Our transition rates come
+% from a published study of working life expectancy in older ages in the USA
+% \citep{Dudel2017}, and refer to US black females around the year 1994. The transition matrix includes
+% single ages 50-100, with lifetable closeout at age 100. Transient states include
+% employed, unemployed, inactive, and retired. We generate random sequences of
+% trajectories using the \texttt{rmarkovchain} function of the
+% \texttt{markovchain} \texttt{R} package \citep{spedicato2017}.
+% 
+% For simplicity, all trajectories begin in a state of employment at age 50. We
+% generate 1000, 10000, and 100000 individual trajectories. Out of these we
+% sample observations of inactivity a total of 100, 1000, and 10000 times,
+% respectively with replacement. We assume that the time of
+% observation is half way through the year, but that spells begin on January 1 and
+% end on December 31. For each observation of inactivity we measure the time spent
+% in the spell up to the point of observation, and the time left until exiting the
+% spell. These values are then tabulated for each simulation to produce
+% distributions to compare. The theorem states that the distributions of time
+% spent and left in this procedure should be asymptotically identical, but we have
+% induced noise with the simulation, and we should be able to see distributions
+% converge as simulated population and draw sizes increase.
+% 
+% 
 
 
 \section{Conclusion}
-Stationary populations may be more symmetrical with respect to time lived and
-spent than has been previously supposed. We have given an intuitive proof that
-the distribution of time spent and left is equal even within states in
-stationary populations. A more rigorous proof than the present will
-surely be forthcoming, but we hope to have left the reader assured of
-the truth of this statement so that it may be exploited in
-empirical research. We do not presume that this relationship will be immediately able to answer pressing questions, but we
+Stationary populations are more symmetrical with respect to time lived and
+spent than has been previously described. We have given an intuitive proof that
+the distribution of time spent and left is equal within states in
+stationary populations. We do not presume that this relationship will be immediately able to answer pressing questions, but we
 hope that it may inspire new approaches in empirical measurements. We think
 that that researchers working with left-censored or truncated data or
 any kind of multistate models should be generally aware of this equality in case
