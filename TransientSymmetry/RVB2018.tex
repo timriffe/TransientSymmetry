@@ -141,17 +141,57 @@ The Brouard-Carey equality establishes that the distributions of years-lived and
 \citep{brouard1989mouvements,Vaupel2009,rao2014,villavicencioRiffeSymmetires2016}. Consider the case of multistate stationary populations, as implied by fixed transition rate schedules (over age) that govern mortality and the movement of individuals between a finite number of states. Multistate stationary populations are characterized by a fixed age-state structure \citep{perron1907theorie,frobenius1912matrizen}, a property often exploited by Markov
 models with the goal of estimating state expectancies or similar. Since the age-state distribution is a fixed attribute, summing over states within age produces an age distribution that is also a fixed attribute, and it follows that the Brouard-Carey equality still holds in the aggregate with respect to age and remaining years of life distributions. 
 
-For example, define an age-structured two-state model of good and bad health, with transitions between health states as well as from each health state to death. If transition rate schedules are held fixed for a very long time, such that strong ergodicity takes hold, and the population on the whole is of constant size, then each new cohort is expected be identical, and the numbers of healthy and sick individuals in each age are expected to be the same in each time step. 
+Individual discrete lifecourse trajectories resulting from fixed transition rate schedules consist in sequences of states. Such trajectories are not completely random processes, but these are constrained in the limit to abide by the laws of probability. Specifically, the probability of observing any particular discrete lifecourse trajectory, a Markov sampling path, is the product of the sequence of transition probabilities required to produce it, and the sum of the probabilities of all possible trajectories is one. The set of all possible trajectories (and their corresponding probabilities of occurring) --- a potentially very large set of distinct trajectories --- is also a fixed attribute of the stationary population. 
 
-Individual imaginary lifecourse trajectories resulting from fixed transition rate schedules consist in sequences of states. Such trajectories are not completely random processes, but these are constrained in the limit to abide by the laws of probability. Specifically, the probability of observing any particular lifecourse trajectory is the product of the sequence of transition probabilities required to produce it. 
+For example, define a two-state model of healthy (\texttt{H}) and sick (\texttt{S}) with three age classes, and including bidirectional flows between states as well as exits from each state to death (\texttt{D}). A set of example transition rates are given in Tab.~\ref{tab:toy}. Each new birth also has a .9 (.1) probability of being born healthy (sick). 
+% latex table generated in R 3.4.0 by xtable 1.8-2 package
+% Wed Apr  4 13:28:00 2018
+\begin{table}[ht]
+\caption{Example transition rates in three discrete age classes for transitions within and between good health (\texttt{H}) and sickness (\texttt{S}), and to death (\texttt{D}).}
+\label{tab:toy}
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+Age class& \texttt{H}$\rightarrow$\texttt{H} & \texttt{H}$\rightarrow$\texttt{S} & \texttt{H}$\rightarrow$\texttt{D} & \texttt{S}$\rightarrow$\texttt{S} & \texttt{S}$\rightarrow$\texttt{H} & \texttt{S}$\rightarrow$\texttt{D} \\ 
+  \hline
+1 & 0.89 & 0.10 & 0.01 & 0.10 & 0.70 & 0.20 \\ 
+  2 & 0.70 & 0.20 & 0.10 & 0.20 & 0.50 & 0.30 \\ 
+  3 & 0.00 & 0.00 & 1.00 & 0.00 & 0.00 & 1.00 \\ 
+   \hline
+\end{tabular}\end{table}
 
-For example, say we have a life summarized in five discrete time steps, \texttt{H} for healthy and \texttt{S} for sick:
-\begin{center}
-\Large
-\texttt{H H H S S}\\
-\texttt{0 1 2 3 4}
-\end{center}
-The probability of observing exactly this life is the probability of being born healthy times that of surviving to age 1 and remaining healthy, times that of surviv .... STOPPED EDITING HERE. FROM HERE DOWN SAME AS BEFORE I THINK.
+\noindent Hold transition rate schedules fixed for a sufficiently long time, such that strong ergodicity takes hold, and hold the population to a constant size. Each new cohort is expected be identical, and the numbers of healthy and sick individuals in each age are expected to be the same in each time step. The number of potential discrete trajectories that might arise from these transition probabilities, and the probability of observing each, is given in Tab.~\ref{tab:traj}:
+
+% latex table generated in R 3.4.0 by xtable 1.8-2 package
+% Wed Apr  4 13:50:17 2018
+\begin{table}[ht]
+\caption{The set of all possible discrete trajectories and probability of observing each, given the transition rates in Tab.~\ref{tab:toy}. }
+\label{tab:traj}
+\centering
+\begin{tabular}{lr}
+  \hline
+Trajectory & Probability \\ 
+  \hline
+H & 0.0090 \\ 
+  S & 0.0200 \\ 
+  HH & 0.0801 \\ 
+  SH & 0.0070 \\ 
+  HS & 0.0270 \\ 
+  SS & 0.0030 \\ 
+  HHH & 0.5607 \\ 
+  SHH & 0.0490 \\ 
+  HSH & 0.0450 \\ 
+  SSH & 0.0050 \\ 
+  HHS & 0.1602 \\ 
+  SHS & 0.0140 \\ 
+  HSS & 0.0180 \\ 
+  SSS & 0.0020 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+For example, given a radix of size 10000, we would expect to see 90 individuals that are born healthy and then die before reaching the second age class. We can force these proportions to be exact either via deterministic renewal of the population, or as a limiting property as the population size approaches infinity. The important feature to point out is that the detailed lifecourse composition of each entering cohort is under these conditions identical, uniquely defined by the transition rates, and therefore a feature of the multistate stationary population. 
+
 %A perfectly stationary population is either \emph{perfectly} stationary because it is
 %of infinite size, because it is finite and
 %deterministically repeating, or as a time-invariant expectation resulting from fixed vital rates. Whether vital rates are treated as generative (traditional) or artifactual, rate schedules must be fixed and the intrinsic growth rate constant at null.
@@ -179,22 +219,23 @@ The probability of observing exactly this life is the probability of being born 
 % As a
 % consequence of fixed transition and vital rate schedules, the distribution of state-specific tenures for individuals entering a state at a given age is also a fixed attribute: These are mereley aggregations over individuals, and the probability of any particular life course trajectory is also fixed.
 
-This setup is not entirely contrived, for it corresponds with the assumptions of
-common multistate markov models, often used to calculate state expectancies.
-In the present, however, we are not bound to memoryless transition probabilities.
-Instead, we simply require the consequence of (or the expectation of) invariant
-age-state structure and invariant conditional age-state tenure distributions, which may result from
-either memoryless transitions, or from arbitrarily linked
-dependencies.
-It is the fact of fixed age-state flows and structure on which we base the following observations.
-In essence, the population consists in set of lives that is a fixed distribution of lifecourse
-trajectories, each consisting in a sequence of discrete state-specific
-durations. This set could be of infinite size (but discrete time intervals), in
-which case the fraction of births destined to live a given trajectory is fixed,
-or it could exist as a fixed occurrence probability (the product of
-transition probabilities required to live said trajectory). 
-
-Under fixed vital and transition rates, and zero growth, we introduce a new
+% This setup is not entirely contrived, for it corresponds with the assumptions of
+% common multistate markov models, often used to calculate state expectancies.
+% In the present, however, we are not bound to memoryless transition probabilities.
+% Instead, we simply require the consequence of (or the expectation of) invariant
+% age-state structure and invariant conditional age-state tenure distributions, which may result from
+% either memoryless transitions, or from arbitrarily linked
+% dependencies.
+% It is the fact of fixed age-state flows and structure on which we base the following observations.
+% In essence, the population consists in set of lives that is a fixed distribution of lifecourse
+% trajectories, each consisting in a sequence of discrete state-specific
+% durations. This set could be of infinite size (but discrete time intervals), in
+% which case the fraction of births destined to live a given trajectory is fixed,
+% or it could exist as a fixed occurrence probability (the product of
+% transition probabilities required to live said trajectory). 
+% 
+% Under fixed vital and transition rates, and zero growth, 
+We introduce a new
 theorem, which is a more general version of the Brouard-Carey equality.
 Namely, if there is some state $s$ in the population, a
 randomly drawn individual from state $s$ has equal probabilities of having
