@@ -78,6 +78,7 @@
 %\DeclareRobustCommand{\VAN}[3]{#2} % set up for citation
 \newcommand{\tc}{\quad\quad\text{,}}
 \newcommand{\tp}{\quad\quad\text{.}}
+\newcommand{\vb}[1]{\texttt{#1}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
@@ -143,16 +144,16 @@ models with the goal of estimating state expectancies or similar. Since the age-
 
 Individual discrete lifecourse trajectories resulting from fixed transition rate schedules consist in sequences of states. Such trajectories are not completely random processes, but these are constrained in the limit to abide by the laws of probability. Specifically, the probability of observing any particular discrete lifecourse trajectory, a Markov sampling path, is the product of the sequence of transition probabilities required to produce it, and the sum of the probabilities of all possible trajectories is one. The set of all possible trajectories (and their corresponding probabilities of occurring) --- a potentially very large set of distinct trajectories --- is also a fixed attribute of the stationary population. 
 
-For clarity, we offer a toy example. Define a two-state model of healthy (\texttt{H}) and sick (\texttt{S}) with three age classes, and including bidirectional flows between states as well as exits from each state to death (\texttt{D}). A set of example transition rates are given in Tab.~\ref{tab:toy}. Each new birth also has a .9 (.1) probability of being born healthy (sick). 
+Throughout this exposition we rely on the notion of a multistate stationary population; we therefore first offer a toy example of one to illustrate some of the properties that form the background to the symmetry property that we wish to describe. Define a two-state model of healthy (\vb{H}) and sick (\vb{S}) with three age classes, and including bidirectional flows between states as well as exits from each state to death (\vb{D}). A set of example transition rates are given in Tab.~\ref{tab:toy}. Each new birth also has a .9 (.1) probability of being born healthy (sick). 
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
 % Wed Apr  4 13:28:00 2018
 \begin{table}[ht]
-\caption{Example transition rates in three discrete age classes for transitions within and between good health (\texttt{H}) and sickness (\texttt{S}), and to death (\texttt{D}).}
+\caption{Example transition rates in three discrete age classes for transitions within and between good health (\vb{H}) and sickness (\vb{S}), and to death (\vb{D}).}
 \label{tab:toy}
 \centering
 \begin{tabular}{rrrrrrr}
   \hline
-Age class& \texttt{H}$\rightarrow$\texttt{H} & \texttt{H}$\rightarrow$\texttt{S} & \texttt{H}$\rightarrow$\texttt{D} & \texttt{S}$\rightarrow$\texttt{S} & \texttt{S}$\rightarrow$\texttt{H} & \texttt{S}$\rightarrow$\texttt{D} \\ 
+Age class& \vb{H}$\rightarrow$\vb{H} & \vb{H}$\rightarrow$\vb{S} & \vb{H}$\rightarrow$\vb{D} & \vb{S}$\rightarrow$\vb{S} & \vb{S}$\rightarrow$\vb{H} & \vb{S}$\rightarrow$\vb{D} \\ 
   \hline
 1 & 0.89 & 0.10 & 0.01 & 0.10 & 0.70 & 0.20 \\ 
   2 & 0.70 & 0.20 & 0.10 & 0.20 & 0.50 & 0.30 \\ 
@@ -160,7 +161,7 @@ Age class& \texttt{H}$\rightarrow$\texttt{H} & \texttt{H}$\rightarrow$\texttt{S}
    \hline
 \end{tabular}\end{table}
 
-\noindent Hold transition rate schedules fixed for a sufficiently long time, such that strong ergodicity takes hold, and hold the population to a constant size. Each new cohort is expected be identical, and the numbers of healthy and sick individuals in each age are expected to be the same in each time step. The number of potential discrete trajectories that might arise from these transition probabilities, and the probability of observing each, is given in Tab.~\ref{tab:traj}:
+\noindent Hold transition rate schedules fixed for a sufficiently long time, such that strong ergodicity takes hold, and hold the population to a constant size. Each new cohort is expected be identical, and the numbers of healthy and sick individuals in each age are expected to be the same in each time step. The set of potential discrete trajectories that might arise from these transition probabilities, and the probability of observing each, is given in Tab.~\ref{tab:traj}:
 
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
 % Wed Apr  4 13:50:17 2018
@@ -172,25 +173,26 @@ Age class& \texttt{H}$\rightarrow$\texttt{H} & \texttt{H}$\rightarrow$\texttt{S}
   \hline
 Trajectory & Probability \\ 
   \hline
-H & 0.0090 \\ 
-  S & 0.0200 \\ 
-  HH & 0.0801 \\ 
-  SH & 0.0070 \\ 
-  HS & 0.0270 \\ 
-  SS & 0.0030 \\ 
-  HHH & 0.5607 \\ 
-  SHH & 0.0490 \\ 
-  HSH & 0.0450 \\ 
-  SSH & 0.0050 \\ 
-  HHS & 0.1602 \\ 
-  SHS & 0.0140 \\ 
-  HSS & 0.0180 \\ 
-  SSS & 0.0020 \\ 
+\vb{H} & 0.0090 \\ 
+  \vb{S} & 0.0200 \\ 
+  \vb{HH} & 0.0801 \\ 
+  \vb{SH} & 0.0070 \\ 
+  \vb{HS} & 0.0270 \\ 
+  \vb{SS} & 0.0030 \\ 
+  \vb{HHH} & 0.5607 \\ 
+  \vb{SHH} & 0.0490 \\ 
+  \vb{HSH} & 0.0450 \\ 
+  \vb{SSH} & 0.0050 \\ 
+  \vb{HHS} & 0.1602 \\ 
+  \vb{SHS} & 0.0140 \\ 
+  \vb{HSS} & 0.0180 \\ 
+  \vb{SSS} & 0.0020 \\ 
    \hline
+   Total & 1.0000
 \end{tabular}
 \end{table}
 
-For example, given a radix of size 10000, we would expect to see 90 individuals that are born healthy and then die before reaching the second age class. We can force these proportions to be exact either via deterministic renewal of the population, or as a limiting property as the population size approaches infinity. More ages and states will make the number of potential trajectories factorially larger, but the sum of the probability of each will always be one. The important feature to point out is that the detailed discrete lifecourse composition of each entering cohort is under these conditions identical, uniquely defined by the transition rates, and therefore a feature of the multistate stationary population. This fact forms the groundwork to the proof of our theorem.
+For example, given a birth cohort of 10000 individuals, we would expect to see 90 individuals that are born healthy and then die before reaching the second age class. We can force these proportions to be exact either via deterministic renewal of the population, or as a limiting property as the population size approaches infinity. More ages and states will make the number of potential trajectories factorially larger, but the sum of the probabilities of all trajectories will always be one. The important feature for the present is that the detailed discrete lifecourse composition of each entering cohort is under these conditions identical, uniquely defined by the transition rates, and therefore a feature of the multistate stationary population. By extension, the composition by state episodes (with respect to e.g. episode duration and timing) is identical under stationarity. This property forms the groundwork to the proof of our main result.
 
 %A perfectly stationary population is either \emph{perfectly} stationary because it is
 %of infinite size, because it is finite and
@@ -235,17 +237,10 @@ For example, given a radix of size 10000, we would expect to see 90 individuals 
 % transition probabilities required to live said trajectory). 
 % 
 % Under fixed vital and transition rates, and zero growth, 
-
+\section{Relationship}
 We introduce a new
-theorem, which is a more general version of the Brouard-Carey equality.
-Namely, if there is some state $s$ in the population, a
-randomly drawn individual from state $s$ has equal probabilities of having
-entered $s$ $x$ years ago and exiting $s$ in $x$ years. This proposition
-might not be intuitive at first glance, so we prove it, and then speculate
-as to how this equality may be put to good use. 
-
-\section{An intuitive proof of transient symmetry}
-\FloatBarrier
+theorem as an extension of the Brouard-Carey equality.
+Formally:
 
 % NB: change to language of x+delta x, or change to census at time t
 % the probability of being < x years in state (or state 0-x years).
@@ -253,11 +248,20 @@ as to how this equality may be put to good use.
 % discretize the theorem. 
 \begin{theorem}
 \label{th}
-Given a stationary population series observed at exact time $t$ and fixed state-transition
-rates, the probability that a randomly selected individual is in state $s$ and has been in $s$ continuously for at least $x$ time is equal to the probability of being in state $s$ and remaining in $s$ for at least $x$ time.
+Given a multistate stationary population that has been stationary for a suffiently long time, the probability that an individual randomly selected at time $t$ is in state $s$ and has been in $s$ continuously for at least $x$ time is equal to the probability of being in state $s$ and remaining in $s$ for at least $x$ time.
 \end{theorem}
 
-We provide two proofs of theorem~\ref{th}. The first is built from individual life courses in the stationary population (or the fixed probability thereof). The second follows the Lexis aggregate approach of \citet{villavicencioRiffeSymmetires2016}.
+Equivalently, the distribution of time spent in $s$ is equal to the distribution of time left in $s$. This proposition
+might not be intuitive at first glance, so we prove it, and then speculate
+as to how this equality may be put to good use. 
+
+
+\section{An intuitive proof of transient symmetry}
+\FloatBarrier
+
+
+
+We provide two discrete proofs of theorem~\ref{th}. The first is built from individual life courses in the stationary population (or the fixed probability thereof). The second follows the Lexis aggregate approach of \citet{villavicencioRiffeSymmetires2016}.
 
 \begin{proof}
 The proof of this statement follows five intuitive steps, built up from
