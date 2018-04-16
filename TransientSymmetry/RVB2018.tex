@@ -147,52 +147,104 @@ Individual discrete lifecourse trajectories resulting from fixed transition rate
 Throughout this exposition we rely on the notion of a multistate stationary population; we therefore first offer a toy example of one to illustrate some of the properties that form the background to the symmetry property that we wish to describe. Define a two-state model of healthy (\vb{H}) and sick (\vb{S}) with three age classes, and including bidirectional flows between states as well as exits from each state to death (\vb{D}). A set of example transition rates are given in Tab.~\ref{tab:toy}. Each new birth also has a .9 (.1) probability of being born healthy (sick). 
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
 % Wed Apr  4 13:28:00 2018
+% \begin{table}[ht]
+% \caption{Example transition rates in three discrete age classes for transitions within and between good health (\vb{H}) and sickness (\vb{S}), and to death (\vb{D}).}
+% \label{tab:toy}
+% \centering
+% \begin{tabular}{rrrrrrr}
+%   \hline
+% Age class& \vb{H}$\rightarrow$\vb{H} & \vb{H}$\rightarrow$\vb{S} & \vb{H}$\rightarrow$\vb{D} & \vb{S}$\rightarrow$\vb{S} & \vb{S}$\rightarrow$\vb{H} & \vb{S}$\rightarrow$\vb{D} \\ 
+%   \hline
+% 1 & 0.89 & 0.10 & 0.01 & 0.10 & 0.70 & 0.20 \\ 
+%   2 & 0.70 & 0.20 & 0.10 & 0.20 & 0.50 & 0.30 \\ 
+%   3 & 0.00 & 0.00 & 1.00 & 0.00 & 0.00 & 1.00 \\ 
+%    \hline
+% \end{tabular}\end{table}
+
+
+% latex table generated in R 3.4.0 by xtable 1.8-2 package
+% Mon Apr 16 11:31:53 2018
 \begin{table}[ht]
-\caption{Example transition rates in three discrete age classes for transitions within and between good health (\vb{H}) and sickness (\vb{S}), and to death (\vb{D}).}
-\label{tab:toy}
 \centering
+ \caption{Example transition rates in four discrete age classes for transitions within and between good health (\vb{H}) and sickness (\vb{S}), and to death (\vb{D}).}
+ \label{tab:toy}
 \begin{tabular}{rrrrrrr}
   \hline
-Age class& \vb{H}$\rightarrow$\vb{H} & \vb{H}$\rightarrow$\vb{S} & \vb{H}$\rightarrow$\vb{D} & \vb{S}$\rightarrow$\vb{S} & \vb{S}$\rightarrow$\vb{H} & \vb{S}$\rightarrow$\vb{D} \\ 
+ & HH & HS & HD & SS & SH & SD \\ 
   \hline
 1 & 0.89 & 0.10 & 0.01 & 0.10 & 0.70 & 0.20 \\ 
   2 & 0.70 & 0.20 & 0.10 & 0.20 & 0.50 & 0.30 \\ 
-  3 & 0.00 & 0.00 & 1.00 & 0.00 & 0.00 & 1.00 \\ 
+  3 & 0.50 & 0.30 & 0.20 & 0.30 & 0.30 & 0.40 \\ 
+  4 & 0.00 & 0.00 & 1.00 & 0.00 & 0.00 & 1.00 \\ 
    \hline
-\end{tabular}\end{table}
+\end{tabular}
+\end{table}
 
 \noindent Hold transition rate schedules fixed for a sufficiently long time, such that strong ergodicity takes hold, and hold the population to a constant size. Each new cohort is expected be identical, and the numbers of healthy and sick individuals in each age are expected to be the same in each time step. The set of potential discrete trajectories that might arise from these transition probabilities, and the probability of observing each, is given in Tab.~\ref{tab:traj}:
 
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
 % Wed Apr  4 13:50:17 2018
+% \begin{table}[ht]
+% \caption{The set of all possible discrete trajectories and probability of observing each, given the transition rates in Tab.~\ref{tab:toy}. }
+% \label{tab:traj}
+% \centering
+% \begin{tabular}{lr}
+%   \hline
+% Trajectory & Probability \\ 
+%   \hline
+% \vb{H} & 0.0090 \\ 
+%   \vb{S} & 0.0200 \\ 
+%   \vb{HH} & 0.0801 \\ 
+%   \vb{SH} & 0.0070 \\ 
+%   \vb{HS} & 0.0270 \\ 
+%   \vb{SS} & 0.0030 \\ 
+%   \vb{HHH} & 0.5607 \\ 
+%   \vb{SHH} & 0.0490 \\ 
+%   \vb{HSH} & 0.0450 \\ 
+%   \vb{SSH} & 0.0050 \\ 
+%   \vb{HHS} & 0.1602 \\ 
+%   \vb{SHS} & 0.0140 \\ 
+%   \vb{HSS} & 0.0180 \\ 
+%   \vb{SSS} & 0.0020 \\ 
+%    \hline
+%    Total & 1.0000
+% \end{tabular}
+% \end{table}
+
+% latex table generated in R 3.4.0 by xtable 1.8-2 package
+% Mon Apr 16 11:33:28 2018
+% latex table generated in R 3.4.0 by xtable 1.8-2 package
+% Mon Apr 16 11:35:50 2018
 \begin{table}[ht]
-\caption{The set of all possible discrete trajectories and probability of observing each, given the transition rates in Tab.~\ref{tab:toy}. }
-\label{tab:traj}
 \centering
-\begin{tabular}{lr}
+ \caption{The set of all possible discrete transient trajectories and probability of observing each, given the transition rates in Tab.~\ref{tab:toy}. }
+ \label{tab:traj}
+\begin{tabular}{lc|lc}
   \hline
-Trajectory & Probability \\ 
+Trajectory & Probability & Trajectory & Probability \\ 
   \hline
-\vb{H} & 0.0090 \\ 
-  \vb{S} & 0.0200 \\ 
-  \vb{HH} & 0.0801 \\ 
-  \vb{SH} & 0.0070 \\ 
-  \vb{HS} & 0.0270 \\ 
-  \vb{SS} & 0.0030 \\ 
-  \vb{HHH} & 0.5607 \\ 
-  \vb{SHH} & 0.0490 \\ 
-  \vb{HSH} & 0.0450 \\ 
-  \vb{SSH} & 0.0050 \\ 
-  \vb{HHS} & 0.1602 \\ 
-  \vb{SHS} & 0.0140 \\ 
-  \vb{HSS} & 0.0180 \\ 
-  \vb{SSS} & 0.0020 \\ 
+\vb{H} & 0.00900 & \vb{SHHH} & 0.02450 \\ 
+  \vb{S} & 0.02000 & \vb{HSHH} & 0.02250 \\ 
+  \vb{HH} & 0.08010 & \vb{SSHH} & 0.00250 \\ 
+  \vb{SH} & 0.00700 & \vb{HHSH} & 0.04806 \\ 
+  \vb{HS} & 0.02700 & \vb{SHSH} & 0.00420 \\ 
+  \vb{SS} & 0.00300 & \vb{HSSH} & 0.00540 \\ 
+  \vb{HHH} & 0.11214 & \vb{SSSH} & 0.00060 \\ 
+  \vb{SHH} & 0.00980 & \vb{HHHS} & 0.16821 \\ 
+  \vb{HSH} & 0.00900 & \vb{SHHS} & 0.01470 \\ 
+  \vb{SSH} & 0.00100 & \vb{HSHS} & 0.01350 \\ 
+  \vb{HHS} & 0.06408 & \vb{SSHS} & 0.00150 \\ 
+  \vb{SHS} & 0.00560 & \vb{HHSS} & 0.04806 \\ 
+  \vb{HSS} & 0.00720 & \vb{SHSS} & 0.00420 \\ 
+  \vb{SSS} & 0.00080 & \vb{HSSS} & 0.00540 \\ 
+  \vb{HHHH} & 0.28035 & \vb{SSSS} & 0.00060 \\ 
+  \hline
+  &&Total& 1.00000\\
    \hline
-   Total & 1.0000
 \end{tabular}
 \end{table}
 
-For example, given a birth cohort of 10000 individuals, we would expect to see 90 individuals that are born healthy and then die before reaching the second age class. We can force these proportions to be exact either via deterministic renewal of the population, or as a limiting property as the population size approaches infinity. More ages and states will make the number of potential trajectories factorially larger, but the sum of the probabilities of all trajectories will always be one. The important feature for the present is that the detailed discrete lifecourse composition of each entering cohort is under these conditions identical, uniquely defined by the transition rates, and therefore a feature of the multistate stationary population. By extension, the composition by state episodes (with respect to e.g. episode duration and timing) is identical under stationarity. This property forms the groundwork to the proof of our main result.
+For example, given a birth cohort of 100000 individuals, we would expect to see 900 individuals that are born healthy and then die before reaching the second age class. We can force these proportions to be exact either via deterministic renewal of the population, or as a limiting property as the population size approaches infinity. More ages and states will make the number of potential trajectories factorially larger, but the sum of the probabilities of all trajectories will always be one. The important feature for the present is that the detailed discrete lifecourse composition of each entering cohort is under these conditions identical, uniquely defined by the transition rates, and therefore a feature of the multistate stationary population. By extension, the composition by state episodes (with respect to e.g. episode duration and timing) is identical under stationarity. This property forms the groundwork to the proof of our main result.
 
 %A perfectly stationary population is either \emph{perfectly} stationary because it is
 %of infinite size, because it is finite and
@@ -238,8 +290,7 @@ For example, given a birth cohort of 10000 individuals, we would expect to see 9
 % 
 % Under fixed vital and transition rates, and zero growth, 
 \section{Relationship}
-We introduce a new
-theorem as an extension of the Brouard-Carey equality.
+We introduce an extension of the Brouard-Carey equality to states in multistate stationary populations.
 Formally:
 
 % NB: change to language of x+delta x, or change to census at time t
@@ -256,22 +307,20 @@ might not be intuitive at first glance, so we prove it, and then speculate
 as to how this equality may be put to good use. 
 
 
-\section{An intuitive proof of transient symmetry}
+\section{Two intuitive proofs of within-state symmetry}
 \FloatBarrier
 
 
 
-We provide two discrete proofs of theorem~\ref{th}. The first is built from individual life courses in the stationary population (or the fixed probability thereof). The second follows the Lexis aggregate approach of \citet{villavicencioRiffeSymmetires2016}.
+We provide two discrete proofs of theorem~\ref{th}. Each may appeal to a differnt kind of intuition. The first is built up from the possible discrete life trajectories defined by a set of transition probabilities, such as those shown in Tab.~\ref{tab:traj}. The second follows the Lexis aggregate approach of \citet{villavicencioRiffeSymmetires2016}.
 
-\begin{proof}
-The proof of this statement follows five intuitive steps, built up from
-the notion of a lifeline identifying the states experienced over a potential
-life course.
+\begin{proof}[Proof 1 of Theorem \ref{th}]
+This proof follows five steps, which we illustrate along the way:
 \begin{enumerate}
-\item{} A duration can be represented as a line segment, potentially a
+\item{Bisected durations have inner complementarity.} A duration can be represented as a line segment, potentially a
 subset of a life-line. Points along a single within-person duration can be
 sampled over time in arbitrarily fine and regular time steps, $\delta$. Each
-time step can then be used to bisect the segment, collecting two sets of
+time step is a segment bisector, collecting two sets of
 values: 1) time spent in the state prior to the sample point, and 2) time
 left until exiting the state.
 If observations are evenly spaced, and values are truncated to the nearest
@@ -290,22 +339,22 @@ set of time left values, $T^i$ is also:}
 T^i &= \left\{ \delta \cdot k ~| ~k \in \mathbb{Z}^+~, ~\left\lfloor
 \frac{d_i}{\delta}\right\rfloor \ge k \ge 0\right\} \tp
 \end{align}
-\textcolor{red}{Note, need to choose $\mathbb{Z}^+ or \mathbb{N}$. Practically
-identical. I lean toward Z because negatives have meaning, we're just not
-considering them.} Figure~\ref{fig:lifeline1} illustrates the construction of
+Figure~\ref{fig:lifeline1} illustrates the construction of
 $A^i$ and $T^i$ in expressions~\eqref{eq:Ai} and \eqref{eq:Ti}. The central cut-point moves along the duration from the time of entry until the time of exit, creating two
 lists of values.
+
+For example, from the life trajectory \vb{HSSH} (Tab.~\ref{tab:traj}), \vb{S} might be the state of interest, in which case \vb{SS} becomes the episode of interest in this trajcetory.
 
 \begin{figure}
 \centering
 \caption{A lifeline of individual $i$ showing the construction of the sets $A^i$
-and $T^i$.\textcolor{red}{need to label $a_R^i$, $a_L^i$.}}
+and $T^i$.}
 \label{fig:lifeline1}
 \includegraphics[scale=.8]{Figures/lifeline1.pdf}
 \end{figure}
 
 \FloatBarrier
-\item{} If this exact lifecourse is replicated every $\delta$ time step (the
+\item{} Under stationarity, the probability of observing the given episode is replicated every $\delta$ time step (the
 same spacing as our observation spacing in figure~\ref{fig:lifeline1}) in a
 Lexis space, we end up with a set of identically aligned and identically long segments placed side-by-side, spaced apart by $\delta$.
 This potentially large set of segments may be imagined as a plane, although this
@@ -325,10 +374,9 @@ time-left elements of $T^i$.
 
  \begin{figure}[h!]
 \centering
-\caption{The $i^th$ lifecourse is repeated in $\delta$ time steps. A
+\caption{The $i^th$ trajectory is repeated in $\delta$ time steps. A
 census with followup now constructs the sets $A^i$ and $T^i$ with values
-identical to the within-individual sets.\textcolor{red}{need to label $a_R^i$,
-$a_L^i$,etc.}}
+identical to the within-individual sets.}
 \label{fig:clones}
 \includegraphics[scale=.8]{Figures/lifelinerepeated.pdf}
 \end{figure}
