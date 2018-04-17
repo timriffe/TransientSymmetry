@@ -166,16 +166,16 @@ Throughout this exposition we rely on the notion of a multistate stationary popu
 % Mon Apr 16 11:31:53 2018
 \begin{table}[ht]
 \centering
- \caption{Example transition rates in four discrete age classes for transitions within and between good health (\vb{H}) and sickness (\vb{S}), and to death (\vb{D}).}
+ \caption{Example transition rates in four discrete single age classes for transitions within and between good health (\vb{H}) and sickness (\vb{S}), and to death (\vb{D}).}
  \label{tab:toy}
 \begin{tabular}{rrrrrrr}
   \hline
- & HH & HS & HD & SS & SH & SD \\ 
+Age & HH & HS & HD & SS & SH & SD \\ 
   \hline
-1 & 0.89 & 0.10 & 0.01 & 0.10 & 0.70 & 0.20 \\ 
-  2 & 0.70 & 0.20 & 0.10 & 0.20 & 0.50 & 0.30 \\ 
-  3 & 0.50 & 0.30 & 0.20 & 0.30 & 0.30 & 0.40 \\ 
-  4 & 0.00 & 0.00 & 1.00 & 0.00 & 0.00 & 1.00 \\ 
+0 & 0.89 & 0.10 & 0.01 & 0.10 & 0.70 & 0.20 \\ 
+  1 & 0.70 & 0.20 & 0.10 & 0.20 & 0.50 & 0.30 \\ 
+  2 & 0.50 & 0.30 & 0.20 & 0.30 & 0.30 & 0.40 \\ 
+  3 & 0.00 & 0.00 & 1.00 & 0.00 & 0.00 & 1.00 \\ 
    \hline
 \end{tabular}
 \end{table}
@@ -307,18 +307,15 @@ might not be intuitive at first glance, so we prove it, and then speculate
 as to how this equality may be put to good use. 
 
 
-\section{Two intuitive proofs of within-state symmetry}
+\section{Two proofs of within-state symmetry}
 \FloatBarrier
-
-
 
 We provide two discrete proofs of theorem~\ref{th}. Each may appeal to a differnt kind of intuition. The first is built up from the possible discrete life trajectories defined by a set of transition probabilities, such as those shown in Tab.~\ref{tab:traj}. The second follows the Lexis aggregate approach of \citet{villavicencioRiffeSymmetires2016}.
 
 \begin{proof}[Proof 1 of Theorem \ref{th}]
 This proof follows five steps, which we illustrate along the way:
 \begin{enumerate}
-\item{Bisected durations have inner complementarity.} A duration can be represented as a line segment, potentially a
-subset of a life-line. Points along a single within-person duration can be
+\item{Complementarity identity:} The lengths of two durations created by bisection of a single continuous duration sum to the length of the original duration. A duration can be represented as a line segment, potentially representing a state episode that comprises a subsection of a life-line. Points along a single within-person duration can be
 sampled over time in arbitrarily fine and regular time steps, $\delta$. Each
 time step is a segment bisector, collecting two sets of
 values: 1) time spent in the state prior to the sample point, and 2) time
@@ -326,91 +323,86 @@ left until exiting the state.
 If observations are evenly spaced, and values are truncated to the nearest
 $\delta$, by way of complements these two sets will consist of the same values.
 
-If the duration of the $i^{th}$ individual is called $d^i$, the age of entry
-is $a_L^i$ and the age of exit is $a_R^i$, such that $d^i = a_R^i -
-a_L^i$. The set of time-spent values, $A^i$ is defined as:
+If the duration of the $j^{th}$ episode of the $i^{th}$ potential life trajectory is called $d^{i,j}$, the age of entry
+is $a_L^{i,j}$ and the age of exit is $a_R^{i,j}$, such that $d^{i,j} = a_R^{i,j} -
+a_L^{i,j}$. The set of time-spent values that one would sample over the course of $d^{i,j}$, $A^{i,j}$ is defined as:
 \begin{align}
 \label{eq:Ai}
-A^i &= \left\{ \delta \cdot k ~| ~k \in \mathbb{Z}^+~, ~0 \le k \le
-\left\lfloor \frac{d_i}{\delta}\right\rfloor \right\} \tc \intertext{where
+A^{i,j} &= \left\{ \delta \cdot k ~| ~k \in \mathbb{Z}^+~, ~0 \le k \le
+\left\lfloor \frac{d^{i,j}}{\delta}\right\rfloor \right\} \tc \intertext{where
 $\lfloor \ldots\rfloor $ denotes truncation to the lower integer bound. The
 set of time left values, $T^i$ is also:}
 \label{eq:Ti}
 T^i &= \left\{ \delta \cdot k ~| ~k \in \mathbb{Z}^+~, ~\left\lfloor
-\frac{d_i}{\delta}\right\rfloor \ge k \ge 0\right\} \tp
+\frac{d^{i,j}}{\delta}\right\rfloor \ge k \ge 0\right\} \tp
 \end{align}
 Figure~\ref{fig:lifeline1} illustrates the construction of
-$A^i$ and $T^i$ in expressions~\eqref{eq:Ai} and \eqref{eq:Ti}. The central cut-point moves along the duration from the time of entry until the time of exit, creating two
-lists of values.
+$A^{i,j}$ and $T^{i,j}$ in expressions~\eqref{eq:Ai} and \eqref{eq:Ti}. The central bisector moves along the duration from the time of entry until the time of exit, creating two
+sets of values.
 
-For example, from the life trajectory \vb{HSSH} (Tab.~\ref{tab:traj}), \vb{S} might be the state of interest, in which case \vb{SS} becomes the episode of interest in this trajcetory.
-
-\begin{figure}
+\begin{figure}[h!]
 \centering
-\caption{A lifeline of individual $i$ showing the construction of the sets $A^i$
-and $T^i$.}
+\caption{A lifeline of the $j^{th}$ episode of a reference state individual $i$ showing the construction of the sets $A^{i,j}$
+and $T^{i,j}$.\textcolor{red}{update superscripts to $^{i,j}$ in figure}}
 \label{fig:lifeline1}
 \includegraphics[scale=.8]{Figures/lifeline1.pdf}
 \end{figure}
 
+For example, from the \nth{21} life trajectory in Tab.~\ref{tab:traj}, \vb{HSSH}, sickness might be the state of interest, in which case \vb{SS} becomes the episode of interest in this trajectory. If each time step is a year, $\delta = 1$, then we have $A^{21,1} = \{ 0,1,2 \}$ and $T^{21,1} = \{ 2,1,0 \}$: Where order does not matter, these are two equal sets.
+
 \FloatBarrier
-\item{} Under stationarity, the probability of observing the given episode is replicated every $\delta$ time step (the
-same spacing as our observation spacing in figure~\ref{fig:lifeline1}) in a
-Lexis space, we end up with a set of identically aligned and identically long segments placed side-by-side, spaced apart by $\delta$.
+\item{Complementarity identity over replicated life trajectories:} Under stationarity, the probability of observing a given episode is replicated every $\delta$ time step, where $\delta$ is the same time step over time and age, i.e., the same spacing as our observation spacing in figure~\ref{fig:lifeline1}) but extended over a
+Lexis space. This can be represented with a set of age-aligned and identically long cohort segments placed side-by-side, spaced apart by $\delta$.
 This potentially large set of segments may be imagined as a plane, although this
 would only hold in the limit.
 One could in this setting take a census at a single point in time, collecting a set of
-time spent and time left values, each from a repeated lifecourse in
+time spent and time left values ($A^{i,j}$ and $T^{i,j}$), each from a repeated episode in
 sequence.
-It is clear that the two sets observed at a single time point but drawn from the population of
-perfect clones, will be identical to the first two sets that were observed of
-a single duration over its entire length, if the same $\delta$-truncation operation is followed.
+The two sets observed at a single time point but drawn from the replicating population of life trajectories will be identical to the first two sets that were sampled from
+a single duration over its entire duration, if the same $\delta$-truncation is applied.
 
 Figure~\ref{fig:clones} illustrates this notion with uniformly-spaced lifelines
 in a Lexis configuration. The vertical line indicates a hypothetical census at time $t$ of
-the population of this cloned individual. At time $t$, the blue-highlighted segments indicate
-the set of time-spent values in $A^i$, and red-highlighted segments are the
-time-left elements of $T^i$. 
+the population of this replicated life trajectory. At time $t$, the blue-highlighted segments indicate
+the set of time-spent values in $A^{i,j}$, and red-highlighted segments are the
+time-left elements of $T^{i,j}$. 
 
  \begin{figure}[h!]
 \centering
-\caption{The $i^th$ trajectory is repeated in $\delta$ time steps. A
-census with followup now constructs the sets $A^i$ and $T^i$ with values
+\caption{The $j^{th}$ episode of the $i^th$ life trajectory is repeated in $\delta$ time steps. A
+census with followup now constructs the sets $A^{i,j}$ and $T^{i,j}$ with values
 identical to the within-individual sets.}
 \label{fig:clones}
 \includegraphics[scale=.8]{Figures/lifelinerepeated.pdf}
 \end{figure}
 
-Formally, sets $A^i$ and $T^i$ consist of the same values as the previous, but
-coming from individuals born in a uniform series from between $t-a_R^i$ years
-ago until as recently as $t-a_L^i$ years ago. This demonstrates both
-period-cohort equality and time spent-left equality. The blue and red triangles in
+Formally, sets $A^{i,j}$ and $T^{i,j}$ consist of the same values as the previous, but
+coming from distinct instances of life trajectories generated in a uniform series from between $t-a_R^{i,j}$ years
+ago until as recently as $t-a_L^{i,j}$ years ago. This demonstrates both
+period-cohort set equality and time spent-left set equality. The blue and red triangles in
 Figure~\ref{fig:clones} are simple rotations of one another.
 
+Continuing with the episode $d^{21,1}$ in Tab.~\ref{tab:traj}, if we replicate this trajectory in single year steps, and take a census in year $t$, the values of $A^{21,1}$ and $T^{21,1}$ are the same as before $\{0,1,2\}$, but taken from three different life trajectories that began in years $t-4$, $t-3$, and $t-2$, and were observed at ages 3, 2, and 1, respectively.
+
 \FloatBarrier
-\item{} Assume we have a second individual from the same birth cohort as
-individual $i$ that enters the same state as the first, but at a different time
-and for a different total duration. We could demonstrate time spent and time left equality in the same
-way for this individual, by sampling in $\delta$ time steps. Since
-this individual has a different life course timing than the first individual, their
-sets of time-spent, $A^2$, and time left $T^2$ will be distinct. $A^1$ and $T^1$ range from 0 to $d^1$, whereas $A^2$ and $T^2$
-range from 0 to $d^2$. However, their concatenations are identical:
+\item{Identical set concatenation identity:} Repeat the construction of time spent and time left values for some other reference episode, $d^{i`,j`}$, as in step 1. This episode might have a different duration, their
+sets of time-spent, $A^{i`,j`}$, and time left $T^{i`,j`}$ will be equal to one another but potentially distinct from those drawn from the previous trajectory-episode. $A^{i,j}$ and $T^{i,j}$ range from 0 to $d^{i,j}$, whereas $A^{i`,j`}$ and $T^{i`,j`}$
+range from 0 to $d^{i`,j`}$. However, their concatenations are identical:
 
 \begin{equation}
 \label{eq:unioneq}
-\{A^1 , A^2\} = \{T^1 , T^2\}
+\{A^{i,j} , A^{i`,j`}\} = \{T^{i,j} , T^{i`,j`}\}
 \end{equation}
 
-\item{} If the second individual is also perfectly cloned in $\delta$ time
-steps as in step 2, then our census at a single point in time also
-yields identical sets of time spent and time left values, $A^2$ and $T^2$. Also
-from this census, the concatenation of the first and second time-spent sets and the concatenation of the first and second time-left sets
-are guaranteed to be identical, as in equation \eqref{eq:unioneq}. 
+The concatenation identity also applies if we replicate the life trajectory $d^{i`,j`}$ in $\delta$ time steps as in step 2. It is also true if we weight the sets derived from each trajectory by the probability of observing each trajectory.
 
-\item{} By induction we can keep adding durations in this state, infinitely if we
-please, and the collection of all resultant time-spent sets and the collection
-of time-left sets will continue being identical. Therefore the probability of selecting a particular value from the time-spent set is identical
-to the probability of selecting the same value from the time-left set. 
+For example, the \nth{22} trajectory from Tab.~\ref{tab:traj}, \vb{SSSH}, has a single episode of sickness of duration three, yielding identical sets $A^{22,1} = \{0,1,2,3 \}$ and $T^{22,1} = \{3,2,1,0 \}$. If the trajectory is replicated as in step 2, the observations of $d^{22,1}$ will come from four life trajectories born in years $t-5$ through $t-1$ and captured at ages 3, 2, 1, and 0, respectively. Whether observed over time as in step 1 or over individuals within time, as in step 2, the concatenation of $A^{21,1}$ and $A^{22,1}$ is equal to the concatenation of $T^{21,1}$ and $T^{22,1}$, $\{0,0,1,1,2,2,3 \}$. If each birth cohort derived from the probabilities in Tab.~\ref{tab:toy} starts with 100000 individuals, we would expect a hypothetical census to yield 540 instances of trajectory 21 and 60 of 22, so we would expect 600 observations of values 0, 1, and 2, and 60 observations of 3.
+
+\item{Distribution equality by induction} By induction we can keep adding state episodes from the stationary population, constructing $A$ and $T$ for each, and concatenating over episodes as in step 3. The concatenation of all episode-specific time-spent sets and the concatenation 
+of the corresponding time-left sets will always be identical. This is so both within trajectories and over time and over trajectories observed at a single point in time. Therefore the probability of selecting a particular value from the concatenated time-spent set is identical
+to the probability of selecting the same value from the cocnatenated time-left set.
+
+
 \end{enumerate}
 \end{proof}
 

@@ -1,6 +1,25 @@
 # Author: tim
 ###############################################################################
+get_traj <- function(x,maxn=4){
+	traj <- list()
+	for (i in 1:maxn){
+		li <- as.matrix(expand.grid( rep(list(c("H","S")), i)))
+		traj <- c(traj,split(li,1:nrow(li)))
+	}
+	names(traj) <- lapply(traj,paste,collapse="")
+	
+	traj
+}
 
+get_probsHS <- function(traj, probs){
+	traj <- c(traj,"D")
+	n    <- length(traj)
+	pr   <- probs[[paste0("r",traj[1])]]
+	outs <- paste0(traj[1:(n-1)],traj[2:n])
+	pt   <- diag(probs$Tout[,outs,drop=FALSE])
+	p    <- pr * prod(pt)
+	p	
+}
 # A small brute-force example 4 ages, 2 states.
 
 # radixes
@@ -18,26 +37,7 @@ Tout   <- cbind(HH, HS, HD, SS, SH, SD)
 
 probs  <- list(rH=rH,rS=rS,Tout=Tout)
 
-get_traj <- function(x,maxn=4){
-	traj <- list()
-	for (i in 1:maxn){
-		li <- as.matrix(expand.grid( rep(list(c("H","S")), i)))
-		traj <- c(traj,split(li,1:nrow(li)))
-	}
-	names(traj) <- lapply(traj,paste,collapse="")
 
-	traj
-}
-
-get_probsHS <- function(traj, probs){
-	traj <- c(traj,"D")
-	n    <- length(traj)
-	pr   <- probs[[paste0("r",traj[1])]]
-    outs <- paste0(traj[1:(n-1)],traj[2:n])
-	pt   <- diag(probs$Tout[,outs,drop=FALSE])
-	p    <- pr * prod(pt)
-	p	
-}
 
 trajs    <- get_traj(c("H","S"),3)
 probHS   <- lapply(trajs,get_probsHS,probs=probs)
@@ -67,26 +67,6 @@ Tout   <- cbind(HH, HS, HD, SS, SH, SD)
 
 probs  <- list(rH=rH,rS=rS,Tout=Tout)
 
-get_traj <- function(x,maxn=4){
-	traj <- list()
-	for (i in 1:maxn){
-		li <- as.matrix(expand.grid( rep(list(c("H","S")), i)))
-		traj <- c(traj,split(li,1:nrow(li)))
-	}
-	names(traj) <- lapply(traj,paste,collapse="")
-	
-	traj
-}
-
-get_probsHS <- function(traj, probs){
-	traj <- c(traj,"D")
-	n    <- length(traj)
-	pr   <- probs[[paste0("r",traj[1])]]
-	outs <- paste0(traj[1:(n-1)],traj[2:n])
-	pt   <- diag(probs$Tout[,outs,drop=FALSE])
-	p    <- pr * prod(pt)
-	p	
-}
 
 trajs    <- get_traj(c("H","S"),4)
 length(trajs)
