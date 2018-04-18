@@ -313,9 +313,9 @@ as to how this equality may be put to good use.
 We provide two discrete proofs of theorem~\ref{th}. Each may appeal to a differnt kind of intuition. The first is built up from the possible discrete life trajectories defined by a set of transition probabilities, such as those shown in Tab.~\ref{tab:traj}. The second follows the Lexis aggregate approach of \citet{villavicencioRiffeSymmetires2016}.
 
 \begin{proof}[Proof 1 of Theorem \ref{th}]
-This proof follows five steps, which we illustrate along the way:
+This proof follows four steps, which we illustrate and interleave with a worked example based on the transition rates in Tab.~\ref{tab:toy}:
 \begin{enumerate}
-\item{Complementarity identity:} The lengths of two durations created by bisection of a single continuous duration sum to the length of the original duration. A duration can be represented as a line segment, potentially representing a state episode that comprises a subsection of a life-line. Points along a single within-person duration can be
+\item{\textbf{Complementarity identity:}} The lengths of two durations created by bisection of a single continuous duration sum to the length of the original duration. A duration can be represented as a line segment, potentially representing a state episode that comprises a subsection of a life-line. Points along a single within-person duration can be
 sampled over time in arbitrarily fine and regular time steps, $\delta$. Each
 time step is a segment bisector, collecting two sets of
 values: 1) time spent in the state prior to the sample point, and 2) time
@@ -343,7 +343,7 @@ sets of values.
 \begin{figure}[h!]
 \centering
 \caption{A lifeline of the $j^{th}$ episode of a reference state individual $i$ showing the construction of the sets $A^{i,j}$
-and $T^{i,j}$.\textcolor{red}{update superscripts to $^{i,j}$ in figure}}
+and $T^{i,j}$.}
 \label{fig:lifeline1}
 \includegraphics[scale=.8]{Figures/lifeline1.pdf}
 \end{figure}
@@ -351,7 +351,7 @@ and $T^{i,j}$.\textcolor{red}{update superscripts to $^{i,j}$ in figure}}
 For example, from the \nth{21} life trajectory in Tab.~\ref{tab:traj}, \vb{HSSH}, sickness might be the state of interest, in which case \vb{SS} becomes the episode of interest in this trajectory. If each time step is a year, $\delta = 1$, then we have $A^{21,1} = \{ 0,1,2 \}$ and $T^{21,1} = \{ 2,1,0 \}$: Where order does not matter, these are two equal sets.
 
 \FloatBarrier
-\item{Complementarity identity over replicated life trajectories:} Under stationarity, the probability of observing a given episode is replicated every $\delta$ time step, where $\delta$ is the same time step over time and age, i.e., the same spacing as our observation spacing in figure~\ref{fig:lifeline1}) but extended over a
+\item{\textbf{Complementarity identity over replicated life trajectories:}} Under stationarity, the probability of observing a given episode is replicated every $\delta$ time step, where $\delta$ is the same time step over time and age, i.e., the same spacing as our observation spacing in figure~\ref{fig:lifeline1}) but extended over a
 Lexis space. This can be represented with a set of age-aligned and identically long cohort segments placed side-by-side, spaced apart by $\delta$.
 This potentially large set of segments may be imagined as a plane, although this
 would only hold in the limit.
@@ -385,7 +385,7 @@ Figure~\ref{fig:clones} are simple rotations of one another.
 Continuing with the episode $d^{21,1}$ in Tab.~\ref{tab:traj}, if we replicate this trajectory in single year steps, and take a census in year $t$, the values of $A^{21,1}$ and $T^{21,1}$ are the same as before $\{0,1,2\}$, but taken from three different life trajectories that began in years $t-4$, $t-3$, and $t-2$, and were observed at ages 3, 2, and 1, respectively.
 
 \FloatBarrier
-\item{Identical set concatenation identity:} Repeat the construction of time spent and time left values for some other reference episode, $d^{i`,j`}$, as in step 1. This episode might have a different duration, their
+\item{\textbf{Identical set concatenation identity:}} Repeat the construction of time spent and time left values for some other reference episode, $d^{i`,j`}$, as in step 1. This episode might have a different duration, their
 sets of time-spent, $A^{i`,j`}$, and time left $T^{i`,j`}$ will be equal to one another but potentially distinct from those drawn from the previous trajectory-episode. $A^{i,j}$ and $T^{i,j}$ range from 0 to $d^{i,j}$, whereas $A^{i`,j`}$ and $T^{i`,j`}$
 range from 0 to $d^{i`,j`}$. However, their concatenations are identical:
 
@@ -396,16 +396,26 @@ range from 0 to $d^{i`,j`}$. However, their concatenations are identical:
 
 The concatenation identity also applies if we replicate the life trajectory $d^{i`,j`}$ in $\delta$ time steps as in step 2. It is also true if we weight the sets derived from each trajectory by the probability of observing each trajectory.
 
-For example, the \nth{22} trajectory from Tab.~\ref{tab:traj}, \vb{SSSH}, has a single episode of sickness of duration three, yielding identical sets $A^{22,1} = \{0,1,2,3 \}$ and $T^{22,1} = \{3,2,1,0 \}$. If the trajectory is replicated as in step 2, the observations of $d^{22,1}$ will come from four life trajectories born in years $t-5$ through $t-1$ and captured at ages 3, 2, 1, and 0, respectively. Whether observed over time as in step 1 or over individuals within time, as in step 2, the concatenation of $A^{21,1}$ and $A^{22,1}$ is equal to the concatenation of $T^{21,1}$ and $T^{22,1}$, $\{0,0,1,1,2,2,3 \}$. If each birth cohort derived from the probabilities in Tab.~\ref{tab:toy} starts with 100000 individuals, we would expect a hypothetical census to yield 540 instances of trajectory 21 and 60 of 22, so we would expect 600 observations of values 0, 1, and 2, and 60 observations of 3.
+For example, the \nth{22} trajectory from Tab.~\ref{tab:traj}, \vb{SSSH}, has a single episode of sickness of duration three, yielding identical sets $A^{22,1} = \{0,1,2,3 \}$ and $T^{22,1} = \{3,2,1,0 \}$. If the trajectory is replicated as in step 2, the observations of $d^{22,1}$ will come from four life trajectories born in years $t-5$ through $t-1$ and captured at ages 3, 2, 1, and 0, respectively. Whether observed over time as in step 1 or over individuals within time, as in step 2, the concatenation of $A^{21,1}$ and $A^{22,1}$ is equal to the concatenation of $T^{21,1}$ and $T^{22,1}$, $\{0,0,1,1,2,2,3 \}$. If each birth cohort derived from the probabilities in Tab.~\ref{tab:toy} starts with 100000 individuals, once in stationarity we would expect a hypothetical census to yield 540$\times$5 instances of trajectory 21 and 60$\times$5 of 22, so we would expect 600 observations of values 0, 1, and 2, and 60 observations of 3. These figures are predicated on the strict and limiting assumption that the census is on Jan 1, each cohort is generated on Jan 1, and 0s (moment of entry or exit) are observed. This simplifies things for the present by not having to specify a distribution over intervals.
 
-\item{Distribution equality by induction} By induction we can keep adding state episodes from the stationary population, constructing $A$ and $T$ for each, and concatenating over episodes as in step 3. The concatenation of all episode-specific time-spent sets and the concatenation 
-of the corresponding time-left sets will always be identical. This is so both within trajectories and over time and over trajectories observed at a single point in time. Therefore the probability of selecting a particular value from the concatenated time-spent set is identical
-to the probability of selecting the same value from the cocnatenated time-left set.
+\item{\textbf{Distribution equality by induction:}} By induction we can keep adding state episodes from the stationary population, constructing $A$ and $T$ for each, and concatenating over episodes as in step 3. The concatenation of all episode-specific time-spent sets and the concatenation 
+of the corresponding time-left sets will always be identical. This is so both within trajectories and over time (cohort) and over trajectories observed at a single point in time (census). Therefore the probability of selecting a particular value from the concatenated time-spent set is identical
+to the probability of selecting the same value from the cocnatenated time-left set, and Theorem~\ref{th} is proved.
 
-To complete our example, the full
+To complete our worked example, the full expected distribution of time spent and left in episodes of sickness in a stationary series based on a renewal of 100000 individuals per year following the rates in Tab.~\ref{tab:toy} is shown in Fig.~\ref{fig:toydist}
 
+ \begin{figure}[h!]
+\centering
+\caption{The symmetrical distribution of expected time spent and time left in sickness (\vb{S}) as of a census in the stationary population derived from the transition rates in Tab.~\ref{tab:toy} and 100000 individuals per birth cohort.}
+\label{fig:toydist}
+\includegraphics[scale=.6]{Figures/ToyDist.pdf}
+\end{figure}
 
 \end{enumerate}
+\end{proof}
+
+\begin{proof}[Proof 2 of Theorem \ref{th}]
+The second proof is in development.
 \end{proof}
 
 Our point of departure was that of a perfectly stationary population with
