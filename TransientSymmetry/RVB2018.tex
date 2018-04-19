@@ -432,28 +432,25 @@ Our point of departure was that of a fixed discrete transition rates implying fi
 
 \section{Discussion}
 The approach from this proof is equally valid to prove the
-original statement of the Brouard-Carey equality (where the state is ``alive''),
+original statement of the Brouard-Carey equality (where the only state is ``alive''),
 but it is more general.
-The statement and proof is flexible enough to hold for irreversible and reversible
+The statement and proof is flexible enough to hold for both irreversible and reversible
 states. It also applies to repeatable states, whether time spent in the
-state is kept in cumulative fashion over spells, or whether the clock resets to
-zero on each entry into the state. The equality may also be conditionable in
-curious ways: for example, the distribution of time-spent in a state conditional
-on having entered at age $a$ must also be equal to the distribution of time-left in
-the state, conditional on having entered at age $a$. Likewise, one may condition
-statements on exit age. One may also arbitrarily merge states, and the equality
-still holds within the newly merged state.
+state is counted cumulatively over spells, or whether the clock resets to
+zero on each entry into the state. The equality
+also holds for merged states. 
+
+% The equality may also be conditionable in
+% curious ways: for example, the distribution of time-spent in a state conditional
+% on having entered at age $a$ must also be equal to the distribution of time-left in
+% the state, conditional on having entered at age $a$. Likewise, one may condition
+% statements on exit age.
 
 At first glance, this equality is probably less intuitive than the
-original Brouard-Carey equality, because state entry is not necessarily aligned
-on age zero. It is less visible in commonly-produced plots because plots of
-stacked sequences look chaotic, often even if clustered or sorted. It might
-be tempting to think that due to state-varying vital rates, the equality simply ought not hold.
-However, the basis of the proof is the observation that if each individual
-duration is symmetrical by complements, then so are aggregations of
-durations, irrespective of alignment. Since each cohort in a perfectly
-stationary population of infinite size is an identical copy of the previous,
-census-like cross-sections are also equally-composed.
+original Brouard-Carey equality. The symmetry is not visible in commonly-produced complex plots of
+stacked sequences, even if clustered or sorted. It might
+be tempting to think that due to state-varying vital rates, or the lack of alignment on entry or exit, the equality simply ought not hold. However, since each cohort in a
+stationary population with fixed transition rates is expected to be an identical copy of the previous, also with respect to life trajectory composition, census-like cross-sections are expected to be identically composed.
 
 \section{Potential applications}
 Empirical applications of the presently-described transient tenure equality may
