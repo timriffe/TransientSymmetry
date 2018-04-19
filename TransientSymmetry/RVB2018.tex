@@ -66,7 +66,7 @@
 
 % Affiliations in small font size
 %\renewcommand\Affilfont{\small}
-
+\usepackage{tcolorbox}
 \defcitealias{HMD}{HMD 2016}
 
 % junk for longtable caption
@@ -142,7 +142,7 @@ The Brouard-Carey equality establishes that the distributions of years-lived and
 \citep{brouard1989mouvements,Vaupel2009,rao2014,villavicencioRiffeSymmetires2016}. Consider the case of multistate stationary populations, as implied by fixed transition rate schedules (over age) that govern mortality and the movement of individuals between a finite number of states. Multistate stationary populations are characterized by a fixed age-state structure \citep{perron1907theorie,frobenius1912matrizen}, a property often exploited by Markov
 models with the goal of estimating state expectancies or similar. Since the age-state distribution is a fixed attribute, summing over states within age produces an age distribution that is also a fixed attribute, and it follows that the Brouard-Carey equality still holds in the aggregate with respect to age and remaining years of life distributions. 
 
-Individual discrete lifecourse trajectories resulting from fixed transition rate schedules consist in sequences of states. Such trajectories are not completely random processes, but these are constrained in the limit to abide by the laws of probability. Specifically, the probability of observing any particular discrete lifecourse trajectory, a Markov sampling path, is the product of the sequence of transition probabilities required to produce it, and the sum of the probabilities of all possible trajectories is one. The set of all possible trajectories (and their corresponding probabilities of occurring) --- a potentially very large set of distinct trajectories --- is also a fixed attribute of the stationary population. 
+Individual discrete lifecourse trajectories resulting from fixed transition rate schedules consist in sequences of states. Such trajectories are not completely random processes, but these are constrained in the limit to abide by the laws of probability. Specifically, the probability of observing any particular discrete lifecourse trajectory (Markov sampling path) is the product of the sequence of transition probabilities required to produce it. If mortality probabilities close out with 1, then the sum of the probabilities of all possible trajectories is one. The set of all possible trajectories (and their corresponding probabilities of occurring) --- a potentially very large set of distinct trajectories --- is also a fixed attribute of the stationary population. 
 
 Throughout this exposition we rely on the notion of a multistate stationary population; we therefore first offer a toy example of one to illustrate some of the properties that form the background to the symmetry property that we wish to describe. Define a two-state model of healthy (\vb{H}) and sick (\vb{S}) with three age classes, and including bidirectional flows between states as well as exits from each state to death (\vb{D}). A set of example transition rates are given in Tab.~\ref{tab:toy}. Each new birth also has a .9 (.1) probability of being born healthy (sick). 
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
@@ -348,13 +348,17 @@ and $T^{i,j}$.}
 \includegraphics[scale=.8]{Figures/lifeline1.pdf}
 \end{figure}
 
-For example, from the \nth{21} life trajectory in Tab.~\ref{tab:traj}, \vb{HSSH}, sickness might be the state of interest, in which case \vb{SS} becomes the episode of interest in this trajectory. If each time step is a year, $\delta = 1$, then we have $A^{21,1} = \{ 0,1,2 \}$ and $T^{21,1} = \{ 2,1,0 \}$: Where order does not matter, these are two equal sets.
+\begin{tcolorbox}
+For example, from the \nth{21} life trajectory in Tab.~\ref{tab:traj}, \vb{HSSH}, sickness might be the state of interest, in which case \vb{SS} becomes the episode of interest in this trajectory. If each time step is a year, $\delta = 1$, then we have $A^{21,1} = \{ 0,1,2 \}$ and $T^{21,1} = \{ 2,1,0 \}$: Where order does not matter, these are two equal sets. These figures are predicated on the strict and limiting assumption that the census is on January 1, each cohort is generated on January 1, and 0s (moment of entry or exit) are observed. This implies five observable points in a life passing through four age classes, but it simplifies the example by not having to specify a distribution over intervals.
+\end{tcolorbox}
+
+
 
 \FloatBarrier
-\item{\textbf{Complementarity identity over replicated life trajectories:}} Under stationarity, the probability of observing a given episode is replicated every $\delta$ time step, where $\delta$ is the same time step over time and age, i.e., the same spacing as our observation spacing in figure~\ref{fig:lifeline1}) but extended over a
-Lexis space. This can be represented with a set of age-aligned and identically long cohort segments placed side-by-side, spaced apart by $\delta$.
-This potentially large set of segments may be imagined as a plane, although this
-would only hold in the limit.
+\item{\textbf{Complementarity identity over replicated life trajectories:}} Under stationarity, the probability of generating a given trajectory is replicated every $\delta$ time step, where $\delta$ is the same time step over time and age, i.e., the same spacing as our observation spacing in figure~\ref{fig:lifeline1}) but extended over a
+ Lexis space. This can be represented with a set of age-aligned and identically long cohort segments placed side-by-side, spaced apart by $\delta$.
+% This potentially large set of segments may be imagined as a plane, although this
+% would only hold in the limit.
 One could in this setting take a census at a single point in time, collecting a set of
 time spent and time left values ($A^{i,j}$ and $T^{i,j}$), each from a repeated episode in
 sequence.
@@ -382,8 +386,9 @@ ago until as recently as $t-a_L^{i,j}$ years ago. This demonstrates both
 period-cohort set equality and time spent-left set equality. The blue and red triangles in
 Figure~\ref{fig:clones} are simple rotations of one another.
 
+\begin{tcolorbox}
 Continuing with the episode $d^{21,1}$ in Tab.~\ref{tab:traj}, if we replicate this trajectory in single year steps, and take a census in year $t$, the values of $A^{21,1}$ and $T^{21,1}$ are the same as before $\{0,1,2\}$, but taken from three different life trajectories that began in years $t-4$, $t-3$, and $t-2$, and were observed at ages 3, 2, and 1, respectively.
-
+\end{tcolorbox}
 \FloatBarrier
 \item{\textbf{Identical set concatenation identity:}} Repeat the construction of time spent and time left values for some other reference episode, $d^{i`,j`}$, as in step 1. This episode might have a different duration, their
 sets of time-spent, $A^{i`,j`}$, and time left $T^{i`,j`}$ will be equal to one another but potentially distinct from those drawn from the previous trajectory-episode. $A^{i,j}$ and $T^{i,j}$ range from 0 to $d^{i,j}$, whereas $A^{i`,j`}$ and $T^{i`,j`}$
@@ -396,37 +401,34 @@ range from 0 to $d^{i`,j`}$. However, their concatenations are identical:
 
 The concatenation identity also applies if we replicate the life trajectory $d^{i`,j`}$ in $\delta$ time steps as in step 2. It is also true if we weight the sets derived from each trajectory by the probability of observing each trajectory.
 
-For example, the \nth{22} trajectory from Tab.~\ref{tab:traj}, \vb{SSSH}, has a single episode of sickness of duration three, yielding identical sets $A^{22,1} = \{0,1,2,3 \}$ and $T^{22,1} = \{3,2,1,0 \}$. If the trajectory is replicated as in step 2, the observations of $d^{22,1}$ will come from four life trajectories born in years $t-5$ through $t-1$ and captured at ages 3, 2, 1, and 0, respectively. Whether observed over time as in step 1 or over individuals within time, as in step 2, the concatenation of $A^{21,1}$ and $A^{22,1}$ is equal to the concatenation of $T^{21,1}$ and $T^{22,1}$, $\{0,0,1,1,2,2,3 \}$. If each birth cohort derived from the probabilities in Tab.~\ref{tab:toy} starts with 100000 individuals, once in stationarity we would expect a hypothetical census to yield 540$\times$5 instances of trajectory 21 and 60$\times$5 of 22, so we would expect 600 observations of values 0, 1, and 2, and 60 observations of 3. These figures are predicated on the strict and limiting assumption that the census is on Jan 1, each cohort is generated on Jan 1, and 0s (moment of entry or exit) are observed. This simplifies things for the present by not having to specify a distribution over intervals.
+\begin{tcolorbox}
+For example, the \nth{22} trajectory from Tab.~\ref{tab:traj}, \vb{SSSH}, has a single episode of sickness of duration three, yielding identical sets with four observations $A^{22,1} = \{0,1,2,3 \}$ and $T^{22,1} = \{3,2,1,0 \}$. If the trajectory is replicated as in step 2, the observations of $d^{22,1}$ will come from four cohorts born in years $t-5$ through $t-1$ and captured at ages 3, 2, 1, and 0, respectively. Whether observed over time as in step 1 or over individuals within time, as in step 2, the concatenation of $A^{21,1}$ and $A^{22,1}$ is equal to the concatenation of $T^{21,1}$ and $T^{22,1}$, $\{0,0,1,1,2,2,3 \}$. If each birth cohort derived from the probabilities in Tab.~\ref{tab:toy} starts with 100000 individuals, once in stationarity we would expect a hypothetical census to yield 540$\times$4 instances of trajectory 21 and 60$\times$5 of 22, so we would expect 600 observations of values 0, 1, and 2, and 60 observations of 3 from these two unique paths. 
+\end{tcolorbox}
 
 \item{\textbf{Distribution equality by induction:}} By induction we can keep adding state episodes from the stationary population, constructing $A$ and $T$ for each, and concatenating over episodes as in step 3. The concatenation of all episode-specific time-spent sets and the concatenation 
 of the corresponding time-left sets will always be identical. This is so both within trajectories and over time (cohort) and over trajectories observed at a single point in time (census). Therefore the probability of selecting a particular value from the concatenated time-spent set is identical
 to the probability of selecting the same value from the cocnatenated time-left set, and Theorem~\ref{th} is proved.
 
-To complete our worked example, the full expected distribution of time spent and left in episodes of sickness in a stationary series based on a renewal of 100000 individuals per year following the rates in Tab.~\ref{tab:toy} is shown in Fig.~\ref{fig:toydist}
+\begin{tcolorbox}
+To complete our worked example, the full expected distribution of time spent and left in episodes of sickness in a stationary series based on a renewal of 100000 individuals per year following the rates in Tab.~\ref{tab:toy} is shown in Fig.~\ref{fig:toydist}.
+\end{tcolorbox}
 
  \begin{figure}[h!]
 \centering
 \caption{The symmetrical distribution of expected time spent and time left in sickness (\vb{S}) as of a census in the stationary population derived from the transition rates in Tab.~\ref{tab:toy} and 100000 individuals per birth cohort.}
 \label{fig:toydist}
-\includegraphics[scale=.6]{Figures/ToyDist.pdf}
+\includegraphics[scale=.5]{Figures/ToyDist.pdf}
 \end{figure}
 
 \end{enumerate}
+\FloatBarrier
 \end{proof}
 
 \begin{proof}[Proof 2 of Theorem \ref{th}]
 The second proof is in development.
 \end{proof}
 
-Our point of departure was that of a perfectly stationary population with
-identically distributed lifelines that aggregate to a fixed age-state structure,
-and this is also the result that we arrive at by induction in the final step of
-the proof. In this strict environment it is therefore the case that our theorem
-holds. A more rigorous proof would allow $\delta$ to decrease to 0 in the
-limit. The present approach does not allow this because probability statements
-would no longer hold. We may require a population of infinite size in order to
-make the jump from a fixed age-state structure to an invariant set of lifelines,
-where each lifeline is itself an invariant sequence of states. 
+Our point of departure was that of a fixed discrete transition rates implying fixed probabilities of a finite number of discrete life trajectories, ultimately producing a stationary population with a fixed expected distribution of sampling paths, fixed expected age-state structure, and fixed expected age-state-episode duration structure.
 
 \section{Discussion}
 The approach from this proof is equally valid to prove the
