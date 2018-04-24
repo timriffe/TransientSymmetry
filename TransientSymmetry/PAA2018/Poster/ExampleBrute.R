@@ -194,10 +194,13 @@ drawTrajPC <-  function(traj,H = "#05872c", S =gray(.8),x=0,w=.2,...){
 
 
 
-pdf("PAA2018/Poster/Figures/TrajExamplePC.pdf", width = 5, height = 5)
-plot(NULL, xlim=c(0,6),ylim=c(0,7),xlab="",ylab = "",axes=FALSE,asp=1)
-drawTrajPC(traj=c("H","S","H","H","S","S"),x=0,H="#05872c",S=gray(.8))
-axis(1,at=0:6,pos=-.1)
+pdf("PAA2018/Poster/Figures/TrajExamplePC.pdf", width = 5, height = 12)
+plot(NULL, xlim=c(0,13),ylim=c(0,7),xlab="",ylab = "",axes=FALSE,asp=1)
+for (i in 0:8){
+	drawTrajPC(traj=c("H","S","H","H","S","S"),x=i,H="#05872c",S=gray(.8),w=.5)	
+}
+#drawTrajPC(traj=c("H","S","H","H","S","S"),x=0,H="#05872c",S=gray(.8),w=1)
+axis(1,at=0:12,pos=-.1)
 axis(2,las=1,at=0:6,pos=-.1)
 dev.off()
 
