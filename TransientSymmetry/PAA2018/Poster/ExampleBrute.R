@@ -204,6 +204,20 @@ axis(1,at=0:12,pos=-.1)
 axis(2,las=1,at=0:6,pos=-.1)
 dev.off()
 
+pdf("PAA2018/Poster/Figures/TrajExamplePCzoom.pdf", width = .4*5, height = 2.5*5)
+par(xaxs="i",yaxs="i",mai=c(0,0,0,0))
+plot(NULL, xlim=c(4.8,5.2),ylim=c(2,4.5),xlab="",ylab = "",axes=FALSE,asp=1)
+for (i in 0:8){
+	drawTrajPC(traj=c("H","S","H","H","S","S"),x=i,H="#05872c",S=gray(.8),w=.5)	
+}
+#drawTrajPC(traj=c("H","S","H","H","S","S"),x=0,H="#05872c",S=gray(.8),w=1)
+#axis(1,at=0:12,pos=-.1)
+#axis(2,las=1,at=0:6,pos=-.1)
+dev.off()
+
+
+
+
 #
 #pdf("Figures/ToyDist.pdf")
 #par(mai=c(.5,.2,.5,0))
