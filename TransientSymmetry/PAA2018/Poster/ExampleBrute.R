@@ -38,6 +38,31 @@ get_TA <- function(traj, state = "S", probs, radix = 1e5,n=4){
 	out[names(tab)] <- c(tab)
 	out
 }
+
+
+drawTraj <- function(traj,H = "#399345", S ="#e89792",y=0,h=1){
+	cols <- traj
+	cols[cols == "H"] <- H
+	cols[cols == "S"] <- S
+	rl   <- rle(cols)
+	r    <- cumsum(rl$lengths)
+	n    <- length(r)
+	l    <- c(0, r[-n])
+	rect(l,y,r,y+h,border=NA,col=rl$values)
+}
+drawTrajr <- function(traj,H = "#399345", S ="#e89792",y=0,h=1,maxl=7){
+	cols <- traj
+	cols[cols == "H"] <- H
+	cols[cols == "S"] <- S
+	rl   <- rle(cols)
+	r    <- cumsum(rl$lengths)
+	n    <- length(r)
+	l    <- c(0, r[-n])
+	d    <- maxl - max(r)
+	r    <- r + d
+	l    <- l + d
+	rect(l,y,r,y+h,border=NA,col=rl$values)
+}
 # 
 # what about an example w 6 ages?
 
@@ -59,7 +84,7 @@ probs  <- list(rH=rH,rS=rS,Tout=Tout)
 trajs    <- get_traj(c("H","S"),6)
 probHS   <- lapply(trajs,get_probsHS,probs=probs)
 TR       <- data.frame(traj = names(trajs),prob = unlist(probHS))
-
+#which(TR$traj=="HSHHSS")
 
 rownames(TR) <- NULL
 library(xtable)
@@ -83,20 +108,9 @@ dev.off()
 
 # now show all possible trajectories:
 
-drawTraj <- function(traj,H = "#399345", S ="#e89792",y=0,h=1){
-	cols <- traj
-	cols[cols == "H"] <- H
-	cols[cols == "S"] <- S
-	rl   <- rle(cols)
-	r    <- cumsum(rl$lengths)
-	n    <- length(r)
-	l    <- c(0, r[-n])
-	rect(l,y,r,y+h,border=NA,col=rl$values)
-}
-
 nseq <- length(trajs)
 maxy <- 1
-yat <- seq(maxy,0,length=(nseq+1))
+yat  <- seq(maxy,0,length=(nseq+1))
 #pdf("PAA2018/Poster/Figures/TrajSpace.pdf",width=5,height=12)
 #plot(NULL, xlim = c(0,6+2), ylim = c(0, maxy), axes = FALSE, xlab = "", ylab = "")
 #for (i in 1:nseq){
@@ -119,7 +133,7 @@ segments(c(7,7+.1*asp),0,c(7,7+.1*asp),-.01,xpd=TRUE)
 text(c(7,7+.1*asp),-.01,c(0,"0.1"),pos=1,xpd=TRUE)
 dev.off()
 
-yat2 <- cumsum(c(0,TR$prob))
+#yat2 <- cumsum(c(0,TR$prob))
 yat2 <- rev(cumsum(c(0,rev(TR$prob))))
 
 
@@ -130,6 +144,15 @@ for (i in 1:nseq){
 }
 segments(0:6,0,0:6,-.01,xpd=TRUE)
 text(0:6,-.01,0:6,pos=1,xpd=TRUE)
+dev.off()
+
+pdf("PAA2018/Poster/Figures/TrajProbsTTD.pdf", width = 5, height = 12)
+plot(NULL, xlim = c(0, 8), ylim = c(0, maxy), axes = FALSE, xlab = "", ylab = "",asp=asp)
+for (i in 1:nseq){
+	drawTrajr(trajs[[i]], y = yat2[i+1],h= TR$prob[i],H="#05872c",S=gray(.8))
+}
+segments(1:7,0,1:7,-.01,xpd=TRUE)
+text(1:7,-.01,6:0,pos=1,xpd=TRUE)
 dev.off()
 
 #TR[which.max(TR$prob),]
@@ -156,6 +179,29 @@ for (i in 1:6){
 					},i=i))
 	Sx[i] <- sum(TR$prob[Si])
 }
+# and repeat for TTD prevalence because we can!
+Hy <- Sy <- rep(0,6)
+for (i in 1:6){
+	# traj <- c("H","S","H","S","S","H")
+	Hi <- unlist(lapply(trajs, function(traj,i){
+						TF <- length(traj) >= i
+						if (TF){
+							TF <- rev(traj)[i] == "H"
+						}
+						TF
+					},i=i))
+	Hy[i] <- sum(TR$prob[Hi])
+	Si <- unlist(lapply(trajs, function(traj,i){
+						TF <- length(traj) >= i
+						if (TF){
+							TF <- rev(traj)[i] == "S"
+						}
+						TF
+					},i=i))
+	Sy[i] <- sum(TR$prob[Si])
+}
+
+
 
 pdf("PAA2018/Poster/Figures/TrajPrev.pdf", width = 5, height = 12)
 plot(NULL, xlim = c(0, 8), ylim = c(0, maxy), axes = FALSE, xlab = "", ylab = "",asp=asp)
@@ -167,6 +213,24 @@ segments(0:6,0,0:6,-.01,xpd=TRUE)
 text(0:6,-.01,0:6,pos=1,xpd=TRUE)
 segments(0,c(0,1),-.01*asp,c(0,1),xpd=TRUE)
 text(0,c(0,1),c(0,1),pos=2,xpd=TRUE)
+dev.off()
+
+pdf("PAA2018/Poster/Figures/TrajPrevTTD.pdf", width = 5, height = 12)
+plot(NULL, xlim = c(0, 8), ylim = c(0, maxy), axes = FALSE, xlab = "", ylab = "",asp=asp)
+rect(0:5,0,1:6,Hy,col="#05872c",border=NA)
+rect(0:5,Hy,1:6,Hy+Sy,col=gray(.8),border=NA)
+polygon(c(0,rep(1:5,each=2),6,6,rep(5:1,each=2),0),
+		c(rep(Sy+Hy,each=2),rep(0,12)))
+segments(0:6,0,0:6,-.01,xpd=TRUE)
+text(0:6,-.01,0:6,pos=1,xpd=TRUE)
+segments(0,c(0,1),-.01*asp,c(0,1),xpd=TRUE)
+text(0,c(0,1),c(0,1),pos=2,xpd=TRUE)
+dev.off()
+
+pdf("PAA2018/Poster/Figures/PrevPropCompare.pdf")
+plot(0:5,Sx/(Sx+Hx),type='l',ylim=c(0,1),axes=FALSE,xlab="",ylab="")
+lines(0:5,Sy/(Sy+Hy))
+axis(1);axis(2,las=1)
 dev.off()
 
 # how about spell duration prevalence
