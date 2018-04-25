@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="PAA2018PosterDraft.svg">
+   sodipodi:docname="PAA2018PosterDraft.pdf">
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -22,9 +22,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.088388348"
-     inkscape:cx="4517.2968"
-     inkscape:cy="1696.5808"
+     inkscape:zoom="0.40189077"
+     inkscape:cx="6243.3174"
+     inkscape:cy="2924.677"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -2665,7 +2665,7 @@
              style="font-size:30px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:DejaVu Sans Bold;-inkscape-font-specification:DejaVuSans-Bold"
              x="7403.6519"
              sodipodi:role="line"
-             id="tspan8670-6-4">NicolasBrouard</tspan>
+             id="tspan8670-6-4">Nicolas Brouard</tspan>
         </text>
         <text
            style="font-size:15px"
@@ -2677,13 +2677,13 @@
              x="7401.8208"
              y="-2449.1475"
              sodipodi:role="line"
-             id="tspan8674-5-4">Institut national d'études</tspan>
+             id="tspan8674-5-4">Institut National d'Études</tspan>
           <tspan
              id="tspan12668"
              style="font-size:30px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVuSans"
              x="7401.8208"
              y="-2411.6475"
-             sodipodi:role="line">démographiques</tspan>
+             sodipodi:role="line">Démographiques</tspan>
         </text>
         <text
            style="font-size:15px"
@@ -3278,11 +3278,11 @@
    id="flowSpan11218">intuitive proof </flowSpan>that the <flowSpan
    style="font-weight:bold;-inkscape-font-specification:Liberation Sans Bold"
    id="flowSpan11220">distributions of time spent and left are equal within states</flowSpan> in stationary populations. </flowPara><flowPara
-           id="flowPara11228"></flowPara><flowPara
+           id="flowPara11228" /><flowPara
            id="flowPara11230">This relationship may inspire new measurement approaches whe <flowSpan
    style="font-weight:bold;-inkscape-font-specification:Liberation Sans Bold"
    id="flowSpan11236">estimating unobserved onset of health conditions</flowSpan>. </flowPara><flowPara
-           id="flowPara11232"></flowPara><flowPara
+           id="flowPara11232" /><flowPara
            id="flowPara11234">We think that researchers working with <flowSpan
    style="font-weight:bold;-inkscape-font-specification:Liberation Sans Bold"
    id="flowSpan11238">censored or truncated data</flowSpan> or any kind of multistate models should be generally aware of this equality in case it may come in handy as a heuristic.</flowPara><flowPara
@@ -3450,11 +3450,6 @@
          x="226.65625"
          id="tspan28781-5-2-0"
          sodipodi:role="line">Background</tspan></text>
-    <path
-       inkscape:connector-curvature="0"
-       id="path9132"
-       d="m 754.86114,-1812.2264 0,66.7911"
-       style="fill:#00ff00;stroke:#00ff00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:3, 3;stroke-dashoffset:0" />
     <flowRoot
        transform="translate(-92,-3285.65)"
        style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
@@ -3492,11 +3487,11 @@
          style="font-size:35px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
          id="flowPara58909" /><flowPara
          style="font-size:35px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
-         id="flowPara58911"></flowPara><flowPara
+         id="flowPara58911" /><flowPara
          style="font-size:35px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
-         id="flowPara9309"></flowPara><flowPara
+         id="flowPara9309" /><flowPara
          style="font-size:35px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
-         id="flowPara9311"></flowPara><flowPara
+         id="flowPara9311" /><flowPara
          style="font-size:35px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
          id="flowPara9313">Multistate stationary populations produce the expectation of a fixed multistate trajectory composition.    </flowPara></flowRoot>    <text
        sodipodi:linespacing="125%"
@@ -11393,7 +11388,7 @@
            id="flowPara19735"
            style="font-size:35px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans">This setup implies <flowSpan
    id="flowSpan9317"
-   style="font-weight:bold;-inkscape-font-specification:Liberation Sans Bold">126 possible life trajectories</flowSpan> (left panel). Each trajectory has a single probability of occurring, allowing us to weight each possible trajectory to determin==e the stationary population composition (right panel).</flowPara></flowRoot>      <text
+   style="font-weight:bold;-inkscape-font-specification:Liberation Sans Bold">126 possible life trajectories</flowSpan> (left panel). Each trajectory has a single probability of occurring, allowing us to weight each possible trajectory to determine the stationary population composition (right panel).</flowPara></flowRoot>      <text
          xml:space="preserve"
          style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
          x="1423.623"
@@ -17246,7 +17241,7 @@
            height="114.38004"
            x="-1260.9037"
            y="1318.106" /></flowRegion><flowPara
-         id="flowPara8379"></flowPara></flowRoot>    <g
+         id="flowPara8379" /></flowRoot>    <g
        id="g9250"
        transform="translate(1517.3541,-54.466692)">
       <path
@@ -17548,7 +17543,7 @@
            height="278"
            x="2844"
            y="2010" /></flowRegion><flowPara
-         id="flowPara10578"></flowPara></flowRoot>    <flowRoot
+         id="flowPara10578" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot10580"
        style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Liberation Sans;font-style:normal;font-weight:normal;font-size:20px;line-height:125%;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:Liberation Sans;font-stretch:normal;font-variant:normal"><flowRegion
@@ -17558,7 +17553,7 @@
            height="24"
            x="3336"
            y="2264" /></flowRegion><flowPara
-         id="flowPara10586"></flowPara></flowRoot>    <flowRoot
+         id="flowPara10586" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot10604"
        style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Liberation Sans;font-style:normal;font-weight:normal;font-size:20px;line-height:125%;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:Liberation Sans;font-stretch:normal;font-variant:normal"><flowRegion
@@ -17568,7 +17563,7 @@
            height="326.68332"
            x="5297.644"
            y="1520.0867" /></flowRegion><flowPara
-         id="flowPara10610"></flowPara></flowRoot>    <flowRoot
+         id="flowPara10610" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot10612"
        style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Liberation Sans;font-style:normal;font-weight:normal;font-size:20px;line-height:125%;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:Liberation Sans;font-stretch:normal;font-variant:normal"><flowRegion
@@ -17578,5 +17573,5 @@
            height="93.338097"
            x="5573.4155"
            y="1521.501" /></flowRegion><flowPara
-         id="flowPara10618"></flowPara></flowRoot>  </g>
+         id="flowPara10618" /></flowRoot>  </g>
 </svg>
