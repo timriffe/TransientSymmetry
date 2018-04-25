@@ -63,6 +63,34 @@ drawTrajr <- function(traj,H = "#399345", S ="#e89792",y=0,h=1,maxl=7){
 	l    <- l + d
 	rect(l,y,r,y+h,border=NA,col=rl$values)
 }
+
+drawTrajPC <-  function(traj,H = "#05872c", S =gray(.8),x=0,w=.2,...){
+	cols <- traj
+	cols[cols == "H"] <- H
+	cols[cols == "S"] <- S
+	rl   <- rle(cols)
+	len  <- rl$lengths
+	r    <- cumsum(rl$lengths)
+	n    <- length(r)
+	l    <- c(0, r[-n])
+	
+	X <- c(rbind(l,l+len,l+len,l,NA)) + x
+	Y <- c(rbind(l,l+len,l+len+w,l+w,NA))
+	polygon(X,Y,border=NA,col=rl$values,xpd=TRUE,...)
+}
+get_TA <- function(traj, state = "S", probs, radix = 1){
+	w   <- get_probsHS(traj = traj, probs = probs) * radix
+	rl  <- rle(traj)
+	dur <- rl$lengths[rl$values == state]
+	TA  <- c(unlist(sapply(dur,":",0)))
+	tab <- table(TA) * w
+	out <- rep(0,7)
+	names(out)      <- 0:6
+	out[names(tab)] <- c(tab)
+	out
+}
+
+
 # 
 # what about an example w 6 ages?
 
@@ -241,20 +269,6 @@ drawTraj(c("H","S","H","H","S","S"),y=.4,h=.2,H="#05872c",S=gray(.8))
 axis(1)
 dev.off()
 
-drawTrajPC <-  function(traj,H = "#05872c", S =gray(.8),x=0,w=.2,...){
-	cols <- traj
-	cols[cols == "H"] <- H
-	cols[cols == "S"] <- S
-	rl   <- rle(cols)
-	len  <- rl$lengths
-	r    <- cumsum(rl$lengths)
-	n    <- length(r)
-	l    <- c(0, r[-n])
-	
-	X <- c(rbind(l,l+len,l+len,l,NA)) + x
-	Y <- c(rbind(l,l+len,l+len+w,l+w,NA))
-	polygon(X,Y,border=NA,col=rl$values,xpd=TRUE,...)
-}
 
 
 
@@ -280,8 +294,12 @@ for (i in 0:8){
 dev.off()
 
 
+# sickness distributions.
 
-
+TAlist <- lapply(trajs,get_TA,state="S",probs=probs,radix=1)
+TA <- colSums(do.call("rbind",TAlist))
+get_TA(c("S","S"),probs=probs)
+barplot(log(TA[-1]),space=0)
 #
 #pdf("Figures/ToyDist.pdf")
 #par(mai=c(.5,.2,.5,0))
