@@ -296,10 +296,57 @@ dev.off()
 
 # sickness distributions.
 
+
+# how about spell duration distribution instead?
+traj <- trajs[[100]]
+EPL <- colSums(do.call(rbind,lapply(trajs, function(traj,state="S",probs){
+			w <- get_probsHS(traj = traj, probs = probs) 
+			durs<- rep(0,6)
+			names(durs) <- 1:6
+			rl <- rle(traj)
+			val <- rl$values
+			len <- rl$lengths
+			episodes <- table(len[val == state]) * w
+			if (length(episodes) > 0){
+				durs[names(episodes)] <- c(episodes)
+			}
+			durs
+		},probs=probs)))
+
+plot(1:6,EPL,type='o',pch=16,axes=FALSE,xlab="",ylab="")
+axis(1)
+axis(2,las=1)
+barplot(EPL,space=0,las=1)
+
+
+
 TAlist <- lapply(trajs,get_TA,state="S",probs=probs,radix=1)
 TA <- colSums(do.call("rbind",TAlist))
-get_TA(c("S","S"),probs=probs)
-barplot(log(TA[-1]),space=0)
+plot(0:6, TA, type='l',xlim=c(-6,6))
+lines(0:-6,TA)
+
+
+pdf("PAA2018/Poster/Figures/TAdist.pdf")
+barplot(TA, space = 0,las=1, col = gray(.8))
+dev.off()
+TA <- TA / sum(TA)
+
+plot(NULL,xlim=c(-6,6),ylim=c(0,.5),axes = FALSE,xlab="",ylab="")
+
+
+plot(-6:6,c(rev(TA),TA[-1]), type='l',
+		pch=16,
+		xlim = c(-6,6),
+		axes=FALSE, xlab = "",ylab = "",
+		log='y')
+axis(1,at=-6:6,labels=c(c(6:0,1:6)))
+axis(2,las=1,at=1/10^(0:5),labels=c("1","1/10","1/100","1/1000","1/10k","1/100k"),xpd=TRUE)
+abline(v=0)
+
+
+segments(-6,0,6,0)
+text(-6:6,0,c(6:0,1:6),pos=1,xpd=TRUE)
+
 #
 #pdf("Figures/ToyDist.pdf")
 #par(mai=c(.5,.2,.5,0))
