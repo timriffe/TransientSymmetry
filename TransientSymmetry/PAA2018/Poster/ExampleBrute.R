@@ -6,10 +6,14 @@ if (system("hostname",intern=TRUE) %in% c("triffe-N80Vm", "tim-ThinkPad-L440")){
 }
 # -----------------
 
+# gets all possible trajectories assuming nonzero
+# transition probs. x is a character vector of states (one character per state)
+# results is list with character vector of state sequence. In list because of
+# variable length
 get_traj <- function(x,maxn=4){
 	traj <- list()
 	for (i in 1:maxn){
-		li <- as.matrix(expand.grid( rep(list(c("H","S")), i)))
+		li <- as.matrix(expand.grid( rep(list(x), i)))
 		traj <- c(traj,split(li,1:nrow(li)))
 	}
 	names(traj) <- lapply(traj,paste,collapse="")
@@ -17,29 +21,42 @@ get_traj <- function(x,maxn=4){
 	traj
 }
 
+# for a given trajectory and set of transition probabilities
+# what is the total probability of observing this trajectory.
 get_probsHS <- function(traj, probs){
-	traj <- c(traj,"D")
+	traj <- c(traj,"D")  # end traj in death
 	n    <- length(traj)
+	# get birth state probs
 	pr   <- probs[[paste0("r",traj[1])]]
+	# get to/from concatenations, which is how trans probs are named
 	outs <- paste0(traj[1:(n-1)],traj[2:n])
+	# located in diag, get prob vector
 	pt   <- diag(probs$Tout[,outs,drop=FALSE])
+	# product
 	p    <- pr * prod(pt)
 	p	
 }
 
 get_TA <- function(traj, state = "S", probs, radix = 1e5,n=4){
+	# this assumes we have a large radix, otherwise we wouldn't round!
+	# ideally radix chosen to match digit precision of probabilities.
 	w   <- round(get_probsHS(traj = traj, probs = probs) * radix)
+	# get all spell durations
 	rl  <- rle(traj)
+	# select to desired state
 	dur <- rl$lengths[rl$values == state]
+	# all T and A values
 	TA  <- c(unlist(sapply(dur,":",0)))
+	# tabulate values and weight 
 	tab <- table(TA) * w
+	# fit into standard-length output
 	out <- rep(0,(n+1))
 	names(out)      <- 0:n
 	out[names(tab)] <- c(tab)
 	out
 }
 
-
+# draw a trajectory as horizontal rect, hard coded to H and S
 drawTraj <- function(traj,H = "#399345", S ="#e89792",y=0,h=1){
 	cols <- traj
 	cols[cols == "H"] <- H
@@ -50,6 +67,7 @@ drawTraj <- function(traj,H = "#399345", S ="#e89792",y=0,h=1){
 	l    <- c(0, r[-n])
 	rect(l,y,r,y+h,border=NA,col=rl$values)
 }
+# same, but right-aligned. Used to show non-symmetry in poster
 drawTrajr <- function(traj,H = "#399345", S ="#e89792",y=0,h=1,maxl=7){
 	cols <- traj
 	cols[cols == "H"] <- H
@@ -63,7 +81,7 @@ drawTrajr <- function(traj,H = "#399345", S ="#e89792",y=0,h=1,maxl=7){
 	l    <- l + d
 	rect(l,y,r,y+h,border=NA,col=rl$values)
 }
-
+# draw a trajectory in PC diagonal, used for step 2 in poster
 drawTrajPC <-  function(traj,H = "#05872c", S =gray(.8),x=0,w=.2,...){
 	cols <- traj
 	cols[cols == "H"] <- H
@@ -78,6 +96,7 @@ drawTrajPC <-  function(traj,H = "#05872c", S =gray(.8),x=0,w=.2,...){
 	Y <- c(rbind(l,l+len,l+len+w,l+w,NA))
 	polygon(X,Y,border=NA,col=rl$values,xpd=TRUE,...)
 }
+# non-rounded TA, overwrite previous. Hard coded length!
 get_TA <- function(traj, state = "S", probs, radix = 1){
 	w   <- get_probsHS(traj = traj, probs = probs) * radix
 	rl  <- rle(traj)
@@ -103,19 +122,22 @@ HD     <- c(.01,.05,.1,.2,.3,1)
 SD     <- c(.2,.3,.4,.5,.7,1)
 HH     <- 1 - (HS + HD)
 SS     <- 1 - c(SH + SD)
-
+#transition probs in a single matrix, with directions coded in
+# column names
 Tout   <- cbind(HH, HS, HD, SS, SH, SD)
-
+# all necessary probabilities together
 probs  <- list(rH=rH,rS=rS,Tout=Tout)
 
-
-trajs    <- get_traj(c("H","S"),6)
+# all possible trajectories assuming non-zero transition rates
+# between the specified states
+trajs    <- get_traj(x=c("H","S"),6)
 probHS   <- lapply(trajs,get_probsHS,probs=probs)
 TR       <- data.frame(traj = names(trajs),prob = unlist(probHS))
 #which(TR$traj=="HSHHSS")
 
 rownames(TR) <- NULL
 library(xtable)
+# for making transition probability line plot
 trans <- colnames(probs$Tout)
 names(trans) <- c("#92a654", "#4fa9c1", "#256676", "#c99084", "#d6061a", "#84241a")
 
@@ -139,15 +161,10 @@ dev.off()
 nseq <- length(trajs)
 maxy <- 1
 yat  <- seq(maxy,0,length=(nseq+1))
-#pdf("PAA2018/Poster/Figures/TrajSpace.pdf",width=5,height=12)
-#plot(NULL, xlim = c(0,6+2), ylim = c(0, maxy), axes = FALSE, xlab = "", ylab = "")
-#for (i in 1:nseq){
-#	drawTraj(trajs[[i]], y = yat[i+1],h= maxy/nseq,H="#05872c",S=gray(.8))
-#	rect(7,yat[i+1],7+TR$prob[i]*8,yat[i],border=NA,col=gray(.2))
-#}
-#dev.off()
 
+# aspect ratio shared in several plots
 asp <- 20
+# the trajectory space
 pdf("PAA2018/Poster/Figures/TrajSpace.pdf",width=5,height=12)
 plot(NULL, xlim = c(0,8), ylim = c(0, maxy), axes = FALSE, xlab = "", ylab = "",asp=asp)
 for (i in 1:nseq){
@@ -161,6 +178,7 @@ segments(c(7,7+.1*asp),0,c(7,7+.1*asp),-.01,xpd=TRUE)
 text(c(7,7+.1*asp),-.01,c(0,"0.1"),pos=1,xpd=TRUE)
 dev.off()
 
+# the probability-weighted trajectory space, aka trajectory composition
 #yat2 <- cumsum(c(0,TR$prob))
 yat2 <- rev(cumsum(c(0,rev(TR$prob))))
 
@@ -174,6 +192,7 @@ segments(0:6,0,0:6,-.01,xpd=TRUE)
 text(0:6,-.01,0:6,pos=1,xpd=TRUE)
 dev.off()
 
+# same, but aligned on death, shows non symmetry
 pdf("PAA2018/Poster/Figures/TrajProbsTTD.pdf", width = 5, height = 12)
 plot(NULL, xlim = c(0, 8), ylim = c(0, maxy), axes = FALSE, xlab = "", ylab = "",asp=asp)
 for (i in 1:nseq){
@@ -208,6 +227,7 @@ for (i in 1:6){
 	Sx[i] <- sum(TR$prob[Si])
 }
 # and repeat for TTD prevalence because we can!
+# to show non-symmetry
 Hy <- Sy <- rep(0,6)
 for (i in 1:6){
 	# traj <- c("H","S","H","S","S","H")
@@ -230,7 +250,8 @@ for (i in 1:6){
 }
 
 
-
+# the asymptotic prevalence functions (same as those
+# returned by fundamental matrix)
 pdf("PAA2018/Poster/Figures/TrajPrev.pdf", width = 5, height = 12)
 plot(NULL, xlim = c(0, 8), ylim = c(0, maxy), axes = FALSE, xlab = "", ylab = "",asp=asp)
 rect(0:5,0,1:6,Hx,col="#05872c",border=NA)
@@ -243,6 +264,7 @@ segments(0,c(0,1),-.01*asp,c(0,1),xpd=TRUE)
 text(0,c(0,1),c(0,1),pos=2,xpd=TRUE)
 dev.off()
 
+# same prevalence right aligned (non-symmatrical)
 pdf("PAA2018/Poster/Figures/TrajPrevTTD.pdf", width = 5, height = 12)
 plot(NULL, xlim = c(0, 8), ylim = c(0, maxy), axes = FALSE, xlab = "", ylab = "",asp=asp)
 rect(0:5,0,1:6,Hy,col="#05872c",border=NA)
@@ -255,6 +277,7 @@ segments(0,c(0,1),-.01*asp,c(0,1),xpd=TRUE)
 text(0,c(0,1),c(0,1),pos=2,xpd=TRUE)
 dev.off()
 
+# get actual proportions, show non-symmetry
 pdf("PAA2018/Poster/Figures/PrevPropCompare.pdf")
 plot(0:5,Sx/(Sx+Hx),type='l',ylim=c(0,1),axes=FALSE,xlab="",ylab="")
 lines(0:5,Sy/(Sy+Hy))
@@ -262,16 +285,14 @@ axis(1);axis(2,las=1)
 dev.off()
 
 # how about spell duration prevalence
-
+# this is trajectory nr 113, used as example in poster
 pdf("PAA2018/Poster/Figures/TrajExample.pdf", width = 5, height = 5)
 plot(NULL, xlim=c(0,6),ylim=c(0,1),xlab="",ylab = "",axes=FALSE)
 drawTraj(c("H","S","H","H","S","S"),y=.4,h=.2,H="#05872c",S=gray(.8))
 axis(1)
 dev.off()
 
-
-
-
+# same, drawn in PC in even steps. Narrower traj (actually has no width)
 pdf("PAA2018/Poster/Figures/TrajExamplePC.pdf", width = 5, height = 12)
 plot(NULL, xlim=c(0,13),ylim=c(0,7),xlab="",ylab = "",axes=FALSE,asp=1)
 for (i in 0:8){
@@ -282,6 +303,7 @@ axis(1,at=0:12,pos=-.1)
 axis(2,las=1,at=0:6,pos=-.1)
 dev.off()
 
+# zoom in to show period equivalency
 pdf("PAA2018/Poster/Figures/TrajExamplePCzoom.pdf", width = .4*5, height = 2.5*5)
 par(xaxs="i",yaxs="i",mai=c(0,0,0,0))
 plot(NULL, xlim=c(4.8,5.2),ylim=c(2,4.5),xlab="",ylab = "",axes=FALSE,asp=1)
@@ -294,58 +316,58 @@ for (i in 0:8){
 dev.off()
 
 
-# sickness distributions.
-
-
-# how about spell duration distribution instead?
-traj <- trajs[[100]]
-EPL <- colSums(do.call(rbind,lapply(trajs, function(traj,state="S",probs){
-			w <- get_probsHS(traj = traj, probs = probs) 
-			durs<- rep(0,6)
-			names(durs) <- 1:6
-			rl <- rle(traj)
-			val <- rl$values
-			len <- rl$lengths
-			episodes <- table(len[val == state]) * w
-			if (length(episodes) > 0){
-				durs[names(episodes)] <- c(episodes)
-			}
-			durs
-		},probs=probs)))
-
-plot(1:6,EPL,type='o',pch=16,axes=FALSE,xlab="",ylab="")
-axis(1)
-axis(2,las=1)
-barplot(EPL,space=0,las=1)
-
-
-
 TAlist <- lapply(trajs,get_TA,state="S",probs=probs,radix=1)
-TA <- colSums(do.call("rbind",TAlist))
-plot(0:6, TA, type='l',xlim=c(-6,6))
-lines(0:-6,TA)
-
-
+TA     <- colSums(do.call("rbind",TAlist))
+TA     <- TA / sum(TA)
+# used for final symmetry figure in poster
 pdf("PAA2018/Poster/Figures/TAdist.pdf")
 barplot(TA, space = 0,las=1, col = gray(.8))
 dev.off()
-TA <- TA / sum(TA)
 
-plot(NULL,xlim=c(-6,6),ylim=c(0,.5),axes = FALSE,xlab="",ylab="")
-
-
-plot(-6:6,c(rev(TA),TA[-1]), type='l',
-		pch=16,
-		xlim = c(-6,6),
-		axes=FALSE, xlab = "",ylab = "",
-		log='y')
-axis(1,at=-6:6,labels=c(c(6:0,1:6)))
-axis(2,las=1,at=1/10^(0:5),labels=c("1","1/10","1/100","1/1000","1/10k","1/100k"),xpd=TRUE)
-abline(v=0)
+# sickness distributions.
 
 
-segments(-6,0,6,0)
-text(-6:6,0,c(6:0,1:6),pos=1,xpd=TRUE)
+# how about spell duration distribution instead? Not used in poster.
+#traj <- trajs[[100]]
+#EPL <- colSums(do.call(rbind,lapply(trajs, function(traj,state="S",probs){
+#			w <- get_probsHS(traj = traj, probs = probs) 
+#			durs<- rep(0,6)
+#			names(durs) <- 1:6
+#			rl <- rle(traj)
+#			val <- rl$values
+#			len <- rl$lengths
+#			episodes <- table(len[val == state]) * w
+#			if (length(episodes) > 0){
+#				durs[names(episodes)] <- c(episodes)
+#			}
+#			durs
+#		},probs=probs)))
+#
+#plot(1:6,EPL,type='o',pch=16,axes=FALSE,xlab="",ylab="")
+#axis(1)
+#axis(2,las=1)
+#barplot(EPL,space=0,las=1)
+
+
+# these were experiments for that final figure:
+# really you can see variation better in logged plot,
+# but trans probs end up making a straight line in log space!
+#TA <- TA / sum(TA)
+#plot(NULL,xlim=c(-6,6),ylim=c(0,.5),axes = FALSE,xlab="",ylab="")
+#
+#
+#plot(-6:6,c(rev(TA),TA[-1]), type='l',
+#		pch=16,
+#		xlim = c(-6,6),
+#		axes=FALSE, xlab = "",ylab = "",
+#		log='y')
+#axis(1,at=-6:6,labels=c(c(6:0,1:6)))
+#axis(2,las=1,at=1/10^(0:5),labels=c("1","1/10","1/100","1/1000","1/10k","1/100k"),xpd=TRUE)
+#abline(v=0)
+#
+#
+#segments(-6,0,6,0)
+#text(-6:6,0,c(6:0,1:6),pos=1,xpd=TRUE)
 
 #
 #pdf("Figures/ToyDist.pdf")
