@@ -1,0 +1,24 @@
+
+# Author: tim
+###############################################################################
+devtools::load_all("/home/tim/workspace/DemoSurf/DemoSurf")
+segments_LexRef <- function(LexRefInternalObject, ...){
+	V <- LexRefInternalObject$Vertical
+	H <- LexRefInternalObject$Horizontal
+	D <- LexRefInternalObject$Diagonal
+	segments(V$x1,V$y1,V$x2,V$y2,...)
+	segments(H$x1,H$y1,H$x2,H$y2,...)
+	segments(D$x1,D$y1,D$x2,D$y2,...)
+}
+LexWrapper <- function(years,ages,N=5,...){
+	segments_LexRef(
+			LexRefNinternal(Abscissae=years, Ordinate=ages, AbMeasure = "P", OrdMeasure = "A", N = N, isotropic = FALSE),
+			...)
+}
+# make C2 move out. Program it to take steps.
+C1 <- 5
+C2 <- 15
+par(mai=c(.5,.5,.5,.5))
+plot(NULL, type = "n", ylim=c(0,100), xlim=c(0,50),axes = FALSE, xlab = "", ylab = "",asp=1)
+LexWrapper(years=0:50,ages=0:100,N=5,col = gray(.8))
+
