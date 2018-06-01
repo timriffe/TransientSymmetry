@@ -18,7 +18,24 @@ LexWrapper <- function(years,ages,N=5,...){
 # make C2 move out. Program it to take steps.
 C1 <- 5
 C2 <- 15
+census_poly <- function(C1,C2,omega=100,...){
+	I <- C2 - C1
+	polygon(c(C1,C2,C2,C1),c(0,I,omega+I,omega),xpd=TRUE,...)
+}
+census <- function(C,omega=100,N=5,n=.5,...){
+	int <- seq(0,100,by=N)
+	segments(C,0,C,omega,...)
+	segments(C-n,int,C+n,int,...)
+}
+proof_plot <- function(C1,C2,omega=100,N=5,n=.5,...){
+	census_poly(C1,C2,omega=omega,col="#FF000050",border="red")
+	census(C1,omega=omega,N=N,n=n,col="blue")
+	census(C2,omega=omega,N=N,n=n,col="blue")
+}
 par(mai=c(.5,.5,.5,.5))
+for (I in seq(0,25,by=.5)){
 plot(NULL, type = "n", ylim=c(0,100), xlim=c(0,50),axes = FALSE, xlab = "", ylab = "",asp=1)
 LexWrapper(years=0:50,ages=0:100,N=5,col = gray(.8))
-
+proof_plot(C1,C1+I)
+Sys.sleep(.2)
+}
