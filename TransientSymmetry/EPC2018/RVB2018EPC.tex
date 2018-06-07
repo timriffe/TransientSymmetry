@@ -66,7 +66,7 @@ stationary populations}
 	Time spent and left of transient states in stationary populations\\
 	\vspace{1em}
 	\large 
-	Tim Riffe \& Francisco Villavicencio \textcolor{gray}{\& Nicolas Brouard}
+	Tim Riffe \& Francisco Villavicencio \& Nicolas Brouard
 \end{frame}
 %-------------------
 
@@ -74,12 +74,14 @@ stationary populations}
 \begin{frame}[plain]
 \Large
  \begin{block}{Brouard-Carey equality}
-  Under stationarity, the population aged $x$ equals the population with $x$ life left to live.\\ 
+  Under stationarity, the population aged \textcolor{red}{$\mathbf{x}$} equals the population with \textcolor{blue}{$\mathbf{x}$} life left to live.\\ 
  \end{block}
 \small{(Brouard, 1989; Vaupel, 2009; Villavicencio \& Riffe, 2016)}
 \pause
+\vspace{2em}
+\Large
  \begin{block}{Transient equality}
-  Under stationarity, the probability that a randomly selected individual is in
+  Under multistate stationarity, the probability that a randomly selected individual is in
   state \textcolor{OliveGreen}{$\mathbf{s}$} and entered
   \textcolor{OliveGreen}{$\mathbf{s}$} \textcolor{red}{$\mathbf{x}$} years ago
   is equal to the probability of being in state
@@ -95,153 +97,95 @@ Requisites:
 \begin{itemize}[<+->]
 \item All vital and state transition schedules fixed.
 \item No growth (births = deaths).
-\item The expected age-state structure is frozen.
-\item Each potential discrete state trajectory has a fixed probability of
-occurring.
-\item Same for past and future cohorts.
+\item Result: The expected age-state structure is frozen.
 \end{itemize}
 \end{frame}
 
-%\begin{frame}[plain]
-%\Large
-%\centering
-%Deterministic result (friendly):
-%\begin{itemize}[<+->]
-%\item The age-state structure is frozen.
-%\item The same finite set of discrete state trajectories.
-%\item Same for past and future cohorts (all clones).
-%\end{itemize}
-%\end{frame}
 
 \begin{frame}[plain]
 \Large
-\centering
-Prove for friendly case, generalize to probability case.
+\begin{center}
+\includegraphics[]{Figures/Proof0.pdf}
+\end{center}
 \end{frame}
 
-%\begin{frame}[plain]
-%\Large
-%Step 1
-%\begin{overlayarea}{\textwidth}{.4\textheight}
-%\begin{center}
-%\only<1>{
-%$A^{(i)}=\left\{ 0\right\}$\\
-%\includegraphics[scale = 1]{Figures/SingleLifeAnim1/step0.pdf}\\
-%$T^{(i)}=\left\{ \tau_1 \right\}$
-%}
-%\only<2>{
-%$A^{(i)}=\left\{0, a_1 \right\}$\\
-%\includegraphics[scale = 1]{Figures/SingleLifeAnim1/step1.pdf}\\
-%$T^{(i)}=\left\{ \tau_1 \right\}$
-%}
-%\only<3>{
-%$A^{(i)}=\left\{0, a_1,a_2 \right\}$\\
-%\includegraphics[scale = 1]{Figures/SingleLifeAnim1/step2.pdf}\\
-%$T^{(i)}=\left\{ \tau_1,\tau_2 \right\}$
-%}
-%\only<4>{
-%$A^{(i)}=\left\{0, a_1,a_2,a_3 \right\}$\\
-%\includegraphics[scale =
-%1]{Figures/SingleLifeAnim1/step3.pdf}\\
-%$T^{(i)}=\left\{ \tau_1,\tau_2,\tau_3 \right\}$} 
-%\only<5>{
-%$A^{(i)}=\left\{0, a_1,a_2,a_3,\ldots, a_{K-1} \right\}$\\
-%\includegraphics[scale = 1]{Figures/SingleLifeAnim1/step14.pdf}\\
-%$T^{(i)}=\left\{ \tau_1,\tau_2,\tau_3, \ldots, \tau_{K-1} \right\}$
-%}
-%\only<6>{
-%$A^{(i)}=\left\{0, a_1,a_2,a_3,\ldots, a_{K-1}, a_{K} \right\}$\\
-%\includegraphics[scale = 1]{Figures/SingleLifeAnim1/step15.pdf}\\
-%$T^{(i)}=\left\{ \tau_1,\tau_2,\tau_3, \ldots, \tau_{K-1}, 0 \right\}$
-%}
-%\only<7>{
-%$A^{(i)}=\left\{0, a_1,a_2,a_3,\ldots, a_{K-1}, a_{K} \right\}$\\
-%\includegraphics[scale = 1]{Figures/SingleLifeAnim1/stepsmalldelta.pdf}\\
-%$T^{(i)}=\left\{ \tau_1,\tau_2,\tau_3, \ldots, \tau_{K-1}, 0 \right\}$
-%}
-%\end{center}
-%\end{overlayarea}
-%\end{frame}
-%%
-%\begin{frame}[plain]
-%\Large
-%\begin{center}
-%Complementarity:\\ \vspace{1em}
-%Within an individual over time\\  \vspace{.5em} \huge
-%\begin{equation}
-%A^{(i)} = T^{(i)} \notag
-%\end{equation}
-%\end{center}
-%\end{frame}
-%
-%\begin{frame}[plain]
-%\Large
-%\begin{center}
-%Complementarity:\\ \vspace{1em}
-%for the union of two individuals\\ \vspace{.5em} \huge
-%\begin{equation}
-%\left\{ A^1 , A^2 \right\} = \left\{ T^1 , T^2 \right\} \notag
-%\end{equation}
-%\end{center}
-%\end{frame}
-%
-%--------------------------------------------------------
-%
-%\begin{frame}[plain]
-%\vspace{-3em}
-%\Large
-%\begin{overlayarea}{\textwidth}{.4\textheight}
-%\begin{center}
-%\only<1>{
-%Move to Lexis diagonal\\
-%\includegraphics[scale = 1]{Figures/buildstationary/step1.pdf}\\
-%}
-%\only<2>{
-%A clone is born every $\Delta$ time step\\
-%\includegraphics[scale = 1]{Figures/buildstationary/step2.pdf}\\
-%}
-%\only<3>{
-%A clone is born every $\Delta$ time step\\
-%\includegraphics[scale = 1]{Figures/buildstationary/step3.pdf}\\
-%}
-%\only<4>{
-%A stationary series of clones\\
-%\includegraphics[scale = 1]{Figures/buildstationary/step16.pdf}\\
-%}
-%\only<5>{
-%A census in stationary series\\
-%\includegraphics[scale = 1]{Figures/buildstationary/spl0.pdf}\\
-%}
-%\only<6>{
-%Complementarity in ``clone'' stationarity\\
-%\includegraphics[scale = 1]{Figures/buildstationary/spl1.pdf}\\
-%}
-%\only<7>{
-%Complementarity for some other episode\\
-%\includegraphics[scale = 1]{Figures/buildstationary/spl2.pdf}\\
-%}
-%\only<8>{
-%Complementarity for set unions\\
-%\includegraphics[scale = 1]{Figures/buildstationary/spl3.pdf}\\
-%}
-%\end{center}
-%\end{overlayarea}
-%\end{frame}
-%
-%\begin{frame}[plain]
-%\Large
-%\begin{proof}
-%By induction, complimentarity for all episodes. This implies equal sets of time
-%spent and left values, a.k.a. equal time spent and left distributions.
-%\end{proof}
-%
-%\pause
-%\begin{itemize}[<+->]
-%  \item Make $\Delta$ smaller if you want.
-%  \item Replace ``clones'' w ``fixed fraction''.
-%  \item Replace fraction w ``fixed probability''.
-%\end{itemize}
-%\end{frame}
+\begin{frame}[plain]
+
+\begin{center}
+\includegraphics[]{Figures/Proof1.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}[plain]
+\Large
+\begin{center}
+\includegraphics[]{Figures/Proof2.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}[plain]
+\Large
+\begin{center}
+\includegraphics[]{Figures/Proof3.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}[plain]
+\Large
+\begin{center}
+\includegraphics[]{Figures/Proof4.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}[plain]
+\Large
+\begin{center}
+\includegraphics[]{Figures/Proof5.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}[plain]
+\Large
+\begin{center}
+\includegraphics[]{Figures/Proof6.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}[plain]
+\Large
+\begin{center}
+\includegraphics[]{Figures/Proof7.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}[plain]
+\Large
+\begin{center}
+\includegraphics[]{Figures/Proof8.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}[plain]
+\Large
+\begin{center}
+\includegraphics[]{Figures/Proof9.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}[plain]
+\Large
+\begin{center}
+\includegraphics[]{Figures/Proof25.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}[plain]
+\Large
+\begin{center}
+\includegraphics[]{Figures/Symmetry.pdf}
+\end{center}
+\end{frame}
+
 
 \begin{frame}[plain]
 \Large
@@ -252,11 +196,11 @@ Implications:
   \item Equal time spent-left distributions within states.
   \item Within episode \emph{order}. 
   \item Cumulative over episodes.
-  \item Conditional on anything (age, TTD).
   \item Brouard-Carey is degenerate case.
 \end{itemize}
 \end{center}
 \end{frame}
+
 %
 %% Now we install the new template for the following frames:
 %{
@@ -269,33 +213,33 @@ Implications:
 %   Photo by Eberhard Grossgasteiger on Unsplash
 %\end{frame}
 %}
-%% Now we install another template, effective from now on:
-%\begin{frame}[plain]
-%\Large
-%\begin{center}
-%Simulate
-%\begin{itemize}[<+->]
-%  \item Take transition matrix from \normalsize{Dudel \& Myrskl\"a (2017)}
-%  \item Simulate trajectories; \texttt{rmarkovchain()} in \texttt{markovchain}
-%  package.
-%  \item Take census in stationary series. 
-%  \item Assume observation at half interval.
-%  \item Tabulate time spent and left in sampled episodes.
-%  \item Compare distributions.
-%\end{itemize}
-%\end{center}
-%\end{frame}
-%
-%\begin{frame}[plain]
-%\Large
-%\begin{center}
-%\includegraphics[height=\paperheight]{Figures/SimResults.pdf}
-%\end{center}
-%\end{frame}
 
-{
+
 \usebackgroundtemplate{%
   \includegraphics[width=\paperwidth,height=\paperheight]{Figures/eberhard-grossgasteiger-410620-unsplash.jpg}} 
+\begin{frame}[plain]
+\Large
+\centering
+Might it be useful?
+\tiny
+\flushright
+\vspace{16cm}
+   Photo by Eberhard Grossgasteiger on Unsplash
+\end{frame}
+
+  
+  \begin{frame}[plain]
+\Large
+\begin{center}
+\pause
+\begin{itemize}[<+->]
+  \item High state turnover = shorter followup.
+  \item Property observable in small stochastic samples. 
+  \item Tractable under stability
+\end{itemize}
+\end{center}
+\end{frame}
+  
 \begin{frame}
 \vspace{9cm}
 \Large
