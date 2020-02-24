@@ -1,4 +1,3 @@
 # TransientSymmetry
-let's prove something!
-
-A paper in progress Tim Riffe, Francisco Villavicencio, and Nicolas Brouard
+"Time spent and left of transient states in stationary populations"
+A paper in progress by Tim Riffe, Francisco Villavicencio, and Nicolas Brouard
